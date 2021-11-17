@@ -11,6 +11,9 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install openjdk-11-jdk git -y
 
+# ---------------------------------------------------------------------------------
+# Ensure git repo is cloned and that pwd is inside the cloned / up to date git repo
+# ---------------------------------------------------------------------------------
 if git rev-parse --git-dir > /dev/null 2>&1; then
 	# We are inside a git repo
 	git pull
@@ -40,11 +43,38 @@ else
 	fi
 fi
 
+# ---------------------------------------------------------------------------------
+# Setup SSH-Daemon
+# ---------------------------------------------------------------------------------
 cd pi
 sudo cp sshd_config /etc/ssh/sshd_config
 
 sudo systemctl restart sshd
 sudo systemctl enable sshd
+
+# ---------------------------------------------------------------------------------
+# Setup wifi Mgmt
+# ---------------------------------------------------------------------------------
+sudo apt-get install hostapd dnsmasq
+
+sudo systemctl unmask hostapd
+sudo systemctl disable hostapd
+sudo systemctl disable dnsmasq
+
+sudo mkdir -p /etc/hostapd
+sudo cp ./hostapd.conf /etc/hostapd/hostapd.conf
+sudo cp ./defaulthostapd /etc/default/hostapd
+sudo cp ./dnsmasq.conf /etc/dnsmasq.conf
+sudo cp ./interfaces /etc/network/interfaces
+sudo cp ./dhcpd.conf /etc/dhcpcd.conf
+sudo cp ./autohotspot.service /etc/systemd/system/autohotspot.service
+sudo cp ./autohotspot /usr/bin/autohotspot
+sudo chmod +x /usr/bin/autohotspot
+
+sudo systemctl enable autohotspot.service
+
+sudo crontab ./cronConfig
+wpa_passphrase luca asdfghjkl | sudo tee -a /etc/wpa_supplicant.conf
 
 # TODO: VNC Server installieren & konfigurieren
 # TODO: pipe-it-up kompillieren und installieren
