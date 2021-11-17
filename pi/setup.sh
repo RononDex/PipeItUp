@@ -43,6 +43,8 @@ else
 	fi
 fi
 
+. ./functions.sh
+
 # ---------------------------------------------------------------------------------
 # Setup SSH-Daemon
 # ---------------------------------------------------------------------------------
@@ -75,12 +77,9 @@ sudo systemctl enable autohotspot.service
 
 sudo crontab ./cronConfig
 
-if grep -q luca "/etc/wpa_supplicant.conf"; then
-	echo "Known wifi 'luca' already setup"
-else
-	echo "Adding 'luca' to known wifis"
-	wpa_passphrase luca asdfghjkl | sudo tee -a /etc/wpa_supplicant.conf
-fi
+SetupKnownWifi "luca" "asdfghjkl"
+SetupKnownWifi "Chuck Norris is here" "aafa4e8f08e7"
+SetupKnownWifi "Pipe-It-Up" "pipe-it-up!3"
 
 # TODO: VNC Server installieren & konfigurieren
 # TODO: pipe-it-up kompillieren und installieren
