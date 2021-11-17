@@ -19,7 +19,7 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
 	git pull
 else
 	# NOT a git repo!
-	if [ ! -f ~/.ssh/id_rsa ]
+	if [ ! -f ~/.ssh/id_rsa ]; then
 		echo "No existing ssh certificate found, generating one now...."
 		ssh-keygen -q -N '' -t rsa -b 4096 -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
 
@@ -34,7 +34,7 @@ else
 	mkdir -p ~/packages >/dev/null 2>&1
 
 	cd ~/packages
-	if [ -d ~/packages/pipe-it-up ]
+	if [ -d ~/packages/pipe-it-up ]; then
 		cd ~/packages/pipe-it-up
 		git pull
 	else
@@ -74,7 +74,13 @@ sudo chmod +x /usr/bin/autohotspot
 sudo systemctl enable autohotspot.service
 
 sudo crontab ./cronConfig
-wpa_passphrase luca asdfghjkl | sudo tee -a /etc/wpa_supplicant.conf
+
+if grep -q luca "/etc/wpa_supplicant.conf"; then
+	echo "Known wifi 'luca' already setup"
+else
+	echo "Adding 'luca' to known wifis"
+	wpa_passphrase luca asdfghjkl | sudo tee -a /etc/wpa_supplicant.conf
+fi
 
 # TODO: VNC Server installieren & konfigurieren
 # TODO: pipe-it-up kompillieren und installieren
