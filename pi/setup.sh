@@ -61,26 +61,7 @@ sudo systemctl enable ssh
 # ---------------------------------------------------------------------------------
 sudo apt-get install hostapd dnsmasq -y
 
-sudo systemctl unmask hostapd
-sudo systemctl disable hostapd
-sudo systemctl disable dnsmasq
-
-sudo mkdir -p /etc/hostapd
-sudo cp ./hostapd.conf /etc/hostapd/hostapd.conf
-sudo cp ./defaulthostapd /etc/default/hostapd
-sudo cp ./dnsmasq.conf /etc/dnsmasq.conf
-sudo cp ./interfaces /etc/network/interfaces
-sudo cp ./dhcpd.conf /etc/dhcpcd.conf
-sudo cp ./autohotspot.service /etc/systemd/system/autohotspot.service
-sudo cp ./autohotspot /usr/bin/autohotspot
-sudo chmod +x /usr/bin/autohotspot
-
-sudo systemctl enable autohotspot.service
-
-sudo crontab ./cronConfig
-sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
-sudo touch /etc/wpa_supplicant/wpa_supplicant.conf
-sudo chmod 644 /etc/wpa_supplicant/wpa_supplicant.conf
+SetupAutoHotspot
 
 SetupKnownWifi "luca" "asdfghjkl"
 SetupKnownWifi "Chuck Norris is here" "aafa4e8f08e7"

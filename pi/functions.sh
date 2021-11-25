@@ -11,3 +11,17 @@ SetupKnownWifi() {
 	fi
 
 }
+
+SetupAutoHotspot() {
+	cd ~/packages
+	if [ ! -d ./AutoHotpost-Installer ]; then
+		git clone https://github.com/RaspberryConnect/AutoHotspot-Installer
+		cd AutoHotspot-Installer
+	else
+		cd AutoHotspot-Installer
+		git pull
+	fi
+
+	cd ~/packages/AutoHotspot-Installer/Autohotspot
+	bash ./autohotspot-setup.sh
+}
