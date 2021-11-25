@@ -53,8 +53,8 @@ fi
 cd pi
 sudo cp sshd_config /etc/ssh/sshd_config
 
-sudo systemctl restart sshd
-sudo systemctl enable sshd
+sudo systemctl restart ssh
+sudo systemctl enable ssh
 
 # ---------------------------------------------------------------------------------
 # Setup wifi Mgmt
