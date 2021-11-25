@@ -17,7 +17,7 @@ sudo apt install openjdk-11-jdk git -y
 if git rev-parse --git-dir > /dev/null 2>&1; then
 	# We are inside a git repo
 	git pull
-else if [ -f ./autohotspot ]; then
+elif [ -f ./autohotspot ]; then
 	echo "Working in offline mode and presuming this script was called from inside a copy of the source"
 else
 	# NOT a git repo!

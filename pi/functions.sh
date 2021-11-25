@@ -9,4 +9,5 @@ SetupKnownWifi() {
 	else
 		wpa_passphrase $1 $2 | sudo tee /etc/wpa_supplicant.conf
 	fi
+
 }
