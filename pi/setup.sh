@@ -81,7 +81,7 @@ sudo crontab ./cronConfig
 
 SetupKnownWifi "luca" "asdfghjkl"
 SetupKnownWifi "Chuck Norris is here" "aafa4e8f08e7"
-SetupKnownWifi "Pipe-It-Up" "pipe-it-up!3"
+SetupKnownWifi "Pipe-It-Up-Internet" "pipe-it-up!3"
 
 # TODO: VNC Server installieren & konfigurieren
 # TODO: pipe-it-up kompillieren und installieren
