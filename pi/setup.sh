@@ -63,6 +63,8 @@ sudo apt-get install hostapd dnsmasq -y
 
 SetupAutoHotspot
 
+sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
+
 SetupKnownWifi "luca" "asdfghjkl"
 SetupKnownWifi "Chuck Norris is here" "aafa4e8f08e7"
 SetupKnownWifi "Pipe-It-Up-Internet" "pipe-it-up!3"
