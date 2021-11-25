@@ -78,6 +78,9 @@ sudo chmod +x /usr/bin/autohotspot
 sudo systemctl enable autohotspot.service
 
 sudo crontab ./cronConfig
+sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
+sudo touch /etc/wpa_supplicant/wpa_supplicant.conf
+sudo chmod 644 /etc/wpa_supplicant/wpa_supplicant.conf
 
 SetupKnownWifi "luca" "asdfghjkl"
 SetupKnownWifi "Chuck Norris is here" "aafa4e8f08e7"
