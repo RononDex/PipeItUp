@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # $1: Wifi SSID
 # $2: Wifi Password
 SetupKnownWifi() {

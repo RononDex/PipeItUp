@@ -59,7 +59,7 @@ sudo systemctl enable sshd
 # ---------------------------------------------------------------------------------
 # Setup wifi Mgmt
 # ---------------------------------------------------------------------------------
-sudo apt-get install hostapd dnsmasq
+sudo apt-get install hostapd dnsmasq -y
 
 sudo systemctl unmask hostapd
 sudo systemctl disable hostapd
