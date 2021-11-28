@@ -7,6 +7,9 @@
 
 REPOSITORY_URL="git@gitlab.fhnw.ch:ip12-21vt/ip12-21vt_pipelinesystem/pipe-it-up.git"
 
+
+scriptDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
 sudo apt update
 sudo apt upgrade -y
 sudo apt install openjdk-11-jdk git -y
@@ -45,7 +48,12 @@ else
 	fi
 fi
 
-. ./functions.sh
+. $scriptDir/functions.sh
+
+# ---------------------------------------------------------------------------------
+# Setup hostname
+# ---------------------------------------------------------------------------------
+sudo cp $scriptDir/hostname /etc/hostname
 
 # ---------------------------------------------------------------------------------
 # Setup SSH-Daemon
