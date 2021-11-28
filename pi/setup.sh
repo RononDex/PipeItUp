@@ -85,6 +85,8 @@ SetupKnownWifi "Pipe-It-Up-Internet" "pipe-it-up!3"
 sudo apt install tightvncserver -y
 sudo cp $scriptDir/vncserver.service /etc/systemd/system/vncserver.service
 vncserver :1
+mkdir -p ~/.vnc
+cp $scriptDir/vncConfig ~/.vnc/config
 sudo systemctl enable vncserver
 
 # TODO: pipe-it-up kompillieren und installieren
