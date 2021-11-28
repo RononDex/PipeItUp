@@ -22,6 +22,6 @@ SetupAutoHotspot() {
 		git pull
 	fi
 
-	cd ~/packages/AutoHotspot-Installer/Autohotspot
+	cd ~/packages/AutoHotspot-Installer/AutoHotspot-Setup/Autohotspot/
 	bash ./autohotspot-setup.sh
 }
