@@ -54,6 +54,7 @@ fi
 # Setup hostname
 # ---------------------------------------------------------------------------------
 sudo cp $scriptDir/hostname /etc/hostname
+sudo cp $scriptDir/hosts /etc/hosts
 
 # ---------------------------------------------------------------------------------
 # Setup SSH-Daemon
