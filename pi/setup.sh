@@ -71,11 +71,19 @@ sudo apt-get install hostapd dnsmasq -y
 
 SetupAutoHotspot
 
+sudo crontab $scriptDir/cronConfig
 sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
 
 SetupKnownWifi "luca" "asdfghjkl"
 SetupKnownWifi "Chuck Norris is here" "aafa4e8f08e7"
 SetupKnownWifi "Pipe-It-Up-Internet" "pipe-it-up!3"
 
-# TODO: VNC Server installieren & konfigurieren
+# ---------------------------------------------------------------------------------
+# Setup VNC Server
+# ---------------------------------------------------------------------------------
+sudo apt install tightvncserver -y
+sudo cp $scriptDir/vncserver.service /etc/systemd/system/vncserver.service
+vncserver :1
+sudo systemctl enable vncserver
+
 # TODO: pipe-it-up kompillieren und installieren
