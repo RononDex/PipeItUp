@@ -14,6 +14,7 @@ SetupKnownWifi() {
 
 SetupAutoHotspot() {
 	mkdir -p ~/packages
+	cd ~/packages
 	rm ./AutoHotspot-Setup.tar.gz
 	rm -rf ./Autohotspot
 	curl "https://www.raspberryconnect.com/images/hsinstaller/AutoHotspot-Setup.tar.gz" -o AutoHotspot-Setup.tar.gz
