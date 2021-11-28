@@ -13,15 +13,11 @@ SetupKnownWifi() {
 }
 
 SetupAutoHotspot() {
-	cd ~/packages
-	if [ ! -d ./AutoHotpost-Installer ]; then
-		git clone https://github.com/RaspberryConnect/AutoHotspot-Installer
-		cd AutoHotspot-Installer
-	else
-		cd AutoHotspot-Installer
-		git pull
-	fi
-
-	cd ~/packages/AutoHotspot-Installer/AutoHotspot-Setup/Autohotspot/
-	bash ./autohotspot-setup.sh
+	mkdir -p ~/packages
+	rm ./AutoHotspot-Setup.tar.gz
+	rm -rf ./Autohotspot
+	curl "https://www.raspberryconnect.com/images/hsinstaller/AutoHotspot-Setup.tar.gz" -o AutoHotspot-Setup.tar.gz
+	tar -xzvf AutoHotspot-Setup.tar.gz
+	cd Autohotspot
+	sudo ./autohotspot-setup.sh
 }
