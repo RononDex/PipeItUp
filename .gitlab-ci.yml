@@ -5,7 +5,7 @@ stages:
   - test
 
 variables:
-  MAVEN_CLI_OPTS: "-f PipeItUp/pom.xml --batch-mode  --errors --fail-at-end --show-version"
+  MAVEN_CLI_OPTS: "-f PipeItUp/pom.xml --batch-mode --show-version"
 
 build:
   stage: build
