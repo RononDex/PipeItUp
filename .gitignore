@@ -8,6 +8,8 @@
 .settings
 
 # IntelliJ
-/.vscode/
 /.idea/
 *.iml
+
+# VsCode
+/.vscode/
