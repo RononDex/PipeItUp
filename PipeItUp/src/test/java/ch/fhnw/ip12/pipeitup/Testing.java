@@ -14,7 +14,6 @@ public class Testing{
 	@Test
 	public void Test()
 	{
-		PipeItUp.main(null);
 		assertTrue(true);
 	}
 }
