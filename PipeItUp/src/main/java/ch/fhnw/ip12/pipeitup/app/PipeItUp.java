@@ -10,14 +10,15 @@ import javafx.stage.Stage;
  */
 public class PipeItUp extends Application {
 
+	@ExcludeFromJacocoGeneratedReport
 	public static void main(String[] args) {
 		System.out.println("Pipe-It-Up is awesome!");
 
 		launch(args);
-
 	}
 
 	@Override
+	@ExcludeFromJacocoGeneratedReport
 	public void start(Stage primaryStage) throws Exception {
 		Group root = new Group();
 		Scene scene = new Scene(root);
