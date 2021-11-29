@@ -56,6 +56,15 @@ fi
 sudo cp $scriptDir/hostname /etc/hostname
 sudo cp $scriptDir/hosts /etc/hosts
 
+
+# ---------------------------------------------------------------------------------
+# Setup dns servers
+# ---------------------------------------------------------------------------------
+sudo apt update && sudo apt install resolvconf -y
+sudo systemctl start resolvconf.service
+sudo systemctl enable resolvconf.service
+sudo cp $scriptDir/headDnsConfig /etc/resolvconf/resolv.conf.d/head
+
 # ---------------------------------------------------------------------------------
 # Setup SSH-Daemon
 # ---------------------------------------------------------------------------------
