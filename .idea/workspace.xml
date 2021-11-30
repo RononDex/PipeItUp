@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Added maven funcionality" />
+    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="changed MST to MinimumSpanningTree">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Module/OOP1/w1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/PipeItUp/pom.xml" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -47,7 +49,7 @@
       <recent name="C:\Users\lucap\OneDrive - FHNW\Documents\IP1_Pipeline\pipe-it-up\PipeItUp\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven. [install]">
+  <component name="RunManager" selected="Application.PipeItUp">
     <configuration name="PipeItUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ch.fhnw.ip12.pipeitup.app.PipeItUp" />
       <module name="PipeItUp" />
@@ -198,7 +200,7 @@
       <workItem from="1638266783564" duration="1357000" />
       <workItem from="1638277993967" duration="542000" />
       <workItem from="1638278566649" duration="695000" />
-      <workItem from="1638279289686" duration="369000" />
+      <workItem from="1638279289686" duration="4646000" />
     </task>
     <task id="LOCAL-00001" summary="Added maven funcionality">
       <created>1638264774951</created>
