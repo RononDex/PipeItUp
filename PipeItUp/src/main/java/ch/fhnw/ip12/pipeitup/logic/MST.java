@@ -1,4 +1,4 @@
-package main.java.ch.fhnw.ip12.pipeitup.app.logic;
+package ch.fhnw.ip12.pipeitup.logic;
 
 import java.util.Arrays;
 
