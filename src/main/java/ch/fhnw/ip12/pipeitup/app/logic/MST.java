@@ -7,12 +7,11 @@ minimum spanning tree
  */
 public abstract class MST {
 
-	Edge[] allEdges;
+	Edge[] edges;
 
 	public MST (int[][] incidentMatrix){
 		// TODO: instantiate vertices and edges
 	}
-
 
 	public boolean isUsableEdge(Edge edge){
 		return Arrays.asList(nextPossibleEdges()).contains(edge);
