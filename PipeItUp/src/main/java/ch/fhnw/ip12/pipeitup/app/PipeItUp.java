@@ -1,36 +1,30 @@
 package ch.fhnw.ip12.pipeitup.app;
 
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import java.util.Arrays;
+import java.util.List;
+
+import ch.fhnw.ip12.pipeitup.ui.PipeItUpGame;
+import ch.fhnw.ip12.pipeitup.ui.UiMode;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoard;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.hardware.HardwareGameBoard;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.SoftwareGameBoard;
 
 /**
  * PipeItUp
  */
-public class PipeItUp extends Application {
+public class PipeItUp {
 
 	@ExcludeFromJacocoGeneratedReport
 	public static void main(String[] args) {
-		System.out.println("Pipe-It-Up is awesome!");
+		
+		List<String> argsList = Arrays.asList(args);
+		UiMode uiMode = UiMode.HARDWARE;
 
-		launch(args);
+		if (argsList.contains("--softwareUi"))
+			uiMode = UiMode.SOFTWARE;
+
+		PipeItUpGame game = new PipeItUpGame(uiMode);
+
+		game.start();
 	}
-
-	@Override
-	@ExcludeFromJacocoGeneratedReport
-	public void start(Stage primaryStage) throws Exception {
-		Group root = new Group();
-		Scene scene = new Scene(root);
-
-		//Setting the title to Stage. 
-		primaryStage.setTitle("Sample application"); 
-			
-		//Setting the scene to Stage 
-		primaryStage.setScene(scene); 
-			
-		//Displaying the stage 
-		primaryStage.show();
-	}
-
 }
