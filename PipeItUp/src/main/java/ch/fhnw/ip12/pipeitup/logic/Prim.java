@@ -3,8 +3,8 @@ package ch.fhnw.ip12.pipeitup.logic;
 public class Prim extends MST{
 
 
-	public Prim(int[][] incidentMatrix) {
-		super(incidentMatrix);
+	public Prim(int[][] incidenceMatrix) {
+		super(incidenceMatrix);
 	}
 
 	@Override

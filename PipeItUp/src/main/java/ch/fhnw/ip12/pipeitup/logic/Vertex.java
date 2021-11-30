@@ -1,9 +1,9 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
 public class Vertex {
-	private Edge[] incidentEdges;
+	private Edge[] incidenceEdges;
 
 	public Edge[] getIncidentEdges() {
-		return incidentEdges;
+		return incidenceEdges;
 	}
 }

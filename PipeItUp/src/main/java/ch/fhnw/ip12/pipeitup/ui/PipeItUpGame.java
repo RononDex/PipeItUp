@@ -1,7 +1,12 @@
 package ch.fhnw.ip12.pipeitup.ui;
 
 /**
-* PipeItUpUi
+* PipeItUpUi - CONTROLLER
+ *
+ * Tasks:
+ * - initialize viewmodels
+ * - draw windows
+ * -
 */
 public class PipeItUpGame {
 

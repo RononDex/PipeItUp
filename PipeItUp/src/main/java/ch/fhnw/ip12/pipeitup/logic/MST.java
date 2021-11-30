@@ -9,7 +9,7 @@ public abstract class MST {
 
 	Edge[] edges;
 
-	public MST (int[][] incidentMatrix){
+	public MST (int[][] incidenceMatrix){
 		// TODO: instantiate vertices and edges
 	}
 
@@ -33,13 +33,20 @@ public abstract class MST {
 	 * check if all vertices are used
 	 * @return true if all vertices are used, otherwise false
 	 */
-	public boolean isAchieved(){
+	public boolean allVerticesUsed(){
 		return nextPossibleEdges() == null;
 	}
 
 	public int sum(){
 		// TODO: return sum of edge weights, only when all vertices are used.
-		return 0;
+		int sum = 0;
+		for (Edge edge :
+				edges) {
+			if (edge.isUsed()){
+				sum+= edge.getWeight();
+			}
+		}
+			return sum;
 	}
 
 }

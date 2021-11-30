@@ -1,8 +1,8 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
 public class Kruskal extends MST{
-	public Kruskal(int[][] incidentMatrix) {
-		super(incidentMatrix);
+	public Kruskal(int[][] incidenceMatrix) {
+		super(incidenceMatrix);
 	}
 
 	@Override
