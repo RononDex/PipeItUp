@@ -5,11 +5,11 @@ import java.util.Arrays;
 /*
 minimum spanning tree
  */
-public abstract class MST {
+public abstract class MinimumSpanningTree {
 
 	Edge[] edges;
 
-	public MST (int[][] incidenceMatrix){
+	public MinimumSpanningTree(int[][] incidenceMatrix){
 		// TODO: instantiate vertices and edges
 	}
 

@@ -1,6 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-public class Kruskal extends MST{
+public class Kruskal extends MinimumSpanningTree {
 	public Kruskal(int[][] incidenceMatrix) {
 		super(incidenceMatrix);
 	}

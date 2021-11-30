@@ -1,6 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-public class Prim extends MST{
+public class Prim extends MinimumSpanningTree {
 
 
 	public Prim(int[][] incidenceMatrix) {
