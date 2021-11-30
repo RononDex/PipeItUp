@@ -1,13 +1,14 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
 import java.util.Arrays;
+import java.util.List;
 
 /*
 minimum spanning tree
  */
 public abstract class MinimumSpanningTree {
 
-	Edge[] edges;
+	List<Edge> graph;
 
 	public MinimumSpanningTree(int[][] incidenceMatrix){
 		// TODO: instantiate vertices and edges
@@ -34,21 +35,19 @@ public abstract class MinimumSpanningTree {
 	 * @return true if all vertices are used, otherwise false
 	 */
 	public boolean allVerticesUsed(){
-// 		return nextPossibleEdges() == null;
- 		return false;
+		return nextPossibleEdges() == null;
 	}
 
 	public int sum(){
 		// TODO: return sum of edge weights, only when all vertices are used.
-// 		int sum = 0;
-// 		for (Edge edge :
-// 				edges) {
-// 			if (edge.isUsed()){
-// 				sum+= edge.getWeight();
-// 			}
-// 		}
-// 			return sum;
- 			return 0;
+		int sum = 0;
+		for (Edge edge :
+				graph) {
+			if (edge.isUsed()){
+				sum+= edge.getWeight();
+			}
+		}
+			return sum;
 	}
 
 }

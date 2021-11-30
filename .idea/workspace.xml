@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Added maven funcionality">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="changed MST to MinimumSpanningTree">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/MinimumSpanningTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/MinimumSpanningTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Prim.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Prim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Vertex.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +169,7 @@
       <workItem from="1638266783564" duration="1357000" />
       <workItem from="1638277993967" duration="542000" />
       <workItem from="1638278566649" duration="695000" />
-      <workItem from="1638279289686" duration="369000" />
+      <workItem from="1638279289686" duration="4646000" />
     </task>
     <task id="LOCAL-00001" summary="Added maven funcionality">
       <created>1638264774951</created>
@@ -184,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638267268151</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="changed MST to MinimumSpanningTree">
+      <created>1638279932069</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1638279932069</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +212,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added maven funcionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added maven funcionality" />
+    <MESSAGE value="changed MST to MinimumSpanningTree" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed MST to MinimumSpanningTree" />
   </component>
 </project>
