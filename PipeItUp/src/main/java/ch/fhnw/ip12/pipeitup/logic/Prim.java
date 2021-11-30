@@ -1,15 +1,18 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-public class Prim extends MST{
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
+@ExcludeTypeFromJacocoGeneratedReport
+public class Prim extends MinimumSpanningTreeAlgorithm {
+	private final Vertex start;
 
-	public Prim(int[][] incidenceMatrix) {
-		super(incidenceMatrix);
+	public Prim(Graph graph, Vertex start) {
+		super(graph);
+		this.start = start;
 	}
 
 	@Override
-	Edge[] nextPossibleEdges() {
-		// TODO: implement Prim logic
-		return new Edge[0];
+	boolean isNextEdge(Edge edge) { // TODO: add prim logic
+		return false;
 	}
 }

@@ -1,13 +1,24 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-public class Kruskal extends MST{
-	public Kruskal(int[][] incidenceMatrix) {
-		super(incidenceMatrix);
+import java.util.HashSet;
+
+public class Kruskal extends MinimumSpanningTreeAlgorithm {
+
+
+	public Kruskal(Graph graph) {
+		super(graph);
 	}
 
 	@Override
-	Edge[] nextPossibleEdges() {
-		// TODO: implement Kruskal logic
-		return new Edge[0];
+	boolean isNextEdge(Edge edge) {
+		if (!edgeIsUsable(edge)) return false; // check if in tree and not cycle
+		// check if it has the lowest available weight
+		HashSet<Edge> edges = getUnusedEdges();
+		for (Edge edge1 :
+				edges) {
+			if (!edgeIsUsable(edge1)) continue;
+			if (edge1.getWeight() < edge.getWeight()) return false;
+		}
+		return true;
 	}
 }
