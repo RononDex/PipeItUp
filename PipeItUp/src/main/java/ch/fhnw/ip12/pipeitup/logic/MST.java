@@ -34,19 +34,21 @@ public abstract class MST {
 	 * @return true if all vertices are used, otherwise false
 	 */
 	public boolean allVerticesUsed(){
-		return nextPossibleEdges() == null;
+// 		return nextPossibleEdges() == null;
+ 		return false;
 	}
 
 	public int sum(){
 		// TODO: return sum of edge weights, only when all vertices are used.
-		int sum = 0;
-		for (Edge edge :
-				edges) {
-			if (edge.isUsed()){
-				sum+= edge.getWeight();
-			}
-		}
-			return sum;
+// 		int sum = 0;
+// 		for (Edge edge :
+// 				edges) {
+// 			if (edge.isUsed()){
+// 				sum+= edge.getWeight();
+// 			}
+// 		}
+// 			return sum;
+ 			return 0;
 	}
 
 }
