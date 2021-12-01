@@ -6,10 +6,6 @@ public class Vertex {
 	private final HashSet<Edge> edges = new HashSet<>();
 	private boolean visited = false;
 
-	public Vertex() {
-
-	}
-
 	public HashSet<Edge> getEdges() {
 		return edges;
 	}

@@ -8,6 +8,7 @@ minimum spanning tree
  */
 public abstract class MinimumSpanningTreeAlgorithm {
 	private final Graph graph;
+
 	public MinimumSpanningTreeAlgorithm(Graph graph) {
 		this.graph = graph;
 	}
@@ -35,9 +36,9 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	 * @return true if all vertices are used, otherwise false
 	 */
 	public boolean completed() {
-		return Arrays.stream(
-						graph.getVertices())
-				.allMatch(Vertex::isVisited);
+		return
+				graph.getVertices().stream()
+						.allMatch(Vertex::isVisited);
 	}
 
 	public int sum() {

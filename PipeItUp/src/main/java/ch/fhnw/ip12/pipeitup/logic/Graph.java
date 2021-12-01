@@ -1,18 +1,22 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.stream.Collectors;
 
 public class Graph {
-	private final LinkedHashSet<Edge> edges = new LinkedHashSet<>();
-	private final Vertex[] vertices;
+	private final LinkedHashSet<Edge> edges;
 
-	public Graph(int[][] incidenceMatrix) {
-
+	Graph(LinkedHashSet<Edge> edges) {
+		this.edges = edges;
+	}
+	public static Graph fromIncidentMatrix(int[][] incidenceMatrix){
+		LinkedHashSet<Edge> edges = new LinkedHashSet<>();
 		// instantiate vertices
-		this.vertices = new Vertex[incidenceMatrix.length];
+		Vertex[] vertices = new Vertex[incidenceMatrix.length];
 		for (int i = 0; i < vertices.length; i++) {
-			this.vertices[i] = new Vertex();
+			vertices[i] = new Vertex();
 		}
 
 		// instantiate edges with vertices
@@ -34,6 +38,7 @@ public class Graph {
 			vertices[0].addEdge(edge);
 			vertices[1].addEdge(edge);
 		}
+		return new Graph(edges);
 	}
 
 	private static int[] getColumn(int[][] matrix, int column) {
@@ -45,7 +50,9 @@ public class Graph {
 		return edges;
 	}
 
-	public Vertex[] getVertices() {
-		return vertices;
+	public HashSet<Vertex> getVertices() {
+		return edges.stream()
+				.flatMap(edge -> Arrays.stream(edge.getVertices()))
+				.collect(Collectors.toCollection(HashSet::new));
 	}
 }

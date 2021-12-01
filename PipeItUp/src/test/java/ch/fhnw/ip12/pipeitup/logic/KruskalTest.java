@@ -37,7 +37,7 @@ class KruskalTest {
 				{0, 6, 0, 0, 3},
 				{0, 0, 1, 4, 3}
 		};
-		Graph graph = new Graph(incidenceMatrix);
+		Graph graph = Graph.fromIncidentMatrix(incidenceMatrix);
 		MinimumSpanningTreeAlgorithm kruskal = new Kruskal(graph);
 		Edge[] edges = graph.getEdges().toArray(new Edge[0]);
 
