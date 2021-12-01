@@ -2,10 +2,6 @@ package ch.fhnw.ip12.pipeitup.logic;
 
 import org.junit.jupiter.api.Test;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class PrimTest {
@@ -21,7 +17,7 @@ class PrimTest {
 				{0, 0, 7, 4, 3}
 		};
 		Graph graph = new Graph(incidenceMatrix);
-		MinimumSpanningTree prim = new Prim(graph);
+		MinimumSpanningTree prim = new Prim(graph, new Vertex()); // TODO: fix this
 		Edge[] edges = graph.getEdges().toArray(new Edge[0]);
 
 		// manual Setup:
@@ -36,7 +32,9 @@ class PrimTest {
 		Edge edge5 = new Edge(3, new Vertex[]{v3, v4});
 //		Arrays.asList(edge1,edge2,edge3,edge4,edge5)
 		System.out.println(edges[0].getWeight());
+		System.out.println(prim.EdgeIsUsable(edges[0]));
 		assertTrue(prim.isNextEdge(edges[0])); // get edge1 (all should be true really)
+		assertTrue(prim.isNextEdge(edges[1])); // get edge1 (all should be true really)
 	}
 
 	@Test

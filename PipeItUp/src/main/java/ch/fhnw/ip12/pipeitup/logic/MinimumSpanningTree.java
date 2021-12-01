@@ -7,7 +7,7 @@ minimum spanning tree
  */
 public abstract class MinimumSpanningTree {
 
-	private HashSet<Edge> unusedEdges;
+	private final HashSet<Edge> unusedEdges;
 	private final HashSet<Edge> tree = new HashSet<>();
 	private final Vertex[] allVertices;
 	private final HashSet<Vertex> visitedVertices = new HashSet<>();
@@ -27,8 +27,8 @@ public abstract class MinimumSpanningTree {
 	 */
 	abstract boolean isNextEdge(Edge edge);
 
-	public boolean EdgeInTree(Edge edge) {
-		if (!tree.contains(edge) && unusedEdges.contains(edge)) return true;
+	public boolean EdgeIsUsable(Edge edge) {
+		if (!unusedEdges.contains(edge) || tree.contains(edge)) return false;
 		Vertex vertex1 = edge.getVertices()[0];
 		Vertex vertex2 = edge.getVertices()[1];
 		return !(visitedVertices.contains(vertex1) && visitedVertices.contains(vertex2)); // check cycle
@@ -65,5 +65,9 @@ public abstract class MinimumSpanningTree {
 
 	public HashSet<Edge> getUnusedEdges() {
 		return unusedEdges;
+	}
+
+	public HashSet<Edge> getTreeProgress() {
+		return tree;
 	}
 }

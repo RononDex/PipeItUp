@@ -1,6 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.List;
+import java.util.HashSet;
 
 public class Kruskal extends MinimumSpanningTree {
 
@@ -11,6 +11,15 @@ public class Kruskal extends MinimumSpanningTree {
 
 	@Override
 	boolean isNextEdge(Edge edge) {
-		return false;
+		if (!EdgeIsUsable(edge)) return false; // check if in tree and not cycle
+		// check if it has the lowest available weight
+		HashSet<Edge> edges = getUnusedEdges();
+//		edges.sort(Comparator.comparing(Edge::getWeight));
+		for (Edge edge1 :
+				edges) {
+			if (!EdgeIsUsable(edge1)) continue;
+			if (edge1.getWeight() < edge.getWeight()) return false;
+		}
+		return true;
 	}
 }

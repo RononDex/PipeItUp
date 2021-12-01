@@ -1,9 +1,7 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.stream.IntStream;
 
 public class Graph {
 	private final LinkedHashSet<Edge> edges = new LinkedHashSet<>();
@@ -31,13 +29,15 @@ public class Graph {
 					weight = row[j];
 				}
 			}
-			edges.add(new Edge(weight, startEndVertex));
+			Edge edge = new Edge(weight, startEndVertex);
+			edges.add(edge);
+			vertices[0].addEdge(edge);
+			vertices[1].addEdge(edge);
 		}
 	}
 
 	private static int[] getColumn(int[][] matrix, int column) {
-		return IntStream.range(0, matrix.length)
-				.map(i -> matrix[i][column]).toArray();
+		return Arrays.stream(matrix).mapToInt(ints -> ints[column]).toArray();
 	}
 
 
