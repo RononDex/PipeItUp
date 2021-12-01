@@ -2,7 +2,7 @@ package ch.fhnw.ip12.pipeitup.logic;
 
 import java.util.HashSet;
 
-public class Kruskal extends MinimumSpanningTree {
+public class Kruskal extends MinimumSpanningTreeAlgorithm {
 
 
 	public Kruskal(Graph graph) {

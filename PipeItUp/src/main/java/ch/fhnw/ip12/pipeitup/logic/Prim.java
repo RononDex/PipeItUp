@@ -1,7 +1,7 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
 
-public class Prim extends MinimumSpanningTree {
+public class Prim extends MinimumSpanningTreeAlgorithm {
 	private final Vertex start;
 
 	public Prim(Graph graph, Vertex start) {

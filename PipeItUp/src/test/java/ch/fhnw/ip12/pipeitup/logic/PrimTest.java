@@ -17,7 +17,7 @@ class PrimTest {
 				{0, 0, 7, 4, 3}
 		};
 		Graph graph = new Graph(incidenceMatrix);
-		MinimumSpanningTree prim = new Prim(graph, new Vertex()); // TODO: fix this
+		MinimumSpanningTreeAlgorithm prim = new Prim(graph, new Vertex()); // TODO: fix this
 		Edge[] edges = graph.getEdges().toArray(new Edge[0]);
 
 		// manual Setup:

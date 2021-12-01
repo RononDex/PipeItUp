@@ -2,8 +2,8 @@ package ch.fhnw.ip12.pipeitup.logic;
 
 public class Edge {
 	private final int weight;
-	private final Vertex[] vertices;
-	// private boolean used = false;
+	private final Vertex[] vertices; // TODO: change this to set?
+	private boolean used = false;
 
 	public Edge(int weight, Vertex[] vertices) {
 		this.weight = weight;
@@ -18,11 +18,11 @@ public class Edge {
 		return vertices;
 	}
 
-//	public boolean isUsed() {
-//		return used;
-//	}
-//
-//	public void setUsed(boolean used) {
-//		this.used = used;
-//	}
+	public boolean isUsed() {
+		return used;
+	}
+
+	void setUsed(boolean used) {
+		this.used = used;
+	}
 }
