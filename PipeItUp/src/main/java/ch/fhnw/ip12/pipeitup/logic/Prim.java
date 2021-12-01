@@ -1,32 +1,26 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.*;
+
+import java.util.HashSet;
 
 public class Prim extends MinimumSpanningTree {
 
 
-	public Prim(int[][] incidenceMatrix) {
-		super(incidenceMatrix);
+	public Prim(Graph graph) {
+		super(graph);
 	}
 
 	@Override
-	Edge[] nextPossibleEdges() {
-		List<Edge> possibleEdges = new ArrayList<>();
-		graph.sort(Comparator.comparing(Edge::getWeight));
-		for (Edge edge :
-				graph) {
-			Vertex vertex1 = edge.getVertices()[0];
-			Vertex vertex2 = edge.getVertices()[1];
-			if (!vertex1.isVisited() && !vertex2.isVisited() // this implies edge.isUsed is also false
-					&& !possibleEdges.contains(edge)
-					&& edge.getWeight() <= possibleEdges.get(possibleEdges.size()-1).getWeight()){
-				// this implies edge.isUsed is also false
-				possibleEdges.add(edge);
-			}
-
+	boolean isNextEdge(Edge edge) {
+		if (EdgeInTree(edge)) return false; // check if in tree and not cycle
+		// check if it has the lowest available weight
+		HashSet<Edge> edges = getUnusedEdges();
+//		edges.sort(Comparator.comparing(Edge::getWeight));
+		for (Edge edge1 :
+				edges) {
+			if (EdgeInTree(edge1)) continue;
+			if (edge1.getWeight() < edge.getWeight()) return false;
 		}
-
-		// TODO: implement Prim logic
-		return new Edge[0];
+		return true;
 	}
 }

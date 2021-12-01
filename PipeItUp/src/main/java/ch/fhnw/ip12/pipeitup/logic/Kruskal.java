@@ -1,13 +1,16 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import java.util.List;
+
 public class Kruskal extends MinimumSpanningTree {
-	public Kruskal(int[][] incidenceMatrix) {
-		super(incidenceMatrix);
+
+
+	public Kruskal(Graph graph) {
+		super(graph);
 	}
 
 	@Override
-	Edge[] nextPossibleEdges() {
-		// TODO: implement Kruskal logic
-		return new Edge[0];
+	boolean isNextEdge(Edge edge) {
+		return false;
 	}
 }
