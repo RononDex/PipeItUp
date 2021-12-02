@@ -2,6 +2,8 @@ package ch.fhnw.ip12.pipeitup.ui;
 
 import java.io.IOException;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoard;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.hardware.HardwareGameBoard;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.SoftwareGameBoardUi;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
  *
  * Tasks: - initialize viewmodels - draw windows -
  */
+@ExcludeTypeFromJacocoGeneratedReport
 public class PipeItUpGame extends Application {
 
 	private static UiMode MODE = UiMode.HARDWARE;
@@ -32,6 +35,7 @@ public class PipeItUpGame extends Application {
 	public void start() throws IOException {
 		new Thread() {
 			@Override
+			@ExcludeMethodFromJacocoGeneratedReport
 			public void run() {
 				javafx.application.Application.launch(PipeItUpGame.class);
 			}
