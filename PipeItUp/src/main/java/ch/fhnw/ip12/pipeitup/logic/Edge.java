@@ -1,11 +1,13 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import java.util.HashSet;
+
 public class Edge {
 	private final int weight;
-	private final Vertex[] vertices; // TODO: change this to set?
+	private final HashSet<Vertex> vertices;
 	private boolean used = false;
 
-	public Edge(int weight, Vertex[] vertices) {
+	public Edge(int weight, HashSet<Vertex> vertices) {
 		this.weight = weight;
 		this.vertices = vertices;
 	}
@@ -14,7 +16,7 @@ public class Edge {
 		return weight;
 	}
 
-	public Vertex[] getVertices() {
+	public HashSet<Vertex> getVertices() {
 		return vertices;
 	}
 

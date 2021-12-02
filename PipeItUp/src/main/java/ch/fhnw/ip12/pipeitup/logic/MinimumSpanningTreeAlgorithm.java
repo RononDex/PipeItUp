@@ -25,9 +25,7 @@ public abstract class MinimumSpanningTreeAlgorithm {
 
 	public boolean EdgeIsUsable(Edge edge) {
 		if (edge.isUsed() || !graph.getEdges().contains(edge)) return false;
-		Vertex vertex1 = edge.getVertices()[0];
-		Vertex vertex2 = edge.getVertices()[1];
-		return !(vertex1.isVisited() && vertex2.isVisited()); // check cycle - return false if both vertices are already visited
+		return !(edge.getVertices().stream().allMatch(Vertex::isVisited)); // check cycle - return false if both vertices are already visited
 	}
 
 	/**
@@ -52,8 +50,7 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	public boolean addEdgeToTree(Edge edge) {
 		if (isNextEdge(edge)) {
 			edge.setUsed(true);
-			edge.getVertices()[0].setVisited(true);
-			edge.getVertices()[1].setVisited(true);
+			edge.getVertices().forEach(vertex -> vertex.setVisited(true));
 			return true;
 		}
 		return false;
