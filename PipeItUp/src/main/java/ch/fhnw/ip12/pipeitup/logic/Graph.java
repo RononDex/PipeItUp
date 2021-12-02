@@ -21,14 +21,14 @@ public class Graph {
 
 		// instantiate edges with vertices
 		for (int i = 0; i < incidenceMatrix[0].length; i++) {
-			Vertex[] startEndVertex = new Vertex[2];
+			HashSet<Vertex> startEndVertex = new HashSet<>();
 			int k = 0;
 			int weight = 0;
 			int[] row = getColumn(incidenceMatrix, i);
 			for (int j = 0; j < incidenceMatrix.length; j++) {
 				assert k <= 2; // TODO: implement Matrix check at top of constructor
 				if (row[j] != 0) {
-					startEndVertex[k] = vertices[j];
+					startEndVertex.add(vertices[j]);
 					k++;
 					weight = row[j];
 				}
@@ -52,7 +52,7 @@ public class Graph {
 
 	public HashSet<Vertex> getVertices() {
 		return edges.stream()
-				.flatMap(edge -> Arrays.stream(edge.getVertices()))
+				.flatMap(edge -> edge.getVertices().stream())
 				.collect(Collectors.toCollection(HashSet::new));
 	}
 }
