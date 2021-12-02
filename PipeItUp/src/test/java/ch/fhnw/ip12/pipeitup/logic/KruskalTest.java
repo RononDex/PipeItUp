@@ -2,63 +2,68 @@ package ch.fhnw.ip12.pipeitup.logic;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class KruskalTest {
 
-	@Test
-	void edgeIsUsable() {
-
-	}
-
-	@Test
-	void completed() {
-	}
-
-	@Test
-	void sum() {
-	}
-
-	@Test
-	void addEdgeToTree() {
-	}
-
-	@Test
-	void getUnusedEdges() {
-	}
+	Vertex v1 = new Vertex();
+	Vertex v2 = new Vertex();
+	Vertex v3 = new Vertex();
+	Vertex v4 = new Vertex();
+	Edge e1 = new Edge(1, new HashSet<>(){{add(v1);add(v2);}});
+	Edge e2 = new Edge(6, new HashSet<>(){{add(v1);add(v3);}});
+	Edge e3 = new Edge(7, new HashSet<>(){{add(v1);add(v4);}});
+	Edge e4 = new Edge(4, new HashSet<>(){{add(v2);add(v4);}});
+	Edge e5 = new Edge(3, new HashSet<>(){{add(v3);add(v4);}});
+	Graph graph = new Graph(new LinkedHashSet<>(Arrays.asList(e1,e2,e3,e4,e5)));
+	Kruskal kruskal = new Kruskal(graph);
 
 	@Test
 	void isNextEdge() {
 
-		// useCase:
-		int[][] incidenceMatrix = {
-				{1, 6, 1, 0, 0},
-				{1, 0, 0, 4, 0},
-				{0, 6, 0, 0, 3},
-				{0, 0, 1, 4, 3}
-		};
-		Graph graph = Graph.fromIncidentMatrix(incidenceMatrix);
-		MinimumSpanningTreeAlgorithm kruskal = new Kruskal(graph);
-		Edge[] edges = graph.getEdges().toArray(new Edge[0]);
+		assertTrue(kruskal.isNextEdge(e1));
+		assertFalse(kruskal.isNextEdge(e2));
+		assertFalse(kruskal.isNextEdge(e3));
+		assertFalse(kruskal.isNextEdge(e4));
+		assertFalse(kruskal.isNextEdge(e5));
+		e1.setUsed(true);
+		e2.setUsed(true);
+		assertFalse(kruskal.isNextEdge(e1));
+		assertFalse(kruskal.isNextEdge(e3));
+		assertTrue(kruskal.isNextEdge(e5));
+		e3.setUsed(true);
+		e4.setUsed(true);
+		e5.setUsed(true);
+		assertFalse(kruskal.isNextEdge(e1));
+		assertFalse(kruskal.isNextEdge(e2));
+		assertFalse(kruskal.isNextEdge(e3));
+		assertFalse(kruskal.isNextEdge(e4));
+		assertFalse(kruskal.isNextEdge(e5));
+	}
 
-		System.out.println(edges[0].getWeight());
-		System.out.println(kruskal.EdgeIsUsable(edges[0]));
-		assertTrue(kruskal.isNextEdge(edges[0]));
-		kruskal.addEdgeToTree(edges[0]);
-		assertFalse(kruskal.EdgeIsUsable(edges[0]));
-		assertTrue(kruskal.isNextEdge(edges[2]));
-		kruskal.addEdgeToTree(edges[2]);
-		System.out.println(kruskal.getTreeProgress());
-		assertFalse(kruskal.isNextEdge(edges[3]));
-		assertTrue(kruskal.isNextEdge(edges[4]));
-		assertFalse(kruskal.completed());
-		kruskal.addEdgeToTree(edges[4]);
-		assertFalse(kruskal.addEdgeToTree(edges[3]));
-		assertFalse(kruskal.addEdgeToTree(edges[1]));
-		assertTrue(kruskal.completed());
+	@Test
+	void addEdgeToTree() {
+		e1.setUsed(true);
+		v1.setVisited(true);
+		v2.setVisited(true);
 
+		e2.setUsed(false);
+		e3.setUsed(false);
+		e4.setUsed(false);
+		e5.setUsed(false);
+		v3.setVisited(false);
+		v4.setVisited(false);
 
+		assertFalse(kruskal.addEdgeToTree(e1)); // can't use edge again
+		assertFalse(kruskal.addEdgeToTree(e4)); // is not the lowest edge
 
+		assertTrue(kruskal.addEdgeToTree(e5)); // is next lowest edge
+		assertTrue(v3.isVisited()); // adding e5 should have set its vertices to visited.
+		assertTrue(v4.isVisited());
 
 	}
 }

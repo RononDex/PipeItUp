@@ -11,12 +11,12 @@ public class Kruskal extends MinimumSpanningTreeAlgorithm {
 
 	@Override
 	boolean isNextEdge(Edge edge) {
-		if (!EdgeIsUsable(edge)) return false; // check if in tree and not cycle
+		if (!edgeIsUsable(edge)) return false; // check if in tree and not cycle
 		// check if it has the lowest available weight
 		HashSet<Edge> edges = getUnusedEdges();
 		for (Edge edge1 :
 				edges) {
-			if (!EdgeIsUsable(edge1)) continue;
+			if (!edgeIsUsable(edge1)) continue;
 			if (edge1.getWeight() < edge.getWeight()) return false;
 		}
 		return true;

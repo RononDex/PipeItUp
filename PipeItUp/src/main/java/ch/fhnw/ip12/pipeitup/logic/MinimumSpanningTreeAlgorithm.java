@@ -23,7 +23,7 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	 */
 	abstract boolean isNextEdge(Edge edge);
 
-	public boolean EdgeIsUsable(Edge edge) {
+	public boolean edgeIsUsable(Edge edge) {
 		if (edge.isUsed() || !graph.getEdges().contains(edge)) return false;
 		return !(edge.getVertices().stream().allMatch(Vertex::isVisited)); // check cycle - return false if both vertices are already visited
 	}
@@ -63,7 +63,7 @@ public abstract class MinimumSpanningTreeAlgorithm {
 		// TODO: Override equeals for Hashset to compare object for same weight, start and end vertex.
 	}
 
-	public HashSet<Edge> getTreeProgress() {
+	public HashSet<Edge> getUsedEdges() {
 		return graph.getEdges().stream()
 				.filter(Edge::isUsed)
 				.collect(Collectors.toCollection(HashSet::new));
