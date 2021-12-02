@@ -11,11 +11,11 @@ import ch.fhnw.ip12.pipeitup.ui.UiMode;
 /**
  * PipeItUp
  */
+@ExcludeTypeFromJacocoGeneratedReport
 public class PipeItUp {
 
     static Logger log = Logger.getLogger(PipeItUp.class.getName());
 
-    @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
         try {
             System.out.println("funktoiniert");
