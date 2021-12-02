@@ -46,7 +46,7 @@ class GraphTest {
 
 
 
-		assertEquals(graph, graphIM); // TODO: Graph equals needs overwriting
+		assertEquals(graph, graphIM); // TODO: Graph equals needs overwriting, but is recursive...
 	}
 
 	@Test
