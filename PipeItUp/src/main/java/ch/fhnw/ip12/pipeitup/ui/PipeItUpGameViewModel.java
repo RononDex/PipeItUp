@@ -1,12 +1,13 @@
-package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
+package ch.fhnw.ip12.pipeitup.ui;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
 /**
-* GameboardViewModel
+* PipeItUpGameViewModel
 */
 @ExcludeTypeFromJacocoGeneratedReport
-public class GameBoardViewModel {
+public class PipeItUpGameViewModel {
 
+	
 	
 }

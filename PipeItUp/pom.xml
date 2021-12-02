@@ -17,7 +17,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<!--<exec.mainClass>main.java.ch.fhnw.ip12.pipeitup.app.PipeItUp</exec.mainClass>-->
+		<exec.mainClass>ch.fhnw.ip12.pipeitup.app.PipeItUp</exec.mainClass>
+		<exec.commandlineArgs>--softwareUi</exec.commandlineArgs>
 
 		<!-- Project Dependencies -->
 		<java.version>11</java.version>
@@ -57,12 +58,38 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>11.0.2</version>
+		</dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java/resources</directory>
+				<includes>
+					<include>**/*.fxml</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
-
-
 			<!-- Copy runtime dependencies into distribution folder -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -221,7 +248,7 @@
 						</executions>
 						<configuration>
 							<executable>sudo</executable>
-							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module ${pi.launcher.class} ${pi.launcher.args}</commandlineArgs>
+							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module ${pi.launcher.class} ${pi.launcher.args} --softwareUi</commandlineArgs>
 						</configuration>
 					</plugin>
 				</plugins>
