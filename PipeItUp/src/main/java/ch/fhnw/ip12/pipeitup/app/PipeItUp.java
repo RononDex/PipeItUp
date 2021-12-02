@@ -14,7 +14,7 @@ public class PipeItUp {
 
 	@ExcludeFromJacocoGeneratedReport
 	public static void main(String[] args) {
-		System.out.println("funktoiniert");
+		System.out.println("funktioniert");
 		List<String> argsList = Arrays.asList(args);
 		UiMode uiMode = UiMode.HARDWARE;
 

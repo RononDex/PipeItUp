@@ -25,7 +25,28 @@ public abstract class MinimumSpanningTreeAlgorithm {
 
 	public boolean edgeIsUsable(Edge edge) {
 		if (edge.isUsed() || !graph.getEdges().contains(edge)) return false;
-		return !(edge.getVertices().stream().allMatch(Vertex::isVisited)); // check cycle - return false if both vertices are already visited
+		if (edge.getVertices().stream().allMatch(Vertex::isVisited)) { // potential cycle
+			edge.setUsed(true); // temporarily set to true to check loop
+			boolean loop = createsLoop(new HashSet<>(), edge.getVertices().iterator().next(), edge);
+			edge.setUsed(false);
+			return !loop;
+		}
+		return true;
+	}
+
+	private boolean createsLoop(HashSet<Edge> seen, Vertex nextVertex, Edge activeEdge) {
+		if (seen.contains(activeEdge)) return true;
+		seen.add(activeEdge);
+		nextVertex.getEdges().forEach(edge -> System.out.println(edge.getWeight()));
+		return nextVertex.getEdges().stream().filter(e -> e != activeEdge && e.isUsed())
+				.map(edge -> createsLoop(
+						seen,
+						edge.getVertices().stream()
+								.filter(vertex -> vertex != nextVertex)
+								.collect(Collectors.toSet()).iterator().next(),
+						edge))
+				.collect(Collectors.toList())
+				.contains(true);
 	}
 
 	/**
@@ -34,9 +55,14 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	 * @return true if all vertices are used, otherwise false
 	 */
 	public boolean completed() {
-		return
-				graph.getVertices().stream()
-						.allMatch(Vertex::isVisited);
+		return graph.getVertices().stream().allMatch(
+				vertex -> vertex.getEdges().stream().filter(Edge::isUsed).count() > 1
+				|| (vertex.getEdges().stream().filter(Edge::isUsed).count() == 1
+				&& vertex.getEdges().stream().filter(Edge::isUsed).iterator().next()
+						.getVertices().stream().anyMatch(
+								vertex1 -> vertex1.getEdges().stream().filter(Edge::isUsed).count() > 1
+						))
+		);
 	}
 
 	public int sum() {

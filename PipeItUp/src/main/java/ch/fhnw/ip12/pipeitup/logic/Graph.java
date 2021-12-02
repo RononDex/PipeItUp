@@ -1,9 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Graph {
@@ -22,22 +19,24 @@ public class Graph {
 
 		// instantiate edges with vertices
 		for (int i = 0; i < incidenceMatrix[0].length; i++) {
-			HashSet<Vertex> startEndVertex = new HashSet<>();
+			Vertex[] startEndVertex = new Vertex[2];
 			int k = 0;
 			int weight = 0;
 			int[] row = getColumn(incidenceMatrix, i);
 			for (int j = 0; j < incidenceMatrix.length; j++) {
 				assert k <= 2; // TODO: implement Matrix check at top of constructor
 				if (row[j] != 0) {
-					startEndVertex.add(vertices[j]);
+					startEndVertex[k] = (vertices[j]);
 					k++;
 					weight = row[j];
 				}
 			}
-			Edge edge = new Edge(weight, startEndVertex);
+			Edge edge = new Edge(weight, new HashSet<>(
+					List.of(startEndVertex)
+			));
 			edges.add(edge);
-			vertices[0].addEdge(edge);
-			vertices[1].addEdge(edge);
+			startEndVertex[0].addEdge(edge);
+			startEndVertex[1].addEdge(edge);
 		}
 		return new Graph(edges);
 	}
