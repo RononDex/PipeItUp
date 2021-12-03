@@ -61,9 +61,23 @@ class MinimumSpanningTreeAlgorithmTest {
 		v1.setVisited(true);
 		v2.setVisited(true);
 		v3.setVisited(true);
-		v4.setVisited(false);
-		assertFalse(mstAlg.completed());
 		v4.setVisited(true);
+		assertFalse(mstAlg.completed());
+		v1.addEdge(e1);
+		v2.addEdge(e1);
+		v1.addEdge(e2);
+		v3.addEdge(e2);
+		v1.addEdge(e3);
+		v4.addEdge(e3);
+		v2.addEdge(e4);
+		v4.addEdge(e4);
+		v3.addEdge(e5);
+		v4.addEdge(e5);
+		e1.setUsed(true);
+		e2.setUsed(false);
+		e3.setUsed(false);
+		e4.setUsed(true);
+		e5.setUsed(true);
 		assertTrue(mstAlg.completed());
 	}
 
