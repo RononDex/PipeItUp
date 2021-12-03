@@ -1,0 +1,20 @@
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+	-fx-background-color: linear-gradient(to top, #FFFFFF, #999999);
+}
+#header {
+	-fx-font-size: 48px;
+}
+
+.button {
+	-fx-background-color: #EEEEEE;
+	-fx-background-radius: 20;
+	-fx-max-width: infinity;
+	-fx-min-height: 80;
+	-fx-font-size: 24px;
+	-fx-border-style: solid;
+	-fx-border-radius: 18;
+	-fx-border-width: 5;
+	-fx-border-color: limegreen;
+}

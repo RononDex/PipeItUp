@@ -29,7 +29,8 @@ public class SoftwareGameBoardUi implements GameBoard {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(getClass().getResource("MainWindow.fxml"));
 			Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-			primaryStage.setTitle("Hello!");
+			scene.getStylesheets().add(getClass().getResource("gameboard.css").toExternalForm());
+			primaryStage.setTitle("Pipe-It-Up! Software GameBoard");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception ex) {

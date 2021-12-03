@@ -23,8 +23,6 @@ public class PipeItUpGame extends Application {
 	private TouchUi touchUi;
 	private GameBoard gameBoard;
 
-
-
 	public PipeItUpGame() {
 	}
 
@@ -45,13 +43,15 @@ public class PipeItUpGame extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		touchUi = new TouchUi();
-		touchUi.start(primaryStage);		
+		boolean openTouchUiInFullScreen = true;
 
-		if (MODE == UiMode.SOFTWARE)
+		if (MODE == UiMode.SOFTWARE) {
 			gameBoard = new SoftwareGameBoardUi(new Stage());
-		else
+			openTouchUiInFullScreen = false;
+		} else
 			gameBoard = new HardwareGameBoard();
 
+		touchUi.start(primaryStage, openTouchUiInFullScreen);
 		gameBoard.start();
 	}
 }
