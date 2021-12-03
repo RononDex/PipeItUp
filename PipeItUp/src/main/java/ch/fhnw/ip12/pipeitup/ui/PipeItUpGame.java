@@ -1,13 +1,12 @@
 package ch.fhnw.ip12.pipeitup.ui;
 
-import java.io.IOException;
+import com.google.inject.Inject;
 
-import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoard;
-import ch.fhnw.ip12.pipeitup.ui.views.gameboard.hardware.HardwareGameBoard;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.hardware.HardwareGameBoardUi;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.SoftwareGameBoardUi;
-import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchUi;
+import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchUiImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,41 +16,51 @@ import javafx.stage.Stage;
  * Tasks: - initialize viewmodels - draw windows -
  */
 @ExcludeTypeFromJacocoGeneratedReport
-public class PipeItUpGame extends Application {
+public class PipeItUpGame extends Application implements PipeItUpGameEntryPoint {
 
 	private static UiMode MODE = UiMode.HARDWARE;
-	private TouchUi touchUi;
-	private GameBoard gameBoard;
+	private static TouchUiImpl touch;
+	private static GameBoard gameBoard;
+	private static SoftwareGameBoardUi softwareGameBoard;
+	private static HardwareGameBoardUi hardwareGameBoard;
 
 	public PipeItUpGame() {
+		super();
 	}
 
-	public PipeItUpGame(UiMode mode) {
-		MODE = mode;
+	@Inject
+	public PipeItUpGame(SoftwareGameBoardUi softwareGameBoardUi, HardwareGameBoardUi hardwareGameBoardUi,
+			TouchUiImpl touchUi) {
+		super();
+		softwareGameBoard = softwareGameBoardUi;
+		hardwareGameBoard = hardwareGameBoardUi;
+		touch = touchUi;
 	}
 
-	public void start() throws IOException {
-		new Thread() {
-			@Override
-			@ExcludeMethodFromJacocoGeneratedReport
-			public void run() {
-				javafx.application.Application.launch(PipeItUpGame.class);
-			}
-		}.start();
+	public void setUiMode(UiMode uiMode) {
+		MODE = uiMode;
+	}
+
+	public void start() {
+		new Thread(() -> javafx.application.Application.launch(PipeItUpGame.class)).start();
+		;
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		touchUi = new TouchUi();
+	public void start(Stage primaryStage) {
+		touch = new TouchUiImpl();
 		boolean openTouchUiInFullScreen = true;
 
 		if (MODE == UiMode.SOFTWARE) {
-			gameBoard = new SoftwareGameBoardUi(new Stage());
+			gameBoard = softwareGameBoard;
+			softwareGameBoard.setPrimaryStage(new Stage());
 			openTouchUiInFullScreen = false;
 		} else
-			gameBoard = new HardwareGameBoard();
+			gameBoard = hardwareGameBoard;
 
-		touchUi.start(primaryStage, openTouchUiInFullScreen);
+		touch.setPrimaryStage(primaryStage);
+		touch.setIsFullScreen(openTouchUiInFullScreen);
+		touch.start();
 		gameBoard.start();
 	}
 }

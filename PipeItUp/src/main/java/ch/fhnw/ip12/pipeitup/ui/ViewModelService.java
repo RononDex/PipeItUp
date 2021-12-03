@@ -1,13 +1,10 @@
 package ch.fhnw.ip12.pipeitup.ui;
 
 /**
-* ViewModelService
+* IViewModelService
 */
-public class ViewModelService {
+public interface ViewModelService {
 
-	public PipeItUpGameViewModel CreateStartUpViewModel()
-	{
-		
-	}
+	PipeItUpGameViewModel CreateStartUpViewModel();
 	
 }

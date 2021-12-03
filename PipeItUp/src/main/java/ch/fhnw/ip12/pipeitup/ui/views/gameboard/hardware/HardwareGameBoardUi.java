@@ -7,10 +7,6 @@ import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoard;
  * HardwareGameBoard
  */
 @ExcludeTypeFromJacocoGeneratedReport
-public class HardwareGameBoard implements GameBoard {
+public interface HardwareGameBoardUi extends GameBoard {
 
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-	}
 }
