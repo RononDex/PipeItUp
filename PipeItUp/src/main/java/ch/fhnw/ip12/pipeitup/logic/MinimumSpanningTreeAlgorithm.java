@@ -37,7 +37,6 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	private boolean createsLoop(HashSet<Edge> seen, Vertex nextVertex, Edge activeEdge) {
 		if (seen.contains(activeEdge)) return true;
 		seen.add(activeEdge);
-		nextVertex.getEdges().forEach(edge -> System.out.println(edge.getWeight()));
 		return nextVertex.getEdges().stream().filter(e -> e != activeEdge && e.isUsed())
 				.map(edge -> createsLoop(
 						seen,
