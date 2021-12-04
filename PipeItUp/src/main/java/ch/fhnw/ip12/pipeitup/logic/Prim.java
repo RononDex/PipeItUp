@@ -1,6 +1,8 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
+@ExcludeTypeFromJacocoGeneratedReport
 public class Prim extends MinimumSpanningTreeAlgorithm {
 	private final Vertex start;
 

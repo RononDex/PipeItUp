@@ -1,5 +1,8 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -9,6 +12,8 @@ public class Graph {
 	Graph(LinkedHashSet<Edge> edges) {
 		this.edges = edges;
 	}
+
+	@ExcludeMethodFromJacocoGeneratedReport
 	public static Graph fromIncidentMatrix(int[][] incidenceMatrix){
 		LinkedHashSet<Edge> edges = new LinkedHashSet<>();
 		// instantiate vertices
@@ -18,13 +23,12 @@ public class Graph {
 		}
 
 		// instantiate edges with vertices
-		for (int i = 0; i < incidenceMatrix[0].length; i++) {
+		for (int i = 0; i < incidenceMatrix[0].length; i++) { // TODO: implement Matrix check at top of constructor
 			Vertex[] startEndVertex = new Vertex[2];
 			int k = 0;
 			int weight = 0;
 			int[] row = getColumn(incidenceMatrix, i);
 			for (int j = 0; j < incidenceMatrix.length; j++) {
-				assert k <= 2; // TODO: implement Matrix check at top of constructor
 				if (row[j] != 0) {
 					startEndVertex[k] = (vertices[j]);
 					k++;

@@ -27,9 +27,29 @@ class MinimumSpanningTreeAlgorithmTest {
 		}
 	};
 
+	// check cycle detection with 4 sided edge complex
+	int[][] incidenceMatrix = {
+			{10, 28, 0, 0, 0, 0, 0, 0, 0},
+			{0, 28, 0, 0, 14, 0, 0, 0, 16},
+			{0, 0, 0, 0, 0, 0, 0, 12, 16},
+			{0, 0, 0, 0, 0, 18, 22, 12, 0},
+			{0, 0, 25, 24, 0, 0, 22, 0, 0},
+			{10, 0, 25, 0, 0, 0, 0, 0, 0},
+			{0, 0, 0, 24, 14, 18, 0, 0, 0},
+	};
+	Graph graph2 = Graph.fromIncidentMatrix(incidenceMatrix);
+	MinimumSpanningTreeAlgorithm mst2 = new MinimumSpanningTreeAlgorithm(graph2) {
+		@Override
+		boolean isNextEdge(Edge edge) {
+			return false;
+		}
+	};
+	Edge[] edges2 = graph2.getEdges().toArray(new Edge[0]);
+	Vertex[] vertices2 = graph2.getVertices().toArray(new Vertex[0]);
+
+
 	@Test
 	void edgeIsUsable() {
-
 		// check single factors.
 		e1.setUsed(false);
 		assertTrue(mstAlg.edgeIsUsable(e1));
@@ -42,7 +62,7 @@ class MinimumSpanningTreeAlgorithmTest {
 		eNotInGraph.setUsed(true);
 		assertFalse(mstAlg.edgeIsUsable(eNotInGraph));
 
-		// build a cycle
+		// build a 3 sided cycle
 		v1.setVisited(true);
 		v2.setVisited(true);
 		assertFalse(mstAlg.edgeIsUsable(e1));
@@ -54,6 +74,18 @@ class MinimumSpanningTreeAlgorithmTest {
 		assertTrue(mstAlg.edgeIsUsable(e1));
 		eNotInGraph.setUsed(false);
 		assertFalse(mstAlg.edgeIsUsable(eNotInGraph));
+
+
+		edges2[0].setUsed(true); // 1
+		vertices2[0].setVisited(true);
+		vertices2[5].setVisited(true);
+		edges2[7].setUsed(true); // 8
+		vertices2[2].setVisited(true);
+		vertices2[3].setVisited(true);
+		edges2[4].setUsed(true); // 5
+		vertices2[1].setVisited(true);
+		vertices2[6].setVisited(true);
+		assertTrue(mst2.edgeIsUsable(edges2[8])); // 9
 	}
 
 	@Test

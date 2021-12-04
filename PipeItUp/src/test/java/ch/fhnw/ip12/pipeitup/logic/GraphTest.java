@@ -43,9 +43,6 @@ class GraphTest {
 		v4.addEdge(e4);
 		v3.addEdge(e5);
 		v4.addEdge(e5);
-
-
-
 		// assertEquals(graph, graphIM); // TODO: Graph equals needs overwriting, but is recursive...
 	}
 

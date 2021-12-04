@@ -34,7 +34,7 @@ public abstract class MinimumSpanningTreeAlgorithm {
 		return true;
 	}
 
-	private boolean createsLoop(HashSet<Edge> seen, Vertex nextVertex, Edge activeEdge) {
+	private static boolean createsLoop(HashSet<Edge> seen, Vertex nextVertex, Edge activeEdge) {
 		if (seen.contains(activeEdge)) return true;
 		seen.add(activeEdge);
 		return nextVertex.getEdges().stream().filter(e -> e != activeEdge && e.isUsed())
@@ -43,7 +43,8 @@ public abstract class MinimumSpanningTreeAlgorithm {
 						edge.getVertices().stream()
 								.filter(vertex -> vertex != nextVertex)
 								.collect(Collectors.toSet()).iterator().next(),
-						edge))
+						edge
+				))
 				.collect(Collectors.toList())
 				.contains(true);
 	}
@@ -56,8 +57,8 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	public boolean completed() {
 		return graph.getVertices().stream().allMatch(
 				vertex -> vertex.getEdges().stream().filter(Edge::isUsed).count() > 1
-				|| (vertex.getEdges().stream().filter(Edge::isUsed).count() == 1
-				&& vertex.getEdges().stream().filter(Edge::isUsed).iterator().next()
+						|| (vertex.getEdges().stream().filter(Edge::isUsed).count() == 1
+						&& vertex.getEdges().stream().filter(Edge::isUsed).iterator().next()
 						.getVertices().stream().anyMatch(
 								vertex1 -> vertex1.getEdges().stream().filter(Edge::isUsed).count() > 1
 						))
