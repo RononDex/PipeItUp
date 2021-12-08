@@ -17,7 +17,7 @@ class ViewModelServiceImpl implements ViewModelService {
 		this.graphLayoutLoader = graphLayoutLoader;
 	}
 
-	public PipeItUpGameViewModel CreateStartUpViewModel()
+	public PipeItUpGameViewModel createStartUpViewModel()
 	{
 		PipeItUpGameViewModel viewModel = new PipeItUpGameViewModel();
 		viewModel.touchViewModel = new TouchViewModel();

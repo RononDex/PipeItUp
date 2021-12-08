@@ -5,6 +5,6 @@ package ch.fhnw.ip12.pipeitup.ui;
 */
 public interface ViewModelService {
 
-	PipeItUpGameViewModel CreateStartUpViewModel();
+	PipeItUpGameViewModel createStartUpViewModel();
 	
 }
