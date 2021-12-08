@@ -1,13 +1,15 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
+import java.util.ArrayList;
+
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
-/**
-* GameBoardViewModel
-*/
 @ExcludeTypeFromJacocoGeneratedReport
-public class GameBoardViewModel {
+class GraphViewModel {
 
-	GraphViewModel graphViewModel;
+	ArrayList<VertexViewModel> VertexViewModels;
+
+	ArrayList<EdgeViewModel> EdgeViewModels;
 
 }
+

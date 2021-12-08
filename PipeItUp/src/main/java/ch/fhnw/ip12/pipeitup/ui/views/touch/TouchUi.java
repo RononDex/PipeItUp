@@ -1,30 +1,14 @@
 package ch.fhnw.ip12.pipeitup.ui.views.touch;
 
-import java.io.IOException;
-
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
-* TouchStage
+* TouchUi
 */
-@ExcludeTypeFromJacocoGeneratedReport
-public class TouchUi {
+public interface TouchUi {
 
-	 Stage primaryStage;
-
-	public void start(Stage primaryStage) throws Exception {
-		this.primaryStage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(getClass().getResource("MainWindow.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        primaryStage.setTitle("Hello!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-		
-	}
+	void start();
+	void setPrimaryStage(Stage primaryStage);
+    void setIsFullScreen(boolean isFullScreen);
 	
 }
