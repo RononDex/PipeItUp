@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="changed MST to MinimumSpanningTree">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="changed MST to MinimumSpanningTree" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +18,16 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="changed MST to MinimumSpanningTree" />
+        <option name="rewordedMessage" value="implement kruskal algorithm" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="782e1eb64c0c4bd9e1047b266b703c3636d2abc4" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -179,6 +187,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.PipeItUp" />
+      <item itemvalue="Maven.Run locally" />
       <item itemvalue="Maven. [install]" />
       <item itemvalue="Maven.PipeItUp [build]" />
     </list>
@@ -236,6 +245,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added maven funcionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added maven funcionality" />
+    <MESSAGE value="implement kruskal algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement kruskal algorithm" />
   </component>
 </project>
