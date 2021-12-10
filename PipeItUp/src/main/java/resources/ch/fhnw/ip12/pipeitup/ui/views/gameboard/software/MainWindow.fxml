@@ -4,24 +4,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.canvas.*?>
 
 <?import javafx.scene.control.Button?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml">
-	<GridPane hgap="30.0" vgap="10.0">
-		<columnConstraints>
-			<ColumnConstraints maxWidth="20.0" hgrow="NEVER" />
-			<ColumnConstraints hgrow="ALWAYS" />
-			<ColumnConstraints maxWidth="20.0" hgrow="NEVER" />
-		</columnConstraints>
-		<rowConstraints>
-			<RowConstraints vgrow="ALWAYS" />
-			<RowConstraints vgrow="ALWAYS" />
-		</rowConstraints>
-		<children>
-			<Label fx:id="header" GridPane.columnIndex="1" text="Software Gameboard" GridPane.hgrow="ALWAYS" />
-			<Canvas fx:id="gameboardCanvas" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS" />
-		</children>
-	</GridPane>
+	<Label fx:id="aaa" prefHeight="72.0" prefWidth="336.0" 
+text="Software GameBoard" textAlignment="CENTER">
+		<font>
+			<Font name="Arial" size="25.0" />
+		</font>
+	</Label>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="welcomeText"/>
+    <Button text="Hello!" />
 </VBox>
