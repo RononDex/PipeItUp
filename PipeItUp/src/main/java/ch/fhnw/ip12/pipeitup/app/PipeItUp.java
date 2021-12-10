@@ -2,10 +2,18 @@ package ch.fhnw.ip12.pipeitup.app;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import ch.fhnw.ip12.pipeitup.data.DependencyInjectionConfigData;
+import ch.fhnw.ip12.pipeitup.logic.DependencyInjectionConfigLogic;
+import ch.fhnw.ip12.pipeitup.ui.DependencyInjectionConfigUi;
 import ch.fhnw.ip12.pipeitup.ui.PipeItUpGame;
+import ch.fhnw.ip12.pipeitup.ui.PipeItUpGameEntryPoint;
 import ch.fhnw.ip12.pipeitup.ui.UiMode;
 
 /**
@@ -14,23 +22,41 @@ import ch.fhnw.ip12.pipeitup.ui.UiMode;
 @ExcludeTypeFromJacocoGeneratedReport
 public class PipeItUp {
 
-    static Logger log = Logger.getLogger(PipeItUp.class.getName());
+	static final Logger log = LogManager.getLogger(PipeItUp.class.getName());
+	static Injector injector;
 
-    public static void main(String[] args) {
-        try {
-            System.out.println("funktoiniert");
-            System.out.println(args[1]);
-            List<String> argsList = Arrays.asList(args);
-            UiMode uiMode = UiMode.HARDWARE;
+	public static void main(String[] args) {
+		try {
+			log.info("---------------------------------------------------");
+			log.info("----- Launching Pipe-It-Up!");
+			log.info("---------------------------------------------------");
+			log.info("Parameters:");
 
-            if (argsList.contains("--softwareUi"))
-                uiMode = UiMode.SOFTWARE;
+			System.out.println(args[1]);
+			List<String> argsList = Arrays.asList(args);
+			UiMode uiMode = UiMode.HARDWARE;
 
-            PipeItUpGame game = new PipeItUpGame(uiMode);
+			if (argsList.contains("--softwareUi"))
+				uiMode = UiMode.SOFTWARE;
 
-            game.start();
-        } catch (Exception e) {
-            log.log(Level.SEVERE, String.format("FATAL Error encountered, shutting down: %s", e.getMessage()));
-        }
-    }
+			log.info(" - UiMode: " + uiMode.name());
+			log.info("");
+
+			SetupDependencyInjection();
+
+
+			PipeItUpGameEntryPoint game = injector.getInstance(PipeItUpGameEntryPoint.class);
+			game.setUiMode(uiMode);
+			game.start();
+		} catch (Exception e) {
+			log.fatal(String.format("FATAL Error encountered, shutting down: %s", e.getMessage()));
+		}
+	}
+
+	public static void SetupDependencyInjection() {
+		injector = Guice.createInjector(new DependencyInjectionConfigUi(), new DependencyInjectionConfigData(),
+				new DependencyInjectionConfigLogic());
+
+		log.info("Dependency Injection config loaded");
+	}
 }

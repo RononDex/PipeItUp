@@ -63,11 +63,11 @@
 			<artifactId>javafx-controls</artifactId>
 			<version>11.0.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>11.0.2</version>
-		</dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.2</version>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -79,9 +79,14 @@
 			<version>2.14.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>RELEASE</version>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>5.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>4.1.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -92,6 +97,7 @@
 				<directory>src/main/java/resources</directory>
 				<includes>
 					<include>**/*.fxml</include>
+					<include>**/*.css</include>
 				</includes>
 			</resource>
 		</resources>
@@ -173,18 +179,18 @@
 							<goal>check</goal>
 						</goals>
 						<configuration>
-							<rules>
-								<rule>
-									<element>BUNDLE</element>
-									<limits>
-										<limit>
-											<counter>COMPLEXITY</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.90</minimum>
-										</limit>
-									</limits>
-								</rule>
-							</rules>
+						<rules>
+							<rule>
+							<element>BUNDLE</element>
+							<limits>
+								<limit>
+								<counter>COMPLEXITY</counter>
+								<value>COVEREDRATIO</value>
+								<minimum>0.90</minimum>
+								</limit>
+							</limits>
+							</rule>
+						</rules>
 						</configuration>
 					</execution>
 				</executions>
@@ -254,9 +260,7 @@
 						</executions>
 						<configuration>
 							<executable>sudo</executable>
-							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module
-								${pi.launcher.class} ${pi.launcher.args} --softwareUi
-							</commandlineArgs>
+							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module ${pi.launcher.class} ${pi.launcher.args} --softwareUi</commandlineArgs>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -272,52 +276,49 @@
 				</property>
 			</activation>
 			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-antrun-plugin</artifactId>
-							<executions>
-								<execution>
-									<id>transfer</id>
-									<phase>install</phase>
-									<goals>
-										<goal>run</goal>
-									</goals>
-									<configuration>
-										<target>
-											<!-- Ensure target directory exists on pi -->
-											<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
-													 username="${pi.remote.username}" password="${pi.remote.password}"
-													 trust="true" command="mkdir --parents ${pi.remote.target}"/>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>transfer</id>
+								<phase>install</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<!-- Ensure target directory exists on pi -->
+										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
+												 username="${pi.remote.username}" password="${pi.remote.password}"
+												 trust="true" command="mkdir --parents ${pi.remote.target}"/>
 
-											<!-- Transfer distribution folder to pi via SCP -->
-											<scp trust="true"
-												 todir="${pi.remote.username}:${pi.remote.password}@${pi.remote.host}:${pi.remote.target}"
-												 port="${pi.remote.port}">
-												<fileset dir="${project.build.directory}/distribution"/>
-											</scp>
+										<!-- Transfer distribution folder to pi via SCP -->
+										<scp trust="true"
+											 todir="${pi.remote.username}:${pi.remote.password}@${pi.remote.host}:${pi.remote.target}"
+											 port="${pi.remote.port}">
+											<fileset dir="${project.build.directory}/distribution"/>
+										</scp>
 
-											<!-- Run application on Raspberry Pi -->
-											<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
-													 username="${pi.remote.username}" password="${pi.remote.password}"
-													 trust="true"
-													 failonerror="false" usepty="true" useSystemIn="true"
-													 command="java ${pi.remote.jvmOptions} --module-path ${pi.remote.target} --module ${pi.launcher.class} ${pi.launcher.args}"/>
-										</target>
-									</configuration>
-								</execution>
-							</executions>
-							<dependencies>
-								<dependency>
-									<groupId>org.apache.ant</groupId>
-									<artifactId>ant-jsch</artifactId>
-									<version>${ant-jsch.version}</version>
-								</dependency>
-							</dependencies>
-						</plugin>
-					</plugins>
-				</pluginManagement>
+										<!-- Run application on Raspberry Pi -->
+										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
+												 username="${pi.remote.username}" password="${pi.remote.password}" trust="true"
+												 failonerror="false" usepty="true" useSystemIn="true"
+												 command="java ${pi.remote.jvmOptions} --module-path ${pi.remote.target} --module ${pi.launcher.class} ${pi.launcher.args}"/>
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.ant</groupId>
+								<artifactId>ant-jsch</artifactId>
+								<version>${ant-jsch.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 
