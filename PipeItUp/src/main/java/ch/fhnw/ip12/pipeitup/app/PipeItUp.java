@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 import ch.fhnw.ip12.pipeitup.data.DependencyInjectionConfigData;
 import ch.fhnw.ip12.pipeitup.logic.DependencyInjectionConfigLogic;
 import ch.fhnw.ip12.pipeitup.ui.DependencyInjectionConfigUi;
-import ch.fhnw.ip12.pipeitup.ui.PipeItUpGame;
 import ch.fhnw.ip12.pipeitup.ui.PipeItUpGameEntryPoint;
 import ch.fhnw.ip12.pipeitup.ui.UiMode;
+
 
 /**
  * PipeItUp
@@ -31,8 +31,8 @@ public class PipeItUp {
 			log.info("----- Launching Pipe-It-Up!");
 			log.info("---------------------------------------------------");
 			log.info("Parameters:");
+			if (args.length > 0) System.out.println(args[1]);
 
-			System.out.println(args[1]);
 			List<String> argsList = Arrays.asList(args);
 			UiMode uiMode = UiMode.HARDWARE;
 
@@ -43,7 +43,6 @@ public class PipeItUp {
 			log.info("");
 
 			SetupDependencyInjection();
-
 
 			PipeItUpGameEntryPoint game = injector.getInstance(PipeItUpGameEntryPoint.class);
 			game.setUiMode(uiMode);
