@@ -18,7 +18,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<exec.mainClass>ch.fhnw.ip12.pipeitup.app.PipeItUp</exec.mainClass>
-		<exec.commandlineArgs>--softwareUi</exec.commandlineArgs>
+<!--		<exec.commandlineArgs>&#45;&#45;softwareUi</exec.commandlineArgs>-->
 
 		<!-- Project Dependencies -->
 		<java.version>11</java.version>
@@ -50,7 +50,12 @@
 		<ant-jsch.version>1.10.9</ant-jsch.version>
 
 	</properties>
-
+	<repositories>
+		<repository>
+			<id>project-repository</id>
+			<url>file://${project.basedir}/repository</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -69,6 +74,17 @@
             <version>11.0.2</version>
         </dependency>
 		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>5.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>4.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>2.14.1</version>
@@ -79,15 +95,14 @@
 			<version>2.14.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<version>5.0.1</version>
+			<groupId>com.github.mbelling</groupId>
+			<artifactId>rpi-ws281x</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>4.1.0</version>
-			<scope>test</scope>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-core</artifactId>
+			<version>1.3.1</version>
 		</dependency>
 	</dependencies>
 
@@ -260,7 +275,8 @@
 						</executions>
 						<configuration>
 							<executable>sudo</executable>
-							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module ${pi.launcher.class} ${pi.launcher.args} --softwareUi</commandlineArgs>
+							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module
+								${pi.launcher.class} ${pi.launcher.args} --softwareUi</commandlineArgs>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -280,6 +296,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
 						<executions>
 							<execution>
 								<id>transfer</id>
@@ -300,12 +317,16 @@
 											 port="${pi.remote.port}">
 											<fileset dir="${project.build.directory}/distribution"/>
 										</scp>
+										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
+												 username="${pi.remote.username}" password="${pi.remote.password}"
+												 trust="true" command="rm ${pi.remote.target}/javafx-* &amp;&amp; cp /usr/share/openjfx/lib/javafx.* ${pi.remote.target}/"/>
 
 										<!-- Run application on Raspberry Pi -->
 										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
-												 username="${pi.remote.username}" password="${pi.remote.password}" trust="true"
+												 username="${pi.remote.username}" password="${pi.remote.password}"
+												 trust="true"
 												 failonerror="false" usepty="true" useSystemIn="true"
-												 command="java ${pi.remote.jvmOptions} --module-path ${pi.remote.target} --module ${pi.launcher.class} ${pi.launcher.args}"/>
+												 command="DISPLAY=:1 sudo java -Dprism.order=sw ${pi.remote.jvmOptions} --module-path ${pi.remote.target} --module ${pi.launcher.class} ${pi.launcher.args}"/>
 									</target>
 								</configuration>
 							</execution>

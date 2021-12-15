@@ -12,7 +12,8 @@ scriptDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt install openjdk-11-jdk git swig maven -y
+sudo apt install openjdk-11-jdk git swig maven openjfx -y
+sudo pip3 install rpi_ws281x
 
 # ---------------------------------------------------------------------------------
 # Ensure git repo is cloned and that pwd is inside the cloned / up to date git repo
@@ -48,14 +49,23 @@ else
 	fi
 fi
 
-. $scriptDir/functions.sh
+. "$scriptDir"/functions.sh
 
 # ---------------------------------------------------------------------------------
 # Setup hostname
 # ---------------------------------------------------------------------------------
-sudo cp $scriptDir/hostname /etc/hostname
-sudo cp $scriptDir/hosts /etc/hosts
+sudo cp "$scriptDir"/hostname /etc/hostname
+sudo cp "$scriptDir"/hosts /etc/hosts
 
+# ---------------------------------------------------------------------------------
+# Setup sudoers config
+# ---------------------------------------------------------------------------------
+sudo cp "$scriptDir"/sudoers /etc/sudoers
+
+# ---------------------------------------------------------------------------------
+# Setup GPIO access for user pipeitup
+# ---------------------------------------------------------------------------------
+sudo usermod -a -G gpio pipeitup
 
 # ---------------------------------------------------------------------------------
 # Setup dns servers
@@ -63,7 +73,7 @@ sudo cp $scriptDir/hosts /etc/hosts
 sudo apt update && sudo apt install resolvconf -y
 sudo systemctl start resolvconf.service
 sudo systemctl enable resolvconf.service
-sudo cp $scriptDir/headDnsConfig /etc/resolvconf/resolv.conf.d/head
+sudo cp "$scriptDir"/headDnsConfig /etc/resolvconf/resolv.conf.d/head
 
 # ---------------------------------------------------------------------------------
 # Setup SSH-Daemon
@@ -80,7 +90,7 @@ sudo systemctl enable ssh
 
 SetupAutoHotspot
 
-sudo crontab $scriptDir/cronConfig
+sudo crontab "$scriptDir"/cronConfig
 sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
 
 echo "country=CH" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf
@@ -95,10 +105,10 @@ SetupKnownWifi "Pipe-It-Up-Internet" "pipe-it-up!3"
 # Setup VNC Server
 # ---------------------------------------------------------------------------------
 sudo apt install tightvncserver -y
-sudo cp $scriptDir/vncserver.service /etc/systemd/system/vncserver.service
+sudo cp "$scriptDir"/vncserver.service /etc/systemd/system/vncserver.service
 vncserver :1
 mkdir -p ~/.vnc
-cp $scriptDir/vncConfig ~/.vnc/config
+cp "$scriptDir"/vncConfig ~/.vnc/config
 sudo systemctl enable vncserver
 
 # TODO: pipe-it-up kompillieren und installieren
