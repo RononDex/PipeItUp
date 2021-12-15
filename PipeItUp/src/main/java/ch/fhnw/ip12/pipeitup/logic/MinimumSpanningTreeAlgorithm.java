@@ -56,10 +56,10 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	 */
 	public boolean completed() {
 		return graph.getVertices().stream().allMatch(
-				vertex -> vertex.getEdges().stream().filter(Edge::isUsed).count() > 1
-						|| (vertex.getEdges().stream().filter(Edge::isUsed).count() == 1
+				vertex -> vertex.getEdges().stream().filter(Edge::isUsed).count() > 1 // isn't isolated
+						|| (vertex.getEdges().stream().filter(Edge::isUsed).count() == 1 // has only one connection
 						&& vertex.getEdges().stream().filter(Edge::isUsed).iterator().next()
-						.getVertices().stream().anyMatch(
+						.getVertices().stream().anyMatch( // and next vertex isn't isolated
 								vertex1 -> vertex1.getEdges().stream().filter(Edge::isUsed).count() > 1
 						))
 		);
