@@ -16,10 +16,15 @@ public class GraphLayoutLoaderImplTests {
 	@Test
 	public void Test() {
 		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
-		when(graphLayoutDataLoaderMock.getData()).thenReturn(new Object[] {1, 2, 3});
+		when(graphLayoutDataLoaderMock.getData()).thenReturn(
+				new int[][]{
+				new int[]{1,2,3},
+				new int[]{1,2,3},
+				new int[]{1,2,3}
+		});
 
 		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
-		Object[] actual = testee.getIncidenceMatrixForGraph(1);
+		Graph actual = testee.getGraph(1);
 
 		assertNull(actual);
 	}

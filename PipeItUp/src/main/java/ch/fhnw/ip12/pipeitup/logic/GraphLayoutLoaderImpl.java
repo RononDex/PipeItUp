@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.data.GraphLayoutDataLoader;
 
+import java.util.HashSet;
+
 /**
 * GraphLayoutLoaderImpl
 */
@@ -17,13 +19,13 @@ public class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 	}
 
 	@Override
-	public int[][] getIncidenceMatrixForGraph(int graphId) {
-		Object[] graphLayout = graphLayoutDataLoader.getData();
-		return null;
+	public Graph getGraph(int graphId) {
+		int[][] graphLayout = graphLayoutDataLoader.getData();
+		return Graph.fromIncidentMatrix(graphLayout);
 	}
 
 	@Override
-	public int[][] getRandomIncidenceMatrix() {
+	public Graph getRandomGraph() {
 		// TODO Auto-generated method stub
 		return null;
 	}

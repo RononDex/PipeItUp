@@ -5,6 +5,6 @@ package ch.fhnw.ip12.pipeitup.data;
 */
 public interface GraphLayoutDataLoader {
 
-	Object[] getData();
+	int[][] getData();
 	
 }

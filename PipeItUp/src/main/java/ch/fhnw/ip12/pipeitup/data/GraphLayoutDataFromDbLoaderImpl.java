@@ -12,7 +12,7 @@ class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 	}
 
 	@Override
-	public Object[] getData() {
+	public int[][] getData() {
 		// TODO Auto-generated method stub
 		return null;
 	}

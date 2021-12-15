@@ -5,8 +5,8 @@ package ch.fhnw.ip12.pipeitup.logic;
 */
 public interface GraphLayoutLoader {
 
-	int[][] getIncidenceMatrixForGraph(int graphId);
+	Graph getGraph(int graphId);
 
-	int[][] getRandomIncidenceMatrix();
+	Graph getRandomGraph();
 	
 }
