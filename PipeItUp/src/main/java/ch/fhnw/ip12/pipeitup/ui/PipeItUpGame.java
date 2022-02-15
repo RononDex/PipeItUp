@@ -23,6 +23,7 @@ public class PipeItUpGame extends Application implements PipeItUpGameEntryPoint 
 	private static GameBoard gameBoard;
 	private static SoftwareGameBoardUi softwareGameBoard;
 	private static HardwareGameBoardUi hardwareGameBoard;
+	private static ViewModelService viewModelServiceField;
 
 	public PipeItUpGame() {
 		super();
@@ -30,11 +31,12 @@ public class PipeItUpGame extends Application implements PipeItUpGameEntryPoint 
 
 	@Inject
 	public PipeItUpGame(SoftwareGameBoardUi softwareGameBoardUi, HardwareGameBoardUi hardwareGameBoardUi,
-			TouchUiImpl touchUi) {
+			TouchUiImpl touchUi, ViewModelService viewModelService) {
 		super();
 		softwareGameBoard = softwareGameBoardUi;
 		hardwareGameBoard = hardwareGameBoardUi;
 		touch = touchUi;
+		viewModelServiceField = viewModelService;
 	}
 
 	public void setUiMode(UiMode uiMode) {
@@ -43,11 +45,11 @@ public class PipeItUpGame extends Application implements PipeItUpGameEntryPoint 
 
 	public void start() {
 		new Thread(() -> javafx.application.Application.launch(PipeItUpGame.class)).start();
-		;
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
+		PipeItUpGameViewModel initialViewModel = viewModelServiceField.createStartUpViewModel();
 		touch = new TouchUiImpl();
 		boolean openTouchUiInFullScreen = true;
 
@@ -60,7 +62,8 @@ public class PipeItUpGame extends Application implements PipeItUpGameEntryPoint 
 
 		touch.setPrimaryStage(primaryStage);
 		touch.setIsFullScreen(openTouchUiInFullScreen);
-		touch.start();
+		touch.start(initialViewModel);
+		gameBoard.setGameBoardViewModel(initialViewModel.gameBoardViewModel);
 		gameBoard.start();
 	}
 }

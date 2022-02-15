@@ -4,11 +4,14 @@ package ch.fhnw.ip12.pipeitup.ui.views.gameboard.software;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoard;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoardViewModel;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * SoftwareGameBoard
@@ -20,12 +23,21 @@ public class SoftwareGameBoardUiImpl implements SoftwareGameBoardUi {
 
 	private Stage primaryStage;
 
+	private GameBoardViewModel gameBoardViewModel;
+
 	@Override
 	public void start() {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(getClass().getResource("MainWindow.fxml"));
-			Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+			fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
+						@Override
+						@ExcludeMethodFromJacocoGeneratedReport
+						public Object call(Class<?> aClass) {
+							return new MainController(gameBoardViewModel);
+						}
+					});
+			Scene scene = new Scene(fxmlLoader.load());
 			scene.getStylesheets().add(getClass().getResource("gameboard.css").toExternalForm());
 			primaryStage.setTitle("Pipe-It-Up! Software GameBoard");
 			primaryStage.setScene(scene);
@@ -38,6 +50,11 @@ public class SoftwareGameBoardUiImpl implements SoftwareGameBoardUi {
 	@Override
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
+	}
+
+	@Override
+	public void setGameBoardViewModel(GameBoardViewModel gameBoardViewModel) {
+		this.gameBoardViewModel = gameBoardViewModel;
 	}
 
 }

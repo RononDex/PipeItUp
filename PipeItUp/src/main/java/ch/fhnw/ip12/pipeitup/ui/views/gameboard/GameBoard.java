@@ -8,7 +8,7 @@ import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
  @ExcludeTypeFromJacocoGeneratedReport
 public interface GameBoard {
 
-	GameBoardViewModel viewModel = new GameBoardViewModel();
+	void setGameBoardViewModel(GameBoardViewModel gameBoardViewModel);
 
 	void start();
 }

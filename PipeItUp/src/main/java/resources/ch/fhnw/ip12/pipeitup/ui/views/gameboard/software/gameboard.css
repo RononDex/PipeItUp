@@ -1,16 +1,14 @@
 .root {
     -fx-font-size: 14px;
     -fx-font-family: sans-serif;
-    -fx-background-color: #e6e6e6;
+    -fx-background-color: #eeeeee;
 }
 #header {
 	-fx-font-size: 48px;
 }
 
-#gameboardCanvas {
+.pane {
 	-fx-border-style:solid;
-	-fx-border-width: 5;
+	-fx-border-width: 3;
 	-fx-border-color: black;
-	-fx-width: 500px;
-	-fx-height: 800px;
 }
