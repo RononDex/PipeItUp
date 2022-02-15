@@ -49,6 +49,7 @@
 		<!-- Ant Dependencies -->
 		<ant-jsch.version>1.10.9</ant-jsch.version>
 
+		<sourceDirectory>${project.build.directory}/src/main/java</sourceDirectory>
 	</properties>
 	<repositories>
 		<repository>

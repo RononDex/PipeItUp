@@ -14,6 +14,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoard;
+import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoardViewModel;
 
 /**
  * HardwareGameBoard
@@ -22,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 public class HardwareGameBoardUiImpl implements HardwareGameBoardUi {
 
 	static final Logger log = LogManager.getLogger(PipeItUp.class.getName());
+	private GameBoardViewModel gameBoardViewModel;
+
 	@Override
 	public void start() {
 		LedStrip led = new Ws281xLedStrip(
@@ -56,5 +60,11 @@ public class HardwareGameBoardUiImpl implements HardwareGameBoardUi {
 			}
 
 		}
+	}
+
+	@Override
+	public void setGameBoardViewModel(GameBoardViewModel gameBoardViewModel) {
+		this.gameBoardViewModel = gameBoardViewModel;
+		
 	}
 }

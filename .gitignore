@@ -9,3 +9,6 @@ PipeItUp/target/
 
 # IntelliJ
 *.iml
+
+# Vim
+.attach*

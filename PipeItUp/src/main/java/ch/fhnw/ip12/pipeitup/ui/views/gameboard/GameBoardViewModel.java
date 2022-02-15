@@ -1,13 +1,18 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
-* GameBoardViewModel
-*/
+ * GameBoardViewModel
+ */
 @ExcludeTypeFromJacocoGeneratedReport
 public class GameBoardViewModel {
 
-	GraphViewModel graphViewModel;
+	Property<GraphViewModel> graphViewModel = new SimpleObjectProperty<GraphViewModel>(new GraphViewModel());
 
+	public Property<GraphViewModel> getGraphViewModel() {
+		return graphViewModel;
+	}
 }

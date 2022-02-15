@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Added maven funcionality">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_google_inject_guice_5_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/app/PipeItUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/app/PipeItUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/ViewModelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/ViewModelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/TouchUi.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/TouchUi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/GraphLayoutLoaderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/GraphLayoutLoaderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/StartScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/StartScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/touch.css" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/touch.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +31,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="21dEIBTBUJevhCkG6LoS3NulpAO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -57,7 +53,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.41753927" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="shared-indexes" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -245,7 +241,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added maven funcionality" />
