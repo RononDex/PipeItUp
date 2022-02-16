@@ -2,6 +2,7 @@ package ch.fhnw.ip12.pipeitup.data;
 
 import java.util.ArrayList;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.data.Models.Edge;
@@ -11,6 +12,7 @@ import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
 /**
 * GraphLayoutFromDbLoaderImpl
 */
+@ExcludeTypeFromJacocoGeneratedReport
 class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 
 	@Inject

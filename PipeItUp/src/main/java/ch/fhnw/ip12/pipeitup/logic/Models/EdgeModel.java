@@ -1,8 +1,11 @@
 package ch.fhnw.ip12.pipeitup.logic.Models;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+
 /**
 * EdgeModel
 */
+@ExcludeTypeFromJacocoGeneratedReport
 public class EdgeModel {
 
 	private VertexModel vertex1;

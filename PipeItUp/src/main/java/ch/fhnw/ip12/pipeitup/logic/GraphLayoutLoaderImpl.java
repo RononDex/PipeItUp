@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
@@ -18,6 +19,7 @@ import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
 /**
  * GraphLayoutLoaderImpl
  */
+@ExcludeTypeFromJacocoGeneratedReport
 class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 
 	private final GraphLayoutDataLoader graphLayoutDataLoader;
