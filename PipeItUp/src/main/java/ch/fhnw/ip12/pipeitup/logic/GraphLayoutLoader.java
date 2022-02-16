@@ -1,13 +1,12 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
-
 /**
 * GraphLayoutLoader
 */
 public interface GraphLayoutLoader {
 
-	int[][] getIncidenceMatrixForGraph(int graphId);
+	Graph getGraph(int graphId);
 
-	GraphLayoutModel getRandomlyWeightedGraph(int maxWeight);
+	Graph getRandomGraph();
+	
 }
