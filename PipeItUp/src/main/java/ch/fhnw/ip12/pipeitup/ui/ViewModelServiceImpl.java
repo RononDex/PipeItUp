@@ -1,6 +1,7 @@
 package ch.fhnw.ip12.pipeitup.ui;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.google.inject.Inject;
 
@@ -30,8 +31,8 @@ class ViewModelServiceImpl implements ViewModelService {
 		viewModel.touchViewModel = new TouchViewModel();
 
 		GraphLayoutModel randomGraph = graphLayoutLoader.getRandomlyWeightedGraph(6);
-		List<VertexViewModel> vertexViewModels = randomGraph.getVertices().stream().map(v -> Map(v)).toList();
-		List<EdgeViewModel> edgeViewModels = randomGraph.getEdges().stream().map(e -> Map(e, vertexViewModels)).toList();
+		List<VertexViewModel> vertexViewModels = randomGraph.getVertices().stream().map(v -> Map(v)).collect(Collectors.toList());
+		List<EdgeViewModel> edgeViewModels = randomGraph.getEdges().stream().map(e -> Map(e, vertexViewModels)).collect(Collectors.toList());
 
 		viewModel.gameBoardViewModel.getGraphViewModel().getValue().getEdgeViewModels().setValue(edgeViewModels);
 		viewModel.gameBoardViewModel.getGraphViewModel().getValue().getVertexViewModels().setValue(vertexViewModels);
