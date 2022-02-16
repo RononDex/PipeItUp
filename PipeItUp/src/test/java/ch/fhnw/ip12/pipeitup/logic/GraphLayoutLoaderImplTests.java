@@ -67,11 +67,11 @@ public class GraphLayoutLoaderImplTests {
 	public void getRandomlyWeightedGraph_WithMaxWeightOfOne_AllWeightsAreOne() {
 
 		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
-		ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+		ArrayList<Vertex> vertices = new ArrayList<>();
 		vertices.add(new Vertex(1, 100d, 100d));
 		vertices.add(new Vertex(1, 110d, 110d));
 		vertices.add(new Vertex(1, 110d, 150d));
-		ArrayList<Edge> edges = new ArrayList<Edge>();
+		ArrayList<Edge> edges = new ArrayList<>();
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));
@@ -87,11 +87,11 @@ public class GraphLayoutLoaderImplTests {
 	public void getRandomlyWeightedGraph_WithMaxWeightOfFive_AllWeightsSmallerOrEqualToFive() {
 
 		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
-		ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+		ArrayList<Vertex> vertices = new ArrayList<>();
 		vertices.add(new Vertex(1, 100d, 100d));
 		vertices.add(new Vertex(1, 110d, 110d));
 		vertices.add(new Vertex(1, 110d, 150d));
-		ArrayList<Edge> edges = new ArrayList<Edge>();
+		ArrayList<Edge> edges = new ArrayList<>();
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));

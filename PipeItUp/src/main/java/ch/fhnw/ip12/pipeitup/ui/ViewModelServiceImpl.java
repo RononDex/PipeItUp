@@ -31,7 +31,7 @@ class ViewModelServiceImpl implements ViewModelService {
 		viewModel.touchViewModel = new TouchViewModel();
 
 		GraphLayoutModel randomGraph = graphLayoutLoader.getRandomlyWeightedGraph(6);
-		List<VertexViewModel> vertexViewModels = randomGraph.getVertices().stream().map(v -> Map(v)).collect(Collectors.toList());
+		List<VertexViewModel> vertexViewModels = randomGraph.getVertices().stream().map(ViewModelServiceImpl::Map).collect(Collectors.toList());
 		List<EdgeViewModel> edgeViewModels = randomGraph.getEdges().stream().map(e -> Map(e, vertexViewModels)).collect(Collectors.toList());
 
 		viewModel.gameBoardViewModel.getGraphViewModel().getValue().getEdgeViewModels().setValue(edgeViewModels);
