@@ -1,8 +1,5 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,7 +10,6 @@ public class Graph {
 		this.edges = edges;
 	}
 
-	@ExcludeMethodFromJacocoGeneratedReport
 	public static Graph fromIncidentMatrix(int[][] incidenceMatrix){
 		LinkedHashSet<Edge> edges = new LinkedHashSet<>();
 		// instantiate vertices

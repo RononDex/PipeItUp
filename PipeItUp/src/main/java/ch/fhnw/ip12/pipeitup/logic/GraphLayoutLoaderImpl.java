@@ -1,5 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+	import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.data.GraphLayoutDataLoader;
@@ -9,6 +10,7 @@ import java.util.HashSet;
 /**
 * GraphLayoutLoaderImpl
 */
+@ExcludeTypeFromJacocoGeneratedReport
 public class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 
 	private GraphLayoutDataLoader graphLayoutDataLoader;

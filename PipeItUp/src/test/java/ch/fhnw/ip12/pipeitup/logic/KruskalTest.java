@@ -14,17 +14,31 @@ class KruskalTest {
 	Vertex v2 = new Vertex();
 	Vertex v3 = new Vertex();
 	Vertex v4 = new Vertex();
-	Edge e1 = new Edge(1, new HashSet<>(){{add(v1);add(v2);}});
-	Edge e2 = new Edge(6, new HashSet<>(){{add(v1);add(v3);}});
-	Edge e3 = new Edge(7, new HashSet<>(){{add(v1);add(v4);}});
-	Edge e4 = new Edge(4, new HashSet<>(){{add(v2);add(v4);}});
-	Edge e5 = new Edge(3, new HashSet<>(){{add(v3);add(v4);}});
-	Graph graph = new Graph(new LinkedHashSet<>(Arrays.asList(e1,e2,e3,e4,e5)));
+	Edge e1 = new Edge(1, new HashSet<>() {{
+		add(v1);
+		add(v2);
+	}});
+	Edge e2 = new Edge(6, new HashSet<>() {{
+		add(v1);
+		add(v3);
+	}});
+	Edge e3 = new Edge(7, new HashSet<>() {{
+		add(v1);
+		add(v4);
+	}});
+	Edge e4 = new Edge(4, new HashSet<>() {{
+		add(v2);
+		add(v4);
+	}});
+	Edge e5 = new Edge(3, new HashSet<>() {{
+		add(v3);
+		add(v4);
+	}});
+	Graph graph = new Graph(new LinkedHashSet<>(Arrays.asList(e1, e2, e3, e4, e5)));
 	Kruskal kruskal = new Kruskal(graph);
 
 	@Test
 	void isNextEdge() {
-
 		assertTrue(kruskal.isNextEdge(e1));
 		assertFalse(kruskal.isNextEdge(e2));
 		assertFalse(kruskal.isNextEdge(e3));

@@ -1,8 +1,5 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-
-@ExcludeTypeFromJacocoGeneratedReport
 public class Prim extends MinimumSpanningTreeAlgorithm {
 	private final Vertex start;
 
@@ -18,7 +15,7 @@ public class Prim extends MinimumSpanningTreeAlgorithm {
 				int minEdge = start.getEdges().stream()
 						.mapToInt(Edge::getWeight)
 						.min().orElse(0);
-				return (minEdge == edge.getWeight());
+				return minEdge == edge.getWeight();
 			}
 		}
 		int minEdge = getUsedEdges().stream()
