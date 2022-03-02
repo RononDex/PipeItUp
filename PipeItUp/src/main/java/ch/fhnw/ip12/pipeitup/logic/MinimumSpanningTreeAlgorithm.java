@@ -1,52 +1,51 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
+import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
+import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
 
 /*
 minimum spanning tree
  */
 public abstract class MinimumSpanningTreeAlgorithm {
-	private final Graph graph;
-
-	public MinimumSpanningTreeAlgorithm(Graph graph) {
-		this.graph = graph;
-	}
-
 
 	/**
-	 * Check if the edge can be used in the process of finding the mst
-	 * There may be multiple possible edges to use.
+	 * Check if the edge can be used in the process of finding the mst There may be
+	 * multiple possible edges to use.
 	 *
 	 * @param edge to check usability for
 	 * @return true if next possible edge contains the given edge
 	 */
-	abstract boolean isNextEdge(Edge edge);
+	abstract boolean isNextEdge(GraphLayoutModel graphLayout, EdgeModel edge);
 
-	public boolean edgeIsUsable(Edge edge) {
-		if (edge.isUsed() || !graph.getEdges().contains(edge)) return false;
-		if (edge.getVertices().stream().allMatch(Vertex::isVisited)) { // potential cycle
+	public boolean edgeIsUsable(GraphLayoutModel graphLayout, EdgeModel edge) {
+		List<VertexModel> usedVertices = getUsedVertices(graphLayout);
+		if (edge.isUsed())
+			return false;
+		if (edge.getConnectedVertices().stream().allMatch(vertex -> usedVertices.contains(vertex))) { // potential cycle
 			edge.setUsed(true); // temporarily set to true to check loop
-			boolean loop = createsLoop(new HashSet<>(), edge.getVertices().iterator().next(), edge);
+			boolean isLoop = createsLoop(graphLayout, new HashSet<>(), edge.getVertex1(), edge);
 			edge.setUsed(false);
-			return !loop;
+			return !isLoop;
 		}
 		return true;
 	}
 
-	private static boolean createsLoop(HashSet<Edge> seen, Vertex nextVertex, Edge activeEdge) {
-		if (seen.contains(activeEdge)) return true;
+	private boolean createsLoop(GraphLayoutModel graphLayout, HashSet<EdgeModel> seen, VertexModel nextVertex,
+			EdgeModel activeEdge) {
+		if (seen.contains(activeEdge))
+			return true;
 		seen.add(activeEdge);
-		return nextVertex.getEdges().stream().filter(e -> e != activeEdge && e.isUsed())
-				.map(edge -> createsLoop(
-						seen,
-						edge.getVertices().stream()
-								.filter(vertex -> vertex != nextVertex)
+		return getEdgesForVertex(graphLayout, nextVertex).stream().filter(e -> e != activeEdge && e.isUsed())
+				.map(edge -> createsLoop(graphLayout, seen,
+						edge.getConnectedVertices().stream().filter(vertex -> vertex != nextVertex)
 								.collect(Collectors.toSet()).iterator().next(),
-						edge
-				))
-				.collect(Collectors.toList())
-				.contains(true);
+						edge))
+				.collect(Collectors.toList()).contains(true);
 	}
 
 	/**
@@ -54,44 +53,45 @@ public abstract class MinimumSpanningTreeAlgorithm {
 	 *
 	 * @return true if all vertices are used, otherwise false
 	 */
-	public boolean completed() {
-		return graph.getVertices().stream().allMatch(
-				vertex -> vertex.getEdges().stream().filter(Edge::isUsed).count() > 1 // isn't isolated
-						|| (vertex.getEdges().stream().filter(Edge::isUsed).count() == 1 // has only one connection
-						&& vertex.getEdges().stream().filter(Edge::isUsed).iterator().next()
-						.getVertices().stream().anyMatch( // and next vertex isn't isolated
-								vertex1 -> vertex1.getEdges().stream().filter(Edge::isUsed).count() > 1
-						))
-		);
+	public boolean completed(GraphLayoutModel graphLayout) {
+		List<VertexModel> usedVertices = getUsedVertices(graphLayout);
+		return usedVertices.size() == graphLayout.getVertices().size();
 	}
 
-	public int sum() {
+	public int sum(GraphLayoutModel graphLayout) {
 		// TODO: return sum of edge weights, only when all vertices are used.
-		return graph.getEdges().stream()
-				.filter(Edge::isUsed)
-				.mapToInt(Edge::getWeight)
-				.reduce(0, Integer::sum);
+		return graphLayout.getEdges().stream().filter(EdgeModel::isUsed).mapToInt(EdgeModel::getWeight).reduce(0,
+				Integer::sum);
 	}
 
-	public boolean addEdgeToTree(Edge edge) {
-		if (isNextEdge(edge)) {
+	protected boolean addEdgeToTree(GraphLayoutModel graphLayout, EdgeModel edge) {
+		if (isNextEdge(graphLayout, edge)) {
 			edge.setUsed(true);
-			edge.getVertices().forEach(vertex -> vertex.setVisited(true));
 			return true;
 		}
 		return false;
 	}
 
-	public HashSet<Edge> getUnusedEdges() {
-		return graph.getEdges().stream()
-				.filter(edge -> !edge.isUsed())
+	public HashSet<EdgeModel> getUnusedEdges(GraphLayoutModel graphLayout) {
+		return graphLayout.getEdges().stream().filter(edge -> !edge.isUsed())
 				.collect(Collectors.toCollection(HashSet::new));
-		// TODO: Override equeals for Hashset to compare object for same weight, start and end vertex.
+		// TODO: Override equeals for Hashset to compare object for same weight, start
+		// and end vertex.
 	}
 
-	public HashSet<Edge> getUsedEdges() {
-		return graph.getEdges().stream()
-				.filter(Edge::isUsed)
-				.collect(Collectors.toCollection(HashSet::new));
+	public HashSet<EdgeModel> getUsedEdges(GraphLayoutModel graphLayout) {
+		return graphLayout.getEdges().stream().filter(EdgeModel::isUsed).collect(Collectors.toCollection(HashSet::new));
+	}
+
+	private static List<VertexModel> getUsedVertices(GraphLayoutModel graphLayout) {
+		return graphLayout.getEdges().stream().filter(edge -> edge.isUsed())
+				.flatMap(edge -> edge.getConnectedVertices().stream()).distinct().collect(Collectors.toList());
+	}
+
+	protected static List<EdgeModel> getEdgesForVertex(GraphLayoutModel graphLayout, VertexModel vertex)
+	{
+		return graphLayout.getEdges().stream()
+			.filter(x -> x.getVertex1() == vertex || x.getVertex2() == vertex)
+			.collect(Collectors.toList());
 	}
 }

@@ -19,7 +19,6 @@ import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
 /**
  * GraphLayoutLoaderImpl
  */
-@ExcludeTypeFromJacocoGeneratedReport
 class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 
 	private final GraphLayoutDataLoader graphLayoutDataLoader;
@@ -41,8 +40,10 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 		}
 
 		GraphLayout graphLayout = graphLayoutDataLoader.getGraphLayoutFromDb();
-		List<VertexModel> vertexModels = graphLayout.getVertices().stream().map(GraphLayoutLoaderImpl::Map).collect(Collectors.toList());
-		List<EdgeModel> edgeModels = graphLayout.getEdges().stream().map(e -> Map(e, vertexModels)).collect(Collectors.toList());
+		List<VertexModel> vertexModels = graphLayout.getVertices().stream().map(GraphLayoutLoaderImpl::Map)
+				.collect(Collectors.toList());
+		List<EdgeModel> edgeModels = graphLayout.getEdges().stream().map(e -> Map(e, vertexModels))
+				.collect(Collectors.toList());
 
 		Random randomGenerator = new Random();
 		for (EdgeModel edgeModel : edgeModels) {
@@ -53,12 +54,18 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 	}
 
 	private static VertexModel Map(Vertex vertex) {
-		return new VertexModel(vertex.getId(), vertex.getPositionX(), vertex.getPositionY());
+		return new VertexModel(vertex.getPositionX(), vertex.getPositionY());
 	}
 
 	@ExcludeMethodFromJacocoGeneratedReport
 	private static EdgeModel Map(Edge edge, List<VertexModel> vertexList) {
-		return new EdgeModel(vertexList.stream().filter(v -> v.getId() == edge.getVertex1().getId()).findFirst().get(),
-				vertexList.stream().filter(v -> v.getId() == edge.getVertex2().getId()).findFirst().get(), 0);
+		return new EdgeModel(
+				vertexList.stream()
+						.filter(v -> v.getPositionX() == edge.getVertex1().getPositionX()
+								&& v.getPositionY() == edge.getVertex1().getPositionY())
+						.findFirst().get(),
+				vertexList.stream().filter(v -> v.getPositionX() == edge.getVertex2().getPositionX()
+						&& v.getPositionY() == edge.getVertex2().getPositionY()).findFirst().get(),
+				0);
 	}
 }

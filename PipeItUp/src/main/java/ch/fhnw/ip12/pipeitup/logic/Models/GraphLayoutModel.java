@@ -2,12 +2,12 @@ package ch.fhnw.ip12.pipeitup.logic.Models;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
-* GraphLayoutModel
-*/
+ * GraphLayoutModel
+ */
 @ExcludeTypeFromJacocoGeneratedReport
 public class GraphLayoutModel {
 

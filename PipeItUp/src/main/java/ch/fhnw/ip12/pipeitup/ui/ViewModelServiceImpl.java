@@ -33,8 +33,13 @@ class ViewModelServiceImpl implements ViewModelService {
 		viewModel.touchViewModel = new TouchViewModel();
 
 		GraphLayoutModel randomGraph = graphLayoutLoader.getRandomlyWeightedGraph(6);
-		List<VertexViewModel> vertexViewModels = randomGraph.getVertices().stream().map(ViewModelServiceImpl::Map).collect(Collectors.toList());
-		List<EdgeViewModel> edgeViewModels = randomGraph.getEdges().stream().map(e -> Map(e, vertexViewModels)).collect(Collectors.toList());
+
+		int nodeCounter = 0;
+
+		List<VertexViewModel> vertexViewModels = randomGraph.getVertices().stream().map(vertex -> Map(vertex, nodeCounter))
+				.collect(Collectors.toList());
+		List<EdgeViewModel> edgeViewModels = randomGraph.getEdges().stream().map(e -> Map(e, vertexViewModels))
+				.collect(Collectors.toList());
 
 		viewModel.gameBoardViewModel.getGraphViewModel().getValue().getEdgeViewModels().setValue(edgeViewModels);
 		viewModel.gameBoardViewModel.getGraphViewModel().getValue().getVertexViewModels().setValue(vertexViewModels);
@@ -43,15 +48,16 @@ class ViewModelServiceImpl implements ViewModelService {
 	}
 
 	@ExcludeMethodFromJacocoGeneratedReport
-	private static VertexViewModel Map(VertexModel vertex) {
-		return new VertexViewModel(vertex.getId(), vertex.getPositionX(), vertex.getPositionY());
+	private static VertexViewModel Map(VertexModel vertex, int nodeCounter) {
+		nodeCounter++;
+		return new VertexViewModel(nodeCounter, vertex.getPositionX(), vertex.getPositionY());
 	}
 
 	@ExcludeMethodFromJacocoGeneratedReport
 	private static EdgeViewModel Map(EdgeModel edge, List<VertexViewModel> vertexList) {
 		return new EdgeViewModel(
-				vertexList.stream().filter(v -> v.getVertexNumber().intValue() == edge.getVertex1().getId()).findFirst().get(),
-				vertexList.stream().filter(v -> v.getVertexNumber().intValue() == edge.getVertex2().getId()).findFirst().get(),
+				vertexList.stream().filter(v -> v.getVertexCenterPositionXInMm().get() == edge.getVertex1().getPositionX() && v.getVertexCenterPositionYInMm().get() == edge.getVertex1().getPositionY()).findFirst().get(),
+				vertexList.stream().filter(v -> v.getVertexCenterPositionXInMm().get() == edge.getVertex2().getPositionX() && v.getVertexCenterPositionYInMm().get() == edge.getVertex2().getPositionY()).findFirst().get(),
 				edge.getWeight());
 	}
 

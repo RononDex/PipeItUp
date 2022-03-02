@@ -49,7 +49,6 @@
 		<!-- Ant Dependencies -->
 		<ant-jsch.version>1.10.9</ant-jsch.version>
 
-		<sourceDirectory>${project.build.directory}/src/main/java</sourceDirectory>
 	</properties>
 	<repositories>
 		<repository>
@@ -123,6 +122,8 @@
 				</includes>
 			</resource>
 		</resources>
+		<sourceDirectory>src/main/java</sourceDirectory>
+
 		<plugins>
 			<!-- Copy runtime dependencies into distribution folder -->
 			<plugin>

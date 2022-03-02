@@ -8,18 +8,12 @@ import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 @ExcludeTypeFromJacocoGeneratedReport
 public class VertexModel {
 
-	private int id;
 	private double positionX;
 	private double positionY;
 
-	public VertexModel(int id, double positionX, double positionY) {
-		this.id = id;
+	public VertexModel(double positionX, double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public double getPositionX() {
