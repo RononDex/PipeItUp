@@ -2,8 +2,7 @@ package ch.fhnw.ip12.pipeitup.data.Models;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 /**
 * Graphlayout
@@ -11,22 +10,22 @@ import java.util.List;
 @ExcludeTypeFromJacocoGeneratedReport
 public class GraphLayout {
 
-	private List<Vertex> vertices;
+	private Set<Vertex> vertices;
 
-	private List<Edge> edges;
+	private Set<Edge> edges;
 
-	public GraphLayout(List<Vertex> vertices, List<Edge> edges) {
+	public GraphLayout(Set<Vertex> vertices, Set<Edge> edges) {
 		super();
 
 		this.vertices = vertices;
 		this.edges = edges;
 	}
 
-	public List<Vertex> getVertices() {
+	public Set<Vertex> getVertices() {
 		return vertices;
 	}
 
-	public List<Edge> getEdges() {
+	public Set<Edge> getEdges() {
 		return edges;
 	}
 }

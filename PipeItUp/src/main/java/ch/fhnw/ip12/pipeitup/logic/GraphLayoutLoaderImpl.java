@@ -1,10 +1,9 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
@@ -40,10 +39,10 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 		}
 
 		GraphLayout graphLayout = graphLayoutDataLoader.getGraphLayoutFromDb();
-		List<VertexModel> vertexModels = graphLayout.getVertices().stream().map(GraphLayoutLoaderImpl::Map)
-				.collect(Collectors.toList());
-		List<EdgeModel> edgeModels = graphLayout.getEdges().stream().map(e -> Map(e, vertexModels))
-				.collect(Collectors.toList());
+		Set<VertexModel> vertexModels = graphLayout.getVertices().stream().map(GraphLayoutLoaderImpl::Map)
+				.collect(Collectors.toSet());
+		Set<EdgeModel> edgeModels = graphLayout.getEdges().stream().map(e -> Map(e, vertexModels))
+				.collect(Collectors.toSet());
 
 		Random randomGenerator = new Random();
 		for (EdgeModel edgeModel : edgeModels) {
@@ -58,7 +57,7 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 	}
 
 	@ExcludeMethodFromJacocoGeneratedReport
-	private static EdgeModel Map(Edge edge, List<VertexModel> vertexList) {
+	private static EdgeModel Map(Edge edge, Set<VertexModel> vertexList) {
 		return new EdgeModel(
 				vertexList.stream()
 						.filter(v -> v.getPositionX() == edge.getVertex1().getPositionX()
