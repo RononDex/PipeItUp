@@ -13,7 +13,6 @@ minimum spanning tree
  */
 public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeService {
 
-
 	@Override
 	public final boolean canEdgeBeUsed(GraphLayoutModel graphLayout, EdgeModel edge) {
 		Set<VertexModel> usedVertices = getUsedVertices(graphLayout);
@@ -78,8 +77,7 @@ public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeServic
 
 	@Override
 	public final Set<EdgeModel> getEdgesConnectedToVertex(GraphLayoutModel graphLayout, VertexModel vertex) {
-		return graphLayout.getEdges().stream()
-				.filter(x -> x.getVertex1() == vertex || x.getVertex2() == vertex)
+		return graphLayout.getEdges().stream().filter(x -> x.getVertex1() == vertex || x.getVertex2() == vertex)
 				.collect(Collectors.toSet());
 	}
 }
