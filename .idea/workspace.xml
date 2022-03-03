@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Added maven funcionality">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/GraphLayoutDataFromDbLoaderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/GraphLayoutDataFromDbLoaderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/ViewModelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/ViewModelServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/GraphViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/GraphViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/GraphLayoutLoaderImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/GraphLayoutLoaderImplTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/GraphTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/KruskalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/KruskalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/MinimumSpanningTreeAlgorithmTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/MinimumSpanningTreeAlgorithmTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/PrimTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/logic/PrimTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/ui/ViewModelServiceImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/ui/ViewModelServiceImplTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Added maven funcionality" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

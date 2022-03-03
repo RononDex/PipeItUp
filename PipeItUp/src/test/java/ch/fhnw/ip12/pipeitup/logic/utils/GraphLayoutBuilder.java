@@ -1,5 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic.utils;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
@@ -11,8 +12,8 @@ import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
  */
 public class GraphLayoutBuilder {
 
-	HashSet<VertexModel> vertices = new HashSet<VertexModel>();
-	HashSet<EdgeModel> edges = new HashSet<EdgeModel>();
+	ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
+	ArrayList<EdgeModel> edges = new ArrayList<EdgeModel>();
 	VertexModel startVertexForPrim;
 
 	public GraphLayoutBuilder withVertex(VertexModel vertexModel) {
@@ -31,10 +32,8 @@ public class GraphLayoutBuilder {
 	}
 
 	public GraphLayoutBuilder withEdge(int vertex1Index, int vertex2Index, int weight) {
-		edges.add(new EdgeModel(
-					vertices.toArray(new VertexModel[vertices.size()])[vertex1Index], 
-					vertices.toArray(new VertexModel[vertices.size()])[vertex2Index], 
-					weight));
+		edges.add(new EdgeModel(vertices.toArray(new VertexModel[vertices.size()])[vertex1Index],
+				vertices.toArray(new VertexModel[vertices.size()])[vertex2Index], weight));
 		return this;
 	}
 
@@ -49,7 +48,7 @@ public class GraphLayoutBuilder {
 	}
 
 	public GraphLayoutModel build() {
-		GraphLayoutModel graph = new GraphLayoutModel(vertices, edges);
+		GraphLayoutModel graph = new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges));
 		graph.setStartVertexForPrim(startVertexForPrim);
 		return graph;
 	}
