@@ -48,6 +48,7 @@ class ViewModelServiceImpl implements ViewModelService {
 	}
 
 	private static int nodeCounter = 0;
+
 	@ExcludeMethodFromJacocoGeneratedReport
 	private static VertexViewModel Map(VertexModel vertex) {
 		nodeCounter++;
@@ -57,8 +58,14 @@ class ViewModelServiceImpl implements ViewModelService {
 	@ExcludeMethodFromJacocoGeneratedReport
 	private static EdgeViewModel Map(EdgeModel edge, Set<VertexViewModel> vertexList) {
 		return new EdgeViewModel(
-				vertexList.stream().filter(v -> v.getVertexCenterPositionXInMm().get() == edge.getVertex1().getPositionX() && v.getVertexCenterPositionYInMm().get() == edge.getVertex1().getPositionY()).findFirst().get(),
-				vertexList.stream().filter(v -> v.getVertexCenterPositionXInMm().get() == edge.getVertex2().getPositionX() && v.getVertexCenterPositionYInMm().get() == edge.getVertex2().getPositionY()).findFirst().get(),
+				vertexList.stream()
+						.filter(v -> v.getVertexCenterPositionXInMm().get() == edge.getVertex1().getPositionX()
+								&& v.getVertexCenterPositionYInMm().get() == edge.getVertex1().getPositionY())
+						.findFirst().get(),
+				vertexList.stream()
+						.filter(v -> v.getVertexCenterPositionXInMm().get() == edge.getVertex2().getPositionX()
+								&& v.getVertexCenterPositionYInMm().get() == edge.getVertex2().getPositionY())
+						.findFirst().get(),
 				edge.getWeight());
 	}
 

@@ -57,18 +57,6 @@ public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeServic
 				Integer::sum);
 	}
 
-	@Override
-	public final Set<EdgeModel> getUnusedEdges(GraphLayoutModel graphLayout) {
-		return graphLayout.getEdges().stream().filter(edge -> !edge.isUsed())
-				.collect(Collectors.toCollection(HashSet::new));
-		// TODO: Override equeals for Hashset to compare object for same weight, start
-		// and end vertex.
-	}
-
-	@Override
-	public final Set<EdgeModel> getUsedEdges(GraphLayoutModel graphLayout) {
-		return graphLayout.getEdges().stream().filter(EdgeModel::isUsed).collect(Collectors.toCollection(HashSet::new));
-	}
 
 	private static Set<VertexModel> getUsedVertices(GraphLayoutModel graphLayout) {
 		return graphLayout.getEdges().stream().filter(edge -> edge.isUsed())

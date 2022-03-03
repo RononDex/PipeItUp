@@ -11,12 +11,9 @@ import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
 */
 public interface MinimumSpanningTreeService {
 
-
 	boolean canEdgeBeUsed(GraphLayoutModel graphLayout, EdgeModel edge);
 	boolean isMspCompleted(GraphLayoutModel graphLayout);
 	int usedWeightsSum(GraphLayoutModel graphLayout);
-	Set<EdgeModel> getUnusedEdges(GraphLayoutModel graphLayout);
-	Set<EdgeModel> getUsedEdges(GraphLayoutModel graphLayout);
 	Set<EdgeModel> getEdgesConnectedToVertex(GraphLayoutModel graphLayout, VertexModel vertex);
 	
 }

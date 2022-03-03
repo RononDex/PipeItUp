@@ -1,6 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Set;
@@ -19,15 +19,15 @@ class MinimumSpanningTreeServiceTest {
 		// Arrange
 		VertexModel v1 = new VertexModel(0, 1);
 		GraphLayoutModel graph = new GraphLayoutBuilder()
-			.withVertex(v1)
-			.withVertex(0, 2)
-			.withVertex(1, 1)
-			.withVertex(1, 2)
-			.withEdge(0, 1, 1)
-			.withEdge(2, 3, 1)
-			.build();
+				.withVertex(v1)
+				.withVertex(0, 2)
+				.withVertex(1, 1)
+				.withVertex(1, 2)
+				.withEdge(0, 1, 1)
+				.withEdge(2, 3, 1)
+				.build();
 		MinimumSpanningTreeServiceImpl testee = new MinimumSpanningTreeServiceImpl();
-		
+
 		// Act
 		Set<EdgeModel> actual = testee.getEdgesConnectedToVertex(graph, v1);
 
@@ -45,14 +45,14 @@ class MinimumSpanningTreeServiceTest {
 		// Arrange
 		VertexModel v1 = new VertexModel(0, 1);
 		GraphLayoutModel graph = new GraphLayoutBuilder()
-			.withVertex(v1)
-			.withVertex(0, 2)
-			.withVertex(1, 1)
-			.withVertex(1, 2)
-			.withEdge(2, 3, 1)
-			.build();
+				.withVertex(v1)
+				.withVertex(0, 2)
+				.withVertex(1, 1)
+				.withVertex(1, 2)
+				.withEdge(2, 3, 1)
+				.build();
 		MinimumSpanningTreeServiceImpl testee = new MinimumSpanningTreeServiceImpl();
-		
+
 		// Act
 		Set<EdgeModel> actual = testee.getEdgesConnectedToVertex(graph, v1);
 
@@ -60,5 +60,47 @@ class MinimumSpanningTreeServiceTest {
 		assertEquals(actual.size(), 0);
 	}
 
-	// TODO: Test für wenn vertex gar nicht im Graph existiert
+	@Test
+	void getEdgesConnectedToVertex_WithAVertexNotBelongingToGraph_ReturnsEmptySet() {
+		// Arrange
+		VertexModel v1 = new VertexModel(0, 1);
+		GraphLayoutModel graph = new GraphLayoutBuilder()
+				.withVertex(0, 1)
+				.withVertex(0, 2)
+				.withVertex(1, 1)
+				.withVertex(1, 2)
+				.withEdge(2, 3, 1)
+				.build();
+		MinimumSpanningTreeServiceImpl testee = new MinimumSpanningTreeServiceImpl();
+
+		// Act
+		Set<EdgeModel> actual = testee.getEdgesConnectedToVertex(graph, v1);
+
+		// Assert
+		assertEquals(actual.size(), 0);
+	}
+
+    @Test
+    void usedWeightsSum_WithAllUnusedEdges_ReturnsZero() {
+        GraphLayoutModel graph = new GraphLayoutBuilder()
+            .withVertex(0, 1)
+            .withVertex(0, 2)
+            .withVertex(1, 1)
+            .withVertex(1, 2)
+            .withVertex(2, 1)
+            .withVertex(2, 2)
+            .withEdge(0, 1, 1)
+            .withEdge(1, 2, 3)
+            .withEdge(2, 3, 2)
+            .withEdge(3, 4, 4)
+            .withEdge(4, 5, 1)
+            .withEdge(5, 0, 1)
+            .build();
+        MinimumSpanningTreeServiceImpl testee = new MinimumSpanningTreeServiceImpl();
+
+        int actual = testee.usedWeightsSum(graph);
+
+        assertEquals(0, actual);
+    }
+
 }

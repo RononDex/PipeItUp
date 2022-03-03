@@ -1,6 +1,8 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.inject.Inject;
 
@@ -20,12 +22,17 @@ final class KruskalAlgorithmImpl implements KruskalAlgorithm {
 	public boolean isNextEdge(GraphLayoutModel graphLayout, EdgeModel edge) {
 		if (!minimumSpanningTreeService.canEdgeBeUsed(graphLayout, edge)) return false; // check if in tree and not cycle
 		// check if it has the lowest available weight
-		Set<EdgeModel> edges = minimumSpanningTreeService.getUnusedEdges(graphLayout);
+		Set<EdgeModel> edges = getUnusedEdges(graphLayout);
 		for (EdgeModel edge1 :
 				edges) {
 			if (!minimumSpanningTreeService.canEdgeBeUsed(graphLayout, edge1)) continue;
 			if (edge1.getWeight() < edge.getWeight()) return false;
 		}
 		return true;
+	}
+
+	private static final Set<EdgeModel> getUnusedEdges(GraphLayoutModel graphLayout) {
+		return graphLayout.getEdges().stream().filter(edge -> !edge.isUsed())
+				.collect(Collectors.toCollection(HashSet::new));
 	}
 }
