@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -75,7 +76,8 @@ public class GraphLayoutLoaderImplTests {
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));
-		when(graphLayoutDataLoaderMock.getGraphLayoutFromDb()).thenReturn(new GraphLayout(vertices, edges));
+		when(graphLayoutDataLoaderMock.getGraphLayoutFromDb())
+				.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
 		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
 
 		GraphLayoutModel actual = testee.getRandomlyWeightedGraph(1);
@@ -95,7 +97,8 @@ public class GraphLayoutLoaderImplTests {
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));
-		when(graphLayoutDataLoaderMock.getGraphLayoutFromDb()).thenReturn(new GraphLayout(vertices, edges));
+		when(graphLayoutDataLoaderMock.getGraphLayoutFromDb())
+				.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
 		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
 
 		GraphLayoutModel actual = testee.getRandomlyWeightedGraph(5);

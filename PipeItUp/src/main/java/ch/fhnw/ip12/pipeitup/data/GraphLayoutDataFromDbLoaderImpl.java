@@ -1,6 +1,7 @@
 package ch.fhnw.ip12.pipeitup.data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import com.google.inject.Inject;
@@ -10,8 +11,8 @@ import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
 import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
 
 /**
-* GraphLayoutFromDbLoaderImpl
-*/
+ * GraphLayoutFromDbLoaderImpl
+ */
 @ExcludeTypeFromJacocoGeneratedReport
 class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 
@@ -22,8 +23,8 @@ class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 	@Override
 	public GraphLayout getGraphLayoutFromDb() {
 		// TODO: Load data from db instead of hardcoded
-		
-		ArrayList<Vertex> vertexList = new ArrayList<>();
+
+		ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
 		vertexList.add(new Vertex(1, 154, 30));
 		vertexList.add(new Vertex(2, 288, 30));
 		vertexList.add(new Vertex(3, 423, 30));
@@ -41,7 +42,7 @@ class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 		vertexList.add(new Vertex(15, 221, 514));
 		vertexList.add(new Vertex(16, 356, 514));
 
-		ArrayList<Edge> edgeList = new ArrayList<>();
+		ArrayList<Edge> edgeList = new ArrayList<Edge>();
 		edgeList.add(new Edge(vertexList.get(0), vertexList.get(1)));
 		edgeList.add(new Edge(vertexList.get(0), vertexList.get(4)));
 		edgeList.add(new Edge(vertexList.get(0), vertexList.get(3)));
@@ -68,7 +69,7 @@ class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 		edgeList.add(new Edge(vertexList.get(13), vertexList.get(14)));
 		edgeList.add(new Edge(vertexList.get(14), vertexList.get(15)));
 
-		return new GraphLayout(vertexList, edgeList);
+		return new GraphLayout(new HashSet<>(vertexList), new HashSet<>(edgeList));
 	}
 
 }
