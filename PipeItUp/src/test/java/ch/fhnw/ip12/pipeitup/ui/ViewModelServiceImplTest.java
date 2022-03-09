@@ -1,32 +1,30 @@
 package ch.fhnw.ip12.pipeitup.ui;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import ch.fhnw.ip12.pipeitup.logic.GraphLayoutLoader;
 import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
-import ch.fhnw.ip12.pipeitup.ui.views.gameboard.VertexViewModel;
 import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchScene;
 
 /**
  * ViewModelServiceImplTests
  */
-public class ViewModelServiceImplTests {
+class ViewModelServiceImplTest {
 
 	@Test
-	public void createStartUpViewModel_WithNoParameters_ReturnsNewViewModelInStartUpState() {
+	void createStartUpViewModel_WithNoParameters_ReturnsNewViewModelInStartUpState() {
 		// Arrange
 		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
 		ViewModelServiceImpl testee = new ViewModelServiceImpl(graphLayoutLoaderMock);

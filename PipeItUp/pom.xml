@@ -58,12 +58,6 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
 			<version>11.0.2</version>
@@ -107,7 +101,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.8.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -122,7 +116,6 @@
 				</includes>
 			</resource>
 		</resources>
-		<sourceDirectory>src/main/java</sourceDirectory>
 
 		<plugins>
 			<!-- Copy runtime dependencies into distribution folder -->

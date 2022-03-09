@@ -3,7 +3,6 @@ package ch.fhnw.ip12.pipeitup.ui;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
@@ -18,7 +17,6 @@ import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchViewModel;
 /**
  * ViewModelService
  */
-@ExcludeTypeFromJacocoGeneratedReport
 class ViewModelServiceImpl implements ViewModelService {
 
 	private GraphLayoutLoader graphLayoutLoader;
