@@ -19,7 +19,7 @@ final class KruskalAlgorithmImpl implements KruskalAlgorithm {
 	}
 
 	@Override
-	public boolean isNextEdge(GraphLayoutModel graphLayout, EdgeModel edge) {
+	public boolean isEdgeValidPick(GraphLayoutModel graphLayout, EdgeModel edge) {
 		if (!minimumSpanningTreeService.canEdgeBeUsed(graphLayout, edge)) return false; // check if in tree and not cycle
 		// check if it has the lowest available weight
 		Set<EdgeModel> edges = getUnusedEdges(graphLayout);

@@ -19,30 +19,37 @@ final class PrimAlgorithmImpl implements PrimAlgorithm {
 	}
 
 	@Override
-	public final boolean isNextEdge(GraphLayoutModel graphLayout, EdgeModel edge) {
+	public final boolean isEdgeValidPick(GraphLayoutModel graphLayout, EdgeModel edge) {
+
+		if (graphLayout.getStartVertexForPrim() == null || minimumSpanningTreeService.isMspCompleted(graphLayout))
+		{
+			return false;
+		}
+
 		if (getUsedEdges(graphLayout).isEmpty()) {
-			if (minimumSpanningTreeService.getEdgesConnectedToVertex(graphLayout, graphLayout.getStartVertexForPrim())
-					.contains(edge)) {
-				int minEdge = minimumSpanningTreeService
-						.getEdgesConnectedToVertex(graphLayout, graphLayout.getStartVertexForPrim()).stream()
-						.mapToInt(EdgeModel::getWeight).min().orElse(0);
+			Set<EdgeModel> connectedEdgesToStartVertex = graphLayout.getStartVertexForPrim().getConnectedEdges(graphLayout);
+			if (connectedEdgesToStartVertex.contains(edge)) {
+				int minEdge = connectedEdgesToStartVertex.stream().mapToInt(EdgeModel::getWeight).min().orElse(0);
 				return minEdge == edge.getWeight();
 			}
 		}
 
-		int minReachableEdgeWeight = getUsedEdges(graphLayout).stream()
-				// get all used vertices
+		Set<EdgeModel> reachableEdges = getUsedEdges(graphLayout).stream()
 				.flatMap(edge1 -> edge1.getConnectedVertices().stream())
-				// get all connectable edges
-				.flatMap(vertex -> minimumSpanningTreeService.getEdgesConnectedToVertex(graphLayout, vertex).stream().filter(edge1 -> !edge1.isUsed()))
-				// find minimum weight
+				.flatMap(vertex -> vertex.getConnectedEdges(graphLayout).stream())
+				.collect(Collectors.toSet());
+
+		int minReachableEdgeWeight = reachableEdges.stream()
+				.filter(edge1 -> !edge1.isUsed())
 				.mapToInt(EdgeModel::getWeight).min().orElse(0);
 
 		// check if lowest weight and not in tree and not cycle
-		return minReachableEdgeWeight == edge.getWeight() && minimumSpanningTreeService.canEdgeBeUsed(graphLayout, edge);
+		return minReachableEdgeWeight == edge.getWeight()
+				&& reachableEdges.contains(edge)
+				&& minimumSpanningTreeService.canEdgeBeUsed(graphLayout, edge);
 	}
 
 	private static final Set<EdgeModel> getUsedEdges(GraphLayoutModel graphLayout) {
-		return graphLayout.getEdges().stream().filter(EdgeModel::isUsed).collect(Collectors.toCollection(HashSet::new));
+		return graphLayout.getEdges().stream().filter(EdgeModel::isUsed).collect(Collectors.toSet());
 	}
 }

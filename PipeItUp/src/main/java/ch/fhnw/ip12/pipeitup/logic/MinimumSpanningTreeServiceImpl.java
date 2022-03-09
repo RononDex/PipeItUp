@@ -32,7 +32,7 @@ public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeServic
 		if (seen.contains(activeEdge))
 			return true;
 		seen.add(activeEdge);
-		return getEdgesConnectedToVertex(graphLayout, nextVertex).stream().filter(e -> e != activeEdge && e.isUsed())
+		return nextVertex.getConnectedEdges(graphLayout).stream().filter(e -> e != activeEdge && e.isUsed())
 				.map(edge -> createsLoop(graphLayout, seen,
 						edge.getConnectedVertices().stream().filter(vertex -> vertex != nextVertex)
 								.collect(Collectors.toSet()).iterator().next(),
@@ -47,8 +47,14 @@ public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeServic
 	 */
 	@Override
 	public final boolean isMspCompleted(GraphLayoutModel graphLayout) {
-		Set<VertexModel> usedVertices = getUsedVertices(graphLayout);
-		return usedVertices.size() == graphLayout.getVertices().size();
+		return graphLayout.getVertices().stream().allMatch(
+				vertex -> vertex.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed).count() > 1 // isn't isolated
+						|| (vertex.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed).count() == 1 // has only one connection
+								&& vertex.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed).iterator().next()
+										.getConnectedVertices().stream().anyMatch( // and next vertex isn't isolated
+												vertex1 -> vertex1.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed)
+														.count() > 1)));
+
 	}
 
 	@Override
@@ -57,15 +63,8 @@ public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeServic
 				Integer::sum);
 	}
 
-
 	private static Set<VertexModel> getUsedVertices(GraphLayoutModel graphLayout) {
 		return graphLayout.getEdges().stream().filter(edge -> edge.isUsed())
 				.flatMap(edge -> edge.getConnectedVertices().stream()).distinct().collect(Collectors.toSet());
-	}
-
-	@Override
-	public final Set<EdgeModel> getEdgesConnectedToVertex(GraphLayoutModel graphLayout, VertexModel vertex) {
-		return graphLayout.getEdges().stream().filter(x -> x.getVertex1() == vertex || x.getVertex2() == vertex)
-				.collect(Collectors.toSet());
 	}
 }

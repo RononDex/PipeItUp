@@ -31,9 +31,23 @@ public class GraphLayoutBuilder {
 		return this;
 	}
 
-	public GraphLayoutBuilder withEdge(int vertex1Index, int vertex2Index, int weight) {
+	public GraphLayoutBuilder withUsedEdge(EdgeModel edge) {
+		edge.setUsed(true);
+		edges.add(edge);
+		return this;
+	}
+
+	public GraphLayoutBuilder withUnusedEdge(int vertex1Index, int vertex2Index, int weight) {
 		edges.add(new EdgeModel(vertices.toArray(new VertexModel[vertices.size()])[vertex1Index],
 				vertices.toArray(new VertexModel[vertices.size()])[vertex2Index], weight));
+		return this;
+	}
+
+	public GraphLayoutBuilder withUsedEdge(int vertex1Index, int vertex2Index, int weight) {
+		EdgeModel usedEdge = new EdgeModel(vertices.toArray(new VertexModel[vertices.size()])[vertex1Index],
+				vertices.toArray(new VertexModel[vertices.size()])[vertex2Index], weight);
+		usedEdge.setUsed(true);
+		edges.add(usedEdge);
 		return this;
 	}
 

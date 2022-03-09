@@ -12,9 +12,9 @@ public interface MinimumSpanningTreeAlgorithm {
 	 * Check if the edge can be used in the process of finding the mst There may be
 	 * multiple possible edges to use.
 	 *
-	 * @param edge to check usability for
-	 * @return true if next possible edge contains the given edge
+	 * @param edge to check if it is a valid pick
+	 * @return true if the given edge is a valid pick for the next step and can be used
 	 */
-	boolean isNextEdge(GraphLayoutModel graphLayout, EdgeModel edge);
+	boolean isEdgeValidPick(GraphLayoutModel graphLayout, EdgeModel edge);
 	
 }
