@@ -30,13 +30,7 @@ public class SoftwareGameBoardUiImpl implements SoftwareGameBoardUi {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(getClass().getResource("MainWindow.fxml"));
-			fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
-						@Override
-						@ExcludeMethodFromJacocoGeneratedReport
-						public Object call(Class<?> aClass) {
-							return new MainController(gameBoardViewModel);
-						}
-					});
+			fxmlLoader.setControllerFactory(aClass -> new MainController(gameBoardViewModel));
 			Scene scene = new Scene(fxmlLoader.load());
 			scene.getStylesheets().add(getClass().getResource("gameboard.css").toExternalForm());
 			primaryStage.setTitle("Pipe-It-Up! Software GameBoard");

@@ -1,7 +1,7 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import javafx.beans.property.Property;
@@ -10,17 +10,17 @@ import javafx.beans.property.SimpleObjectProperty;
 @ExcludeTypeFromJacocoGeneratedReport
 public class GraphViewModel {
 
-	Property<List<VertexViewModel>> VertexViewModels = new SimpleObjectProperty<List<VertexViewModel>>(
-			new ArrayList<VertexViewModel>());
+	Property<Set<VertexViewModel>> VertexViewModels = new SimpleObjectProperty<Set<VertexViewModel>>(
+			new HashSet<VertexViewModel>());
 
-	Property<List<EdgeViewModel>> EdgeViewModels = new SimpleObjectProperty<List<EdgeViewModel>>(
-			new ArrayList<EdgeViewModel>());
+	Property<Set<EdgeViewModel>> EdgeViewModels = new SimpleObjectProperty<Set<EdgeViewModel>>(
+			new HashSet<EdgeViewModel>());
 
-	public Property<List<VertexViewModel>> getVertexViewModels() {
+	public Property<Set<VertexViewModel>> getVertexViewModels() {
 		return VertexViewModels;
 	}
 
-	public Property<List<EdgeViewModel>> getEdgeViewModels() {
+	public Property<Set<EdgeViewModel>> getEdgeViewModels() {
 		return EdgeViewModels;
 	}
 }

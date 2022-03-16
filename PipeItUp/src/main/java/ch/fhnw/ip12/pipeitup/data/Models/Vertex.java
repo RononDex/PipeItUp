@@ -1,5 +1,8 @@
 package ch.fhnw.ip12.pipeitup.data.Models;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+
+@ExcludeTypeFromJacocoGeneratedReport
 public class Vertex {
 	private int id;
 	private double positionX;

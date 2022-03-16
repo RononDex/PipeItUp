@@ -13,6 +13,9 @@ public class DependencyInjectionConfigLogic extends AbstractModule {
 	@Override
     protected void configure() {
         bind(GraphLayoutLoader.class).to(GraphLayoutLoaderImpl.class);
+        bind(MinimumSpanningTreeService.class).to(MinimumSpanningTreeServiceImpl.class);
+        bind(PrimAlgorithm.class).to(PrimAlgorithmImpl.class);
+        bind(KruskalAlgorithm.class).to(KruskalAlgorithmImpl.class);
     }
 	
 }

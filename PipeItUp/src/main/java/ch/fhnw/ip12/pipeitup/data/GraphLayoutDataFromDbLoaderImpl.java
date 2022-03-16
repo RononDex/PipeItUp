@@ -1,6 +1,7 @@
 package ch.fhnw.ip12.pipeitup.data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.google.inject.Inject;
 
@@ -9,8 +10,8 @@ import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
 import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
 
 /**
-* GraphLayoutFromDbLoaderImpl
-*/
+ * GraphLayoutFromDbLoaderImpl
+ */
 class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 
 	@Inject
@@ -20,7 +21,7 @@ class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 	@Override
 	public GraphLayout getGraphLayoutFromDb() {
 		// TODO: Load data from db instead of hardcoded
-		
+
 		ArrayList<Vertex> vertexList = new ArrayList<Vertex>();
 		vertexList.add(new Vertex(1, 154, 30));
 		vertexList.add(new Vertex(2, 288, 30));
@@ -66,7 +67,7 @@ class GraphLayoutDataFromDbLoaderImpl implements GraphLayoutDataLoader {
 		edgeList.add(new Edge(vertexList.get(13), vertexList.get(14)));
 		edgeList.add(new Edge(vertexList.get(14), vertexList.get(15)));
 
-		return new GraphLayout(vertexList, edgeList);
+		return new GraphLayout(new HashSet<>(vertexList), new HashSet<>(edgeList));
 	}
 
 }

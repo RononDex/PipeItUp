@@ -1,22 +1,22 @@
 package ch.fhnw.ip12.pipeitup.logic.Models;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+
 /**
-* VertexModel
-*/
+ * VertexModel
+ */
+@ExcludeTypeFromJacocoGeneratedReport
 public class VertexModel {
 
-	private int id;
 	private double positionX;
 	private double positionY;
 
-	public VertexModel(int id, double positionX, double positionY) {
-		this.id = id;
+	public VertexModel(double positionX, double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public double getPositionX() {
@@ -26,4 +26,10 @@ public class VertexModel {
 	public double getPositionY() {
 		return positionY;
 	}
+
+	public Set<EdgeModel> getConnectedEdges(GraphLayoutModel graph) {
+		return graph.edges.stream().filter(edge -> edge.getConnectedVertices().contains(this))
+				.collect(Collectors.toSet());
+	}
+
 }

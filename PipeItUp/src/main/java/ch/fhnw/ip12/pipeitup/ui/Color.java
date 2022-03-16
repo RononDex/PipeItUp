@@ -1,10 +1,12 @@
 package ch.fhnw.ip12.pipeitup.ui;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
 /**
 * Color
 */
+@ExcludeTypeFromJacocoGeneratedReport
 public class Color {
 
 	int r;

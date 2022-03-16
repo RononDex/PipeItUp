@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 /**
  * SoftwareGameBoard
  */
-@ExcludeTypeFromJacocoGeneratedReport
 public interface SoftwareGameBoardUi extends GameBoard {
 
 	void setPrimaryStage(Stage primaryStage);

@@ -1,8 +1,11 @@
 package ch.fhnw.ip12.pipeitup.data.Models;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+
 /**
 * Edge
 */
+@ExcludeTypeFromJacocoGeneratedReport
 public class Edge {
 
 	private Vertex vertex1;
