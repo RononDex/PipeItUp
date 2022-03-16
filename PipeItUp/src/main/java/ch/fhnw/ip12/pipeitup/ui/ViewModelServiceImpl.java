@@ -19,7 +19,7 @@ import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchViewModel;
  */
 class ViewModelServiceImpl implements ViewModelService {
 
-	private GraphLayoutLoader graphLayoutLoader;
+	private final GraphLayoutLoader graphLayoutLoader;
 
 	@Inject
 	public ViewModelServiceImpl(GraphLayoutLoader graphLayoutLoader) {
@@ -66,5 +66,4 @@ class ViewModelServiceImpl implements ViewModelService {
 						.findFirst().get(),
 				edge.getWeight());
 	}
-
 }
