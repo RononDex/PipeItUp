@@ -8,6 +8,7 @@ open module ch.fhnw.ip12.pipeitup.app {
     requires javafx.controls;
     requires javafx.fxml;
 	requires com.google.guice;
+    requires java.sql;
 
     //exports ch.fhnw.ip12.pipeitup;
 }
