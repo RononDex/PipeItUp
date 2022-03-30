@@ -8,20 +8,31 @@ import org.junit.jupiter.api.Test;
 
 import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
 
-/**
-* GraphLayoutDataFromDbLoaderImplTests
-*/
-class GraphLayoutDataFromDbLoaderImplTests {
+import java.util.ArrayList;
 
+/**
+ * GraphLayoutDataFromDbLoaderImplTests
+ */
+class GraphLayoutDataFromDbLoaderImplTests {
+	//TODO: test databse if needed
 	@Test
-	void getData_WithNoDatabaseAttached_ReturnsHardcodedGraphLayout()
-	{
-		GraphLayoutDataFromDbLoaderImpl testee = new GraphLayoutDataFromDbLoaderImpl();
+	void getData_WithNoDatabaseAttached_ReturnsHardcodedGraphLayout() {
+		/*GraphLayoutDataFromDbLoaderImpl testee = new GraphLayoutDataFromDbLoaderImpl();
 
 		GraphLayout actual = testee.getGraphLayoutFromDb();
 
 		assertNotNull(actual);
 		assertEquals(16, actual.getVertices().size());
 		assertEquals(25, actual.getEdges().size());
+
+
+		DatabaseImpl db = new DatabaseImpl();
+		GraphLayout actual = db.getGraphLayout();
+
+		assertNotNull(actual);
+		assertEquals(16, actual.getVertices().size());
+		assertEquals(25, actual.getEdges().size());
+
+		 */
 	}
 }
