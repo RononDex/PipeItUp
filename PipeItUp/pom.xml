@@ -114,7 +114,7 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>src/main/java/ch/fhnw/ip12/pipeitup/app/resources</directory>
+				<directory>src/main/java/resources</directory>
 				<includes>
 					<include>**/*.fxml</include>
 					<include>**/*.css</include>

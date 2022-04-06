@@ -1,5 +1,6 @@
 package ch.fhnw.ip12.pipeitup.data;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.app.PipeItUp;
 import ch.fhnw.ip12.pipeitup.data.Models.Edge;
@@ -18,13 +19,13 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.HashSet;
 
-@ExcludeTypeFromJacocoGeneratedReport
-public class DatabaseImpl implements Database {
+class DatabaseImpl implements Database {
 
 	static final Logger log = LogManager.getLogger(PipeItUp.class.getName());
 
 	private Connection connect() {
-		String url = "jdbc:sqlite:database.db";
+		String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/../database.db";
+		System.out.println(url);;
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url);
@@ -64,6 +65,7 @@ public class DatabaseImpl implements Database {
 	}
 
 	@Override
+	@ExcludeMethodFromJacocoGeneratedReport
 	public boolean saveScore(String name, int score) {
 		String sql = "INSERT INTO tbl_highscore(name,score) VALUES(?,?)";
 		try (Connection conn = this.connect();
@@ -79,6 +81,7 @@ public class DatabaseImpl implements Database {
 	}
 
 	@Override
+	@ExcludeMethodFromJacocoGeneratedReport
 	public void getScores() {
 		String sql = "SELECT name, score FROM tbl_highscore";
 		try (Connection conn = this.connect();
