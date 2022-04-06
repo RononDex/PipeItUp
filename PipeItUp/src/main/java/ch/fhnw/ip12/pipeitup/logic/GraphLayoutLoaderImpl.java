@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.data.GraphLayoutDataLoader;
+import ch.fhnw.ip12.pipeitup.data.Database;
 import ch.fhnw.ip12.pipeitup.data.Models.Edge;
 import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
 import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
@@ -20,11 +20,11 @@ import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
  */
 class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 
-	private final GraphLayoutDataLoader graphLayoutDataLoader;
+	private final Database database;
 
 	@Inject
-	public GraphLayoutLoaderImpl(GraphLayoutDataLoader graphLayoutDataLoader) {
-		this.graphLayoutDataLoader = graphLayoutDataLoader;
+	public GraphLayoutLoaderImpl(Database database) {
+		this.database = database;
 	}
 
 	@Override
@@ -38,7 +38,7 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 			throw new IllegalArgumentException("maxWeight has to be at least 1");
 		}
 
-		GraphLayout graphLayout = graphLayoutDataLoader.getGraphLayoutFromDb();
+		GraphLayout graphLayout = database.getGraphLayout();
 		Set<VertexModel> vertexModels = graphLayout.getVertices().stream().map(GraphLayoutLoaderImpl::Map)
 				.collect(Collectors.toSet());
 		Set<EdgeModel> edgeModels = graphLayout.getEdges().stream().map(e -> Map(e, vertexModels))

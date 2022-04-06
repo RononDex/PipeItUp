@@ -10,9 +10,10 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+
 import org.junit.jupiter.api.Test;
 
-import ch.fhnw.ip12.pipeitup.data.GraphLayoutDataLoader;
+import ch.fhnw.ip12.pipeitup.data.Database;
 import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
 import ch.fhnw.ip12.pipeitup.data.Models.Edge;
 import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
@@ -25,9 +26,9 @@ class GraphLayoutLoaderImplTest {
 
 	@Test
 	void getIncidenceMatrixForGraph_WithAnyGraphId_AlwaysReturnsNull() {
-		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
+		Database databaseMock = mock(Database.class);
 
-		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
+		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
 		int[][] actual = testee.getIncidenceMatrixForGraph(1);
 
 		assertNull(actual);
@@ -36,8 +37,8 @@ class GraphLayoutLoaderImplTest {
 	@Test
 	void getRandomlyWeightedGraph_WithMaxWeightOfZero_ThrowsException() {
 
-		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
-		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
+		Database databaseMock = mock(Database.class);
+		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
 
 		try {
 			testee.getRandomlyWeightedGraph(0);
@@ -50,8 +51,8 @@ class GraphLayoutLoaderImplTest {
 	@Test
 	void getRandomlyWeightedGraph_WithMaxWeightNegative_ThrowsException() {
 
-		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
-		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
+		Database databaseMock = mock(Database.class);
+		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
 
 		try {
 			testee.getRandomlyWeightedGraph(0);
@@ -64,7 +65,7 @@ class GraphLayoutLoaderImplTest {
 	@Test
 	void getRandomlyWeightedGraph_WithMaxWeightOfOne_AllWeightsAreOne() {
 
-		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
+		Database databaseMock = mock(Database.class);
 		ArrayList<Vertex> vertices = new ArrayList<>();
 		vertices.add(new Vertex(1, 100d, 100d));
 		vertices.add(new Vertex(1, 110d, 110d));
@@ -73,9 +74,9 @@ class GraphLayoutLoaderImplTest {
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));
-		when(graphLayoutDataLoaderMock.getGraphLayoutFromDb())
+		when(databaseMock.getGraphLayout())
 				.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
-		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
+		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
 
 		GraphLayoutModel actual = testee.getRandomlyWeightedGraph(1);
 
@@ -85,7 +86,7 @@ class GraphLayoutLoaderImplTest {
 	@Test
 	void getRandomlyWeightedGraph_WithMaxWeightOfFive_AllWeightsSmallerOrEqualToFive() {
 
-		GraphLayoutDataLoader graphLayoutDataLoaderMock = mock(GraphLayoutDataLoader.class);
+		Database databaseMock = mock(Database.class);
 		ArrayList<Vertex> vertices = new ArrayList<>();
 		vertices.add(new Vertex(1, 100d, 100d));
 		vertices.add(new Vertex(1, 110d, 110d));
@@ -94,9 +95,9 @@ class GraphLayoutLoaderImplTest {
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));
-		when(graphLayoutDataLoaderMock.getGraphLayoutFromDb())
+		when(databaseMock.getGraphLayout())
 				.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
-		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(graphLayoutDataLoaderMock);
+		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
 
 		GraphLayoutModel actual = testee.getRandomlyWeightedGraph(5);
 
