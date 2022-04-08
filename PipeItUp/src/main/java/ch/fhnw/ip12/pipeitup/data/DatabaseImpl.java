@@ -24,7 +24,7 @@ class DatabaseImpl implements Database {
 	static final Logger log = LogManager.getLogger(PipeItUp.class.getName());
 
 	private Connection connect() {
-		String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/../database.db";
+		String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/database.db";
 		System.out.println(url);;
 		Connection conn = null;
 		try {
