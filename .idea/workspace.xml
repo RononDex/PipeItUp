@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Added maven funcionality" />
+    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="remove database link">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/DatabaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/DatabaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/database.db" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +65,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lucap\OneDrive - FHNW\Documents\IP1_Pipeline\pipe-it-up_fix\PipeItUp" />
       <recent name="C:\Users\lucap\OneDrive - FHNW\Documents\IP1_Pipeline\pipe-it-up\PipeItUp\src\main\java" />
     </key>
   </component>
@@ -179,12 +186,37 @@
                 <option value="exec:java" />
               </list>
             </option>
-            <option name="pomFileName" value="PipeItUp/pom.xml" />
+            <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map />
             </option>
             <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/PipeItUp" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="test" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/PipeItUp" />
           </MavenRunnerParameters>
         </option>
       </MavenSettings>
@@ -192,6 +224,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.PipeItUp" />
+      <item itemvalue="Maven.test" />
       <item itemvalue="Maven.Run locally" />
       <item itemvalue="Maven. [install]" />
       <item itemvalue="Maven.PipeItUp [build]" />
@@ -212,6 +245,7 @@
       <updated>1638262482734</updated>
       <workItem from="1638262486266" duration="4244000" />
       <workItem from="1638266783564" duration="1357000" />
+      <workItem from="1649402168570" duration="497000" />
     </task>
     <task id="LOCAL-00001" summary="Added maven funcionality">
       <created>1638264774951</created>
@@ -227,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638267268151</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="remove database link">
+      <created>1649402491488</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1649402491488</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +287,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added maven funcionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added maven funcionality" />
+    <MESSAGE value="remove database link" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove database link" />
   </component>
 </project>
