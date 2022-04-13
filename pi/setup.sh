@@ -111,4 +111,9 @@ mkdir -p ~/.vnc
 cp "$scriptDir"/vncConfig ~/.vnc/config
 sudo systemctl enable vncserver
 
+
+# Configure Raspi-Config
+sudo raspi-config nonint do_i2c 0 # Enables I2C Interface
+sudo raspi-config nonint do_boot_behaviour B4 # Enables Desktop Autologin for touchscreen
+
 # TODO: pipe-it-up kompillieren und installieren
