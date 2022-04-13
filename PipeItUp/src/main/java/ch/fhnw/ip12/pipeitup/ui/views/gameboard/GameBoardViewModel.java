@@ -10,9 +10,11 @@ import javafx.beans.property.SimpleObjectProperty;
 @ExcludeTypeFromJacocoGeneratedReport
 public class GameBoardViewModel {
 
-	Property<GraphViewModel> graphViewModel = new SimpleObjectProperty<GraphViewModel>(new GraphViewModel());
+	public Property<GraphViewModel> graphViewModel = new SimpleObjectProperty<>();
 
-	public Property<GraphViewModel> getGraphViewModel() {
-		return graphViewModel;
-	}
+	public Property<GameMode> gameMode = new SimpleObjectProperty<>();
+	public Property<GameBoardState> gameBoardState = new SimpleObjectProperty<>();
+
+	public Property<EdgeViewModel> selectedEdgeForValidation = new SimpleObjectProperty<>();
+	public Property<VertexViewModel> startNodeForPrim = new SimpleObjectProperty<>();
 }

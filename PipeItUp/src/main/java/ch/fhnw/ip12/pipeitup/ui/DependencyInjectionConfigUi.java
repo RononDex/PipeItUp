@@ -18,11 +18,11 @@ public class DependencyInjectionConfigUi extends AbstractModule {
 
 	@Override
     protected void configure() {
-        bind(ViewModelService.class).to(ViewModelServiceImpl.class);
+        bind(GameModeService.class).to(GameModeServiceImpl.class);
         bind(PipeItUpGameEntryPoint.class).to(PipeItUpGame.class);
         bind(TouchUi.class).to(TouchUiImpl.class);
         bind(SoftwareGameBoardUi.class).to(SoftwareGameBoardUiImpl.class);
         bind(HardwareGameBoardUi.class).to(HardwareGameBoardUiImpl.class);
     }
-	
+
 }

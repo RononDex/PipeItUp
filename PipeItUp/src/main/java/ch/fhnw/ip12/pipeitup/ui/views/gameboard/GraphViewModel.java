@@ -10,17 +10,12 @@ import javafx.beans.property.SimpleObjectProperty;
 @ExcludeTypeFromJacocoGeneratedReport
 public class GraphViewModel {
 
-	Property<Set<VertexViewModel>> VertexViewModels = new SimpleObjectProperty<Set<VertexViewModel>>(
-			new HashSet<VertexViewModel>());
-
-	Property<Set<EdgeViewModel>> EdgeViewModels = new SimpleObjectProperty<Set<EdgeViewModel>>(
-			new HashSet<EdgeViewModel>());
-
-	public Property<Set<VertexViewModel>> getVertexViewModels() {
-		return VertexViewModels;
+	public GraphViewModel(Set<VertexViewModel> vertices, Set<EdgeViewModel> edges) {
+		this.vertexViewModels = vertices;
+		this.edgeViewModels = edges;
 	}
 
-	public Property<Set<EdgeViewModel>> getEdgeViewModels() {
-		return EdgeViewModels;
-	}
+	public Set<VertexViewModel> vertexViewModels;
+
+	public Set<EdgeViewModel> edgeViewModels;
 }
