@@ -23,7 +23,7 @@ public class PipeItUpGame extends Application implements PipeItUpGameEntryPoint 
 	private static GameBoard gameBoard;
 	private static SoftwareGameBoardUi softwareGameBoard;
 	private static HardwareGameBoardUi hardwareGameBoard;
-	private static ViewModelService viewModelServiceField;
+	private static GameModeService viewModelServiceField;
 
 	public PipeItUpGame() {
 		super();
@@ -31,7 +31,7 @@ public class PipeItUpGame extends Application implements PipeItUpGameEntryPoint 
 
 	@Inject
 	public PipeItUpGame(SoftwareGameBoardUi softwareGameBoardUi, HardwareGameBoardUi hardwareGameBoardUi,
-			TouchUiImpl touchUi, ViewModelService viewModelService) {
+			TouchUiImpl touchUi, GameModeService viewModelService) {
 		super();
 		softwareGameBoard = softwareGameBoardUi;
 		hardwareGameBoard = hardwareGameBoardUi;

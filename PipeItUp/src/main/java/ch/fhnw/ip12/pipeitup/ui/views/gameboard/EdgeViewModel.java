@@ -2,7 +2,6 @@ package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.ui.Color;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 

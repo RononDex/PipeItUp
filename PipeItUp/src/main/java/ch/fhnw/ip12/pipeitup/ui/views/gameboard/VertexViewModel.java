@@ -2,50 +2,42 @@ package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.ui.Color;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 
 @ExcludeTypeFromJacocoGeneratedReport
 public class VertexViewModel {
 
-	private IntegerProperty vertexNumber = new SimpleIntegerProperty();
+	private int vertexNumber = 0;
 
-	private DoubleProperty vertexCenterPositionXInMm = new SimpleDoubleProperty();
-	private DoubleProperty vertexCenterPositionYInMm = new SimpleDoubleProperty();
+	private double vertexCenterPositionXInMm = 0d;
+	private double vertexCenterPositionYInMm = 0d;
 
 	public VertexViewModel(int vertexNumber, double vertexCenterPositionXInMm, double vertexCenterPositionYInMm) {
-		this.vertexNumber.set(vertexNumber);
-		this.vertexCenterPositionXInMm.set(vertexCenterPositionXInMm);
-		this.vertexCenterPositionYInMm.set(vertexCenterPositionYInMm);
+		this.vertexNumber = vertexNumber;
+		this.vertexCenterPositionXInMm = vertexCenterPositionXInMm;
+		this.vertexCenterPositionYInMm = vertexCenterPositionYInMm;
 	}
 
-	private BooleanProperty isLedActive = new SimpleBooleanProperty();
+	private boolean isLedActive = false;
 
-	private Property<Color> ledColor = new SimpleObjectProperty<Color>();
+	private Color ledColor = new Color(255, 0, 0);
 
-	public IntegerProperty getVertexNumber() {
+	public int getVertexNumber() {
 		return vertexNumber;
 	}
 
-	public DoubleProperty getVertexCenterPositionXInMm() {
+	public double getVertexCenterPositionXInMm() {
 		return vertexCenterPositionXInMm;
 	}
 
-	public DoubleProperty getVertexCenterPositionYInMm() {
+	public double getVertexCenterPositionYInMm() {
 		return vertexCenterPositionYInMm;
 	}
 
-	public BooleanProperty getIsLedActive() {
+	public boolean getIsLedActive() {
 		return isLedActive;
 	}
 
-	public Property<Color> getLedColor() {
+	public Color getLedColor() {
 		return ledColor;
 	}
 }
