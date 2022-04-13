@@ -1,12 +1,10 @@
-package ch.fhnw.ip12.pipeitup.ui;
+package ch.fhnw.ip12.pipeitup.ui.views.gameboard.software;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.Vector2;
 
 /**
 * Vector2Test
@@ -103,7 +101,7 @@ public class Vector2Test {
 		Vector2 testee = new Vector2(-2.0, 2.0);
 
 		Vector2 actual = testee.normalize();
-		
+
 		assertEquals(actual.x, testee.x / Math.sqrt(8));
 		assertEquals(actual.y, testee.y / Math.sqrt(8));
 	}
@@ -114,7 +112,7 @@ public class Vector2Test {
 		Vector2 vector2 = new Vector2(2.0, 3.0);
 
 		double actual = Vector2.dot(vector1, vector2);
-		
+
 		assertEquals(8, actual);
 	}
 
@@ -123,7 +121,7 @@ public class Vector2Test {
 		Vector2 testee = new Vector2(1.0, 2.0);
 
 		Vector2 actual = testee.rotate(Math.PI);
-		
+
 		assertEquals(actual.x, -1.0, ALLOWED_ERROR_MARGIN);
 		assertEquals(actual.y, -2.0, ALLOWED_ERROR_MARGIN);
 	}

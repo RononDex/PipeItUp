@@ -181,7 +181,8 @@ public class GameModeServiceImplTests {
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
 				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
 						.findFirst().get());
-		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream().skip(1).findFirst().get();
+		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+				.stream().skip(1).findFirst().get();
 		secondEdge.edgeState.setValue(EdgeState.INVALID_SELECTION);
 
 		testee.validateSelectedEdge(existingViewModel);
@@ -230,8 +231,9 @@ public class GameModeServiceImplTests {
 		verifyNoMoreInteractions(graphLayoutLoaderMock, minimumSpanningTreeServiceMock, primAlgorithmMock,
 				kruskalAlgorithmMock);
 		assertNull(existingViewModel.gameBoardViewModel.selectedEdgeForValidation.getValue());
-		assertEquals(EdgeState.INVALID_SELECTION, existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
-				.stream().findFirst().get().edgeState.getValue());
+		assertEquals(EdgeState.INVALID_SELECTION,
+				existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+						.stream().findFirst().get().edgeState.getValue());
 	}
 
 	@Test
@@ -260,7 +262,8 @@ public class GameModeServiceImplTests {
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
 				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
 						.findFirst().get());
-		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream().skip(1).findFirst().get();
+		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+				.stream().skip(1).findFirst().get();
 		secondEdge.edgeState.setValue(EdgeState.INVALID_SELECTION);
 
 		testee.validateSelectedEdge(existingViewModel);
@@ -309,8 +312,9 @@ public class GameModeServiceImplTests {
 		verifyNoMoreInteractions(graphLayoutLoaderMock, minimumSpanningTreeServiceMock, primAlgorithmMock,
 				kruskalAlgorithmMock);
 		assertNull(existingViewModel.gameBoardViewModel.selectedEdgeForValidation.getValue());
-		assertEquals(EdgeState.INVALID_SELECTION, existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
-				.stream().findFirst().get().edgeState.getValue());
+		assertEquals(EdgeState.INVALID_SELECTION,
+				existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+						.stream().findFirst().get().edgeState.getValue());
 	}
 
 	@Test
@@ -340,7 +344,8 @@ public class GameModeServiceImplTests {
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
 				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
 						.findFirst().get());
-		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream().skip(1).findFirst().get();
+		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+				.stream().skip(1).findFirst().get();
 		secondEdge.edgeState.setValue(EdgeState.INVALID_SELECTION);
 
 		testee.validateSelectedEdge(existingViewModel);
@@ -355,5 +360,46 @@ public class GameModeServiceImplTests {
 				.stream().findFirst().get().edgeState.getValue());
 		assertEquals(EdgeState.UNSELECTED, secondEdge.edgeState.getValue());
 		assertEquals(GameBoardState.GAME_FINISHED, existingViewModel.gameBoardViewModel.gameBoardState.getValue());
+	}
+
+	@Test
+	void validateSelectedEdge_WithAlreadyUsedEdge_DoesNothingAndSetsSelectedEdgeForValiationToNull() {
+		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
+		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
+		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
+		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
+				primAlgorithmMock, kruskalAlgorithmMock);
+		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
+		vertices.add(new VertexModel(100d, 100d));
+		vertices.add(new VertexModel(110d, 110d));
+		vertices.add(new VertexModel(120d, 120d));
+		ArrayList<EdgeModel> edges = new ArrayList<EdgeModel>();
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(1), 5));
+		edges.add(new EdgeModel(vertices.get(1), vertices.get(2), 4));
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(2), 4));
+		when(graphLayoutLoaderMock.getRandomlyWeightedGraph(anyInt()))
+				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
+		when(primAlgorithmMock.isEdgeValidPick(any(), any())).thenReturn(true);
+		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(true);
+		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
+		testee.loadRandomWeightedGraph(existingViewModel);
+		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.PRIM);
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
+		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+				.stream().skip(1).findFirst().get();
+		secondEdge.edgeState.setValue(EdgeState.SELECTED);
+		existingViewModel.gameBoardViewModel.selectedEdgeForValidation.setValue(secondEdge);
+
+		testee.validateSelectedEdge(existingViewModel);
+
+		verify(graphLayoutLoaderMock, times(1)).getRandomlyWeightedGraph(anyInt());
+		verifyNoMoreInteractions(graphLayoutLoaderMock, minimumSpanningTreeServiceMock, primAlgorithmMock,
+				kruskalAlgorithmMock);
+		assertNull(existingViewModel.gameBoardViewModel.selectedEdgeForValidation.getValue());
+		assertEquals(EdgeState.UNSELECTED, existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+				.stream().findFirst().get().edgeState.getValue());
+		assertEquals(EdgeState.SELECTED, secondEdge.edgeState.getValue());
+		assertEquals(GameBoardState.SELECT_NEXT_EDGE, existingViewModel.gameBoardViewModel.gameBoardState.getValue());
 	}
 }

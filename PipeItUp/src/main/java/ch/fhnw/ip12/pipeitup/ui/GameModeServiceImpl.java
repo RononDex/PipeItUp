@@ -72,6 +72,7 @@ class GameModeServiceImpl implements GameModeService {
 	@Override
 	public void validateSelectedEdge(PipeItUpGameViewModel viewModel) {
 		if (viewModel.gameBoardViewModel.selectedEdgeForValidation.getValue() != null) {
+
 			EdgeViewModel selectedEdgeViewModel = viewModel.gameBoardViewModel.selectedEdgeForValidation.getValue();
 			GraphLayoutModel mappedLogicModel = Map(viewModel.gameBoardViewModel.graphViewModel.getValue());
 			EdgeModel selectedEdge = mappedLogicModel.getEdges().stream()
@@ -89,31 +90,31 @@ class GameModeServiceImpl implements GameModeService {
 					.filter(e -> e.edgeState.get() == EdgeState.INVALID_SELECTION)
 					.forEach(e -> e.edgeState.setValue(EdgeState.UNSELECTED));
 
-			if (viewModel.gameBoardViewModel.gameBoardState.getValue() == GameBoardState.SELECT_NEXT_EDGE) {
+			if (viewModel.gameBoardViewModel.gameBoardState.getValue() == GameBoardState.SELECT_NEXT_EDGE
+				&& viewModel.gameBoardViewModel.selectedEdgeForValidation.getValue().edgeState.get() == EdgeState.UNSELECTED) {
 
 				if (viewModel.gameBoardViewModel.gameMode.getValue() == GameMode.KRUKSAL) {
 					boolean isValidPick = kruskalAlgorithm.isEdgeValidPick(mappedLogicModel, selectedEdge);
 					if (isValidPick) {
 						selectedEdgeViewModel.edgeState.setValue(EdgeState.SELECTED);
 						selectedEdge.setUsed(true);
-					}
-					else
+					} else
 						selectedEdgeViewModel.edgeState.setValue(EdgeState.INVALID_SELECTION);
 				} else {
 					boolean isValidPick = primAlgorithm.isEdgeValidPick(mappedLogicModel, selectedEdge);
 					if (isValidPick) {
 						selectedEdgeViewModel.edgeState.setValue(EdgeState.SELECTED);
 						selectedEdge.setUsed(true);
-					}
-					else
+					} else
 						selectedEdgeViewModel.edgeState.setValue(EdgeState.INVALID_SELECTION);
 				}
 
 				if (minimumSpanningTreeService.isMspCompleted(mappedLogicModel))
 					viewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.GAME_FINISHED);
 
-				viewModel.gameBoardViewModel.selectedEdgeForValidation.setValue(null);
 			}
+
+			viewModel.gameBoardViewModel.selectedEdgeForValidation.setValue(null);
 		}
 	}
 
