@@ -8,4 +8,5 @@ public interface GameModeService {
 
 	void loadRandomWeightedGraph(PipeItUpGameViewModel viewModel);
 
+	void setStartNodeForPrim(PipeItUpGameViewModel viewModel);
 }

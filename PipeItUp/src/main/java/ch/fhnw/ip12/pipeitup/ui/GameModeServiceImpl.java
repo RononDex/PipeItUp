@@ -29,10 +29,8 @@ class GameModeServiceImpl implements GameModeService {
 	private MinimumSpanningTreeService minimumSpanningTreeService;
 
 	@Inject
-	public GameModeServiceImpl(
-			GraphLayoutLoader graphLayoutLoader,
-			MinimumSpanningTreeService minimumSpanningTreeService,
-			PrimAlgorithm primAlgorithm,
+	public GameModeServiceImpl(GraphLayoutLoader graphLayoutLoader,
+			MinimumSpanningTreeService minimumSpanningTreeService, PrimAlgorithm primAlgorithm,
 			KruskalAlgorithm kruskalAlgorithm) {
 		this.graphLayoutLoader = graphLayoutLoader;
 		this.minimumSpanningTreeService = minimumSpanningTreeService;
@@ -64,6 +62,7 @@ class GameModeServiceImpl implements GameModeService {
 		loadRandomWeightedGraph(viewModel);
 
 		viewModel.gameBoardViewModel.selectedEdgeForValidation.addListener(listener -> validateSelectedEdge(viewModel));
+		viewModel.gameBoardViewModel.startNodeForPrim.addListener(listener -> setStartNodeForPrim(viewModel));
 		viewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.GAME_NOT_STARTED);
 
 		return viewModel;
@@ -75,9 +74,8 @@ class GameModeServiceImpl implements GameModeService {
 
 			EdgeViewModel selectedEdgeViewModel = viewModel.gameBoardViewModel.selectedEdgeForValidation.getValue();
 			GraphLayoutModel mappedLogicModel = Map(viewModel.gameBoardViewModel.graphViewModel.getValue());
-			EdgeModel selectedEdge = mappedLogicModel.getEdges().stream()
-					.filter(e -> e.getVertex1().getPositionX() == selectedEdgeViewModel.vertex1
-							.getVertexCenterPositionXInMm()
+			EdgeModel selectedEdge = mappedLogicModel.getEdges().stream().filter(
+					e -> e.getVertex1().getPositionX() == selectedEdgeViewModel.vertex1.getVertexCenterPositionXInMm()
 							&& e.getVertex1().getPositionY() == selectedEdgeViewModel.vertex1
 									.getVertexCenterPositionYInMm()
 							&& e.getVertex2().getPositionX() == selectedEdgeViewModel.vertex2
@@ -85,13 +83,22 @@ class GameModeServiceImpl implements GameModeService {
 							&& e.getVertex2().getPositionY() == selectedEdgeViewModel.vertex2
 									.getVertexCenterPositionYInMm())
 					.findFirst().get();
+			VertexViewModel selectedStartVertexForPrimViewModel = viewModel.gameBoardViewModel.startNodeForPrim
+					.getValue();
+			VertexModel startNodeForPrim = selectedStartVertexForPrimViewModel != null ? mappedLogicModel.getVertices()
+					.stream()
+					.filter(v -> v.getPositionX() == selectedStartVertexForPrimViewModel.getVertexCenterPositionXInMm()
+							&& v.getPositionY() == selectedStartVertexForPrimViewModel.getVertexCenterPositionYInMm())
+					.findFirst().get() : null;
+			mappedLogicModel.setStartVertexForPrim(startNodeForPrim);
 
 			viewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
 					.filter(e -> e.edgeState.get() == EdgeState.INVALID_SELECTION)
 					.forEach(e -> e.edgeState.setValue(EdgeState.UNSELECTED));
 
 			if (viewModel.gameBoardViewModel.gameBoardState.getValue() == GameBoardState.SELECT_NEXT_EDGE
-				&& viewModel.gameBoardViewModel.selectedEdgeForValidation.getValue().edgeState.get() == EdgeState.UNSELECTED) {
+					&& viewModel.gameBoardViewModel.selectedEdgeForValidation.getValue().edgeState
+							.get() == EdgeState.UNSELECTED) {
 
 				if (viewModel.gameBoardViewModel.gameMode.getValue() == GameMode.KRUKSAL) {
 					boolean isValidPick = kruskalAlgorithm.isEdgeValidPick(mappedLogicModel, selectedEdge);
@@ -100,7 +107,7 @@ class GameModeServiceImpl implements GameModeService {
 						selectedEdge.setUsed(true);
 					} else
 						selectedEdgeViewModel.edgeState.setValue(EdgeState.INVALID_SELECTION);
-				} else {
+				} else { // Prim
 					boolean isValidPick = primAlgorithm.isEdgeValidPick(mappedLogicModel, selectedEdge);
 					if (isValidPick) {
 						selectedEdgeViewModel.edgeState.setValue(EdgeState.SELECTED);
@@ -118,6 +125,15 @@ class GameModeServiceImpl implements GameModeService {
 		}
 	}
 
+	@Override
+	public void setStartNodeForPrim(PipeItUpGameViewModel viewModel) {
+		if (viewModel.gameBoardViewModel.startNodeForPrim.getValue() != null
+				&& viewModel.gameBoardViewModel.gameBoardState.getValue() == GameBoardState.SELECT_START_NODE) {
+			viewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
+		}
+
+	}
+
 	private static int nodeCounter = 0;
 
 	@ExcludeMethodFromJacocoGeneratedReport
@@ -128,8 +144,7 @@ class GameModeServiceImpl implements GameModeService {
 
 	@ExcludeMethodFromJacocoGeneratedReport
 	private static VertexModel Map(VertexViewModel vertex) {
-		return new VertexModel(vertex.getVertexCenterPositionXInMm(),
-				vertex.getVertexCenterPositionYInMm());
+		return new VertexModel(vertex.getVertexCenterPositionXInMm(), vertex.getVertexCenterPositionYInMm());
 	}
 
 	@ExcludeMethodFromJacocoGeneratedReport
