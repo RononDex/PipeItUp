@@ -23,6 +23,5 @@ class GraphLayoutDataFromDbLoaderImplTests {
 		assertNotNull(actual);
 		assertEquals(16, actual.getVertices().size());
 		assertEquals(25, actual.getEdges().size());
-
 	}
 }

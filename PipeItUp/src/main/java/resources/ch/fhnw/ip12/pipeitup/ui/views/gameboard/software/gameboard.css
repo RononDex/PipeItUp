@@ -2,6 +2,8 @@
     -fx-font-size: 14px;
     -fx-font-family: sans-serif;
     -fx-background-color: #eeeeee;
+	-fx-padding: 10;
+	-fx-spacing: 10;
 }
 #header {
 	-fx-font-size: 48px;

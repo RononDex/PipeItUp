@@ -37,6 +37,7 @@ final class PrimAlgorithmImpl implements PrimAlgorithm {
 		Set<EdgeModel> reachableEdges = getUsedEdges(graphLayout).stream()
 				.flatMap(edge1 -> edge1.getConnectedVertices().stream())
 				.flatMap(vertex -> vertex.getConnectedEdges(graphLayout).stream())
+				.filter(edge1 -> minimumSpanningTreeService.canEdgeBeUsed(graphLayout, edge1))
 				.collect(Collectors.toSet());
 
 		int minReachableEdgeWeight = reachableEdges.stream()
@@ -45,8 +46,7 @@ final class PrimAlgorithmImpl implements PrimAlgorithm {
 
 		// check if lowest weight and not in tree and not cycle
 		return minReachableEdgeWeight == edge.getWeight()
-				&& reachableEdges.contains(edge)
-				&& minimumSpanningTreeService.canEdgeBeUsed(graphLayout, edge);
+				&& reachableEdges.contains(edge);
 	}
 
 	private static final Set<EdgeModel> getUsedEdges(GraphLayoutModel graphLayout) {

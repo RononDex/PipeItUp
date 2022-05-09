@@ -128,9 +128,9 @@ class MinimumSpanningTreeServiceTest {
             .withEdge(edge12)
             .withUsedEdge(1, 2, 3)
             .withUsedEdge(2, 3, 2)
-            .withUsedEdge(3, 4, 4)
+            .withUnusedEdge(3, 4, 4)
             .withUsedEdge(4, 5, 1)
-            .withUnusedEdge(5, 0, 1)
+            .withUsedEdge(5, 0, 1)
             .withUnusedEdge(6, 0, 1)
             .withUnusedEdge(5, 2, 1)
             .build();

@@ -9,23 +9,24 @@
 
 <?import javafx.scene.control.Button?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:controller="ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.controllers.MainController">
-	<GridPane hgap="30.0" vgap="10.0">
-		<columnConstraints>
-			<ColumnConstraints maxWidth="20.0" hgrow="NEVER" />
-			<ColumnConstraints hgrow="ALWAYS" />
-			<ColumnConstraints maxWidth="20.0" hgrow="NEVER" />
-		</columnConstraints>
-		<rowConstraints>
-			<RowConstraints vgrow="ALWAYS" />
-			<RowConstraints vgrow="ALWAYS" />
-		</rowConstraints>
-		<children>
-			<Label fx:id="header" GridPane.columnIndex="1" text="Software Gameboard" GridPane.hgrow="ALWAYS" />
-		</children>
-	</GridPane>
-	<BorderPane>
+	<BorderPane styleClass="root">
+		<top>
+			<Label fx:id="header" text="Software Gameboard" />
+		</top>
 		<center>
 			<Canvas fx:id="gameBoardCanvas" height="1000" width="500" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS" />
 		</center>
+		<bottom>
+			<VBox>
+				<HBox>
+					<Label text="GameMode:    " />
+					<Label fx:id="gameMode" />
+				</HBox>
+				<HBox>
+					<Label text="GameState:    " />
+					<Label fx:id="gameState" />
+				</HBox>
+			</VBox>
+		</bottom>
 	</BorderPane>
 </VBox>

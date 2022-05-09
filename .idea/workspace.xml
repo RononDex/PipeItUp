@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="remove database link">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/DatabaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/DatabaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/PrimAlgorithmImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/PrimAlgorithmImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/gameboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/gameboard.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,14 +306,14 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/controllers/MainController.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java</url>
           <line>115</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/PrimAlgorithmImpl.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

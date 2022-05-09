@@ -189,11 +189,11 @@ class PrimAlgorithmTest {
 		edgesTestResult.put(e7, false);
 		edgesTestResult.put(e8, false);
 		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e1))).thenReturn(false);
-		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e2))).thenReturn(true);
-		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e3))).thenReturn(true);
-		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e4))).thenReturn(true);
-		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e5))).thenReturn(true);
-		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e6))).thenReturn(true);
+		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e2))).thenReturn(false);
+		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e3))).thenReturn(false);
+		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e4))).thenReturn(false);
+		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e5))).thenReturn(false);
+		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e6))).thenReturn(false);
 		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e7))).thenReturn(false);
 		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), eq(e8))).thenReturn(false);
 
