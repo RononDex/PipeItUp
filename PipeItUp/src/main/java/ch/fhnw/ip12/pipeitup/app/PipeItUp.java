@@ -31,7 +31,7 @@ public class PipeItUp {
 			log.info("----- Launching Pipe-It-Up!");
 			log.info("---------------------------------------------------");
 			log.info("Parameters:");
-			if (args.length > 0) System.out.println(args[1]);
+			if (args.length > 0) log.info(args[0]);
 
 			List<String> argsList = Arrays.asList(args);
 			UiMode uiMode = UiMode.HARDWARE;

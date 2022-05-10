@@ -25,7 +25,7 @@ class DatabaseImpl implements Database {
 
 	private Connection connect() {
 		String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/database.db";
-		System.out.println(url);;
+		log.info("Loading Database: " + url);
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url);
