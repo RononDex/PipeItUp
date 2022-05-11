@@ -1,5 +1,9 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.controllers;
 
+import java.time.Duration;
+import java.time.Period;
+import java.time.temporal.TemporalUnit;
+
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.EdgeState;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.EdgeViewModel;
@@ -56,6 +60,12 @@ public class MainController {
 	private void updateGameStateLabel() {
 		if (gameBoardViewModel.gameBoardState.getValue() != null) {
 			gameState.textProperty().setValue(gameBoardViewModel.gameBoardState.getValue().toString());
+		}
+
+		if (gameBoardViewModel.gameBoardState.getValue() == GameBoardState.GAME_FINISHED) {
+			float seconds = Duration.between(gameBoardViewModel.gameStartMomentForHighscore.getValue(),
+					gameBoardViewModel.gameEndMomentForHighscore.getValue()).toMillis() / 1000f;
+			System.out.println("Highscore: " + seconds + "s");
 		}
 	}
 

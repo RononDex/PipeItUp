@@ -11,6 +11,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -199,7 +201,7 @@ public class GameModeServiceImplTests {
 	}
 
 	@Test
-	void validateSelectedEdge_WithKruskalModeAndEdgeSelectedAndEdgeInvalid_SetsEdgeToInvalidAndClearsSelectedEdge() {
+	void validateSelectedEdge_WithKruskalModeAndEdgeSelectedAndEdgeInvalid_SetsEdgeToInvalidAndClearsSelectedEdgeAndAddsPenalty() {
 		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
@@ -215,13 +217,13 @@ public class GameModeServiceImplTests {
 				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
 		when(kruskalAlgorithmMock.isEdgeValidPick(any(), any())).thenReturn(false);
 		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(false);
-		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
-		testee.loadRandomWeightedGraph(existingViewModel);
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
 		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.KRUKSAL);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
 				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
 						.findFirst().get());
+		LocalTime startDate = existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue();
 
 		testee.validateSelectedEdge(existingViewModel);
 
@@ -234,6 +236,7 @@ public class GameModeServiceImplTests {
 		assertEquals(EdgeState.INVALID_SELECTION,
 				existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream().findFirst()
 						.get().edgeState.getValue());
+		assertEquals(5000, Math.abs(Duration.between(LocalTime.now(), startDate).toMillis()), 100);
 	}
 
 	@Test
@@ -255,21 +258,18 @@ public class GameModeServiceImplTests {
 				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
 		when(primAlgorithmMock.isEdgeValidPick(any(), any())).thenReturn(true);
 		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(false);
-		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
-		testee.loadRandomWeightedGraph(existingViewModel);
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
 		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.PRIM);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
-		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
-				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
-						.findFirst().get());
 		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
 				.stream().skip(1).findFirst().get();
 		secondEdge.edgeState.setValue(EdgeState.INVALID_SELECTION);
 		existingViewModel.gameBoardViewModel.startNodeForPrim.setValue(
 				(VertexViewModel) existingViewModel.gameBoardViewModel.graphViewModel.getValue().vertexViewModels
 						.toArray()[0]);
-
-		testee.validateSelectedEdge(existingViewModel);
+		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
+				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
+						.findFirst().get());
 
 		verify(primAlgorithmMock, times(1)).isEdgeValidPick(any(), any());
 		verify(graphLayoutLoaderMock, times(1)).getRandomlyWeightedGraph(anyInt());
@@ -299,8 +299,7 @@ public class GameModeServiceImplTests {
 				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
 		when(primAlgorithmMock.isEdgeValidPick(any(), any())).thenReturn(false);
 		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(false);
-		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
-		testee.loadRandomWeightedGraph(existingViewModel);
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
 		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.PRIM);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
@@ -324,7 +323,7 @@ public class GameModeServiceImplTests {
 	}
 
 	@Test
-	void validateSelectedEdge_WithPrimModeAndEdgeSelectedAndEdgeValidAndMspComplected_SetsEdgeToValidAndClearsSelectedEdgeAndResetsInvalidSelectedEdgesAndSetsGameStateToFinished() {
+	void validateSelectedEdge_WithPrimModeAndEdgeSelectedAndEdgeValidAndMspCompleted_SetsEdgeToValidAndClearsSelectedEdgeAndResetsInvalidSelectedEdgesAndSetsGameStateToFinished() {
 		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
@@ -343,21 +342,18 @@ public class GameModeServiceImplTests {
 				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
 		when(primAlgorithmMock.isEdgeValidPick(any(), any())).thenReturn(true);
 		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(true);
-		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
-		testee.loadRandomWeightedGraph(existingViewModel);
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
 		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.PRIM);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
-		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
-				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
-						.findFirst().get());
 		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
 				.stream().skip(1).findFirst().get();
 		secondEdge.edgeState.setValue(EdgeState.INVALID_SELECTION);
 		existingViewModel.gameBoardViewModel.startNodeForPrim.setValue(
 				(VertexViewModel) existingViewModel.gameBoardViewModel.graphViewModel.getValue().vertexViewModels
 						.toArray()[0]);
-
-		testee.validateSelectedEdge(existingViewModel);
+		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
+				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
+						.findFirst().get());
 
 		verify(primAlgorithmMock, times(1)).isEdgeValidPick(any(), any());
 		verify(graphLayoutLoaderMock, times(1)).getRandomlyWeightedGraph(anyInt());
@@ -391,8 +387,7 @@ public class GameModeServiceImplTests {
 				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
 		when(primAlgorithmMock.isEdgeValidPick(any(), any())).thenReturn(true);
 		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(true);
-		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
-		testee.loadRandomWeightedGraph(existingViewModel);
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
 		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.PRIM);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
 		EdgeViewModel secondEdge = existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels
@@ -413,6 +408,147 @@ public class GameModeServiceImplTests {
 				.stream().findFirst().get().edgeState.getValue());
 		assertEquals(EdgeState.SELECTED, secondEdge.edgeState.getValue());
 		assertEquals(GameBoardState.SELECT_NEXT_EDGE, existingViewModel.gameBoardViewModel.gameBoardState.getValue());
+	}
+
+	@Test
+	void restartHighscoreTimerIfNeeded_WithGameStateChangedFromGameNotStartedToSelectNextEdge_SetsGameStartMoment() {
+		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
+		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
+		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
+		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
+				primAlgorithmMock, kruskalAlgorithmMock);
+		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
+		vertices.add(new VertexModel(100d, 100d));
+		vertices.add(new VertexModel(110d, 110d));
+		vertices.add(new VertexModel(120d, 120d));
+		ArrayList<EdgeModel> edges = new ArrayList<EdgeModel>();
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(1), 5));
+		edges.add(new EdgeModel(vertices.get(1), vertices.get(2), 4));
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(2), 4));
+		when(graphLayoutLoaderMock.getRandomlyWeightedGraph(anyInt()))
+				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
+
+		assertNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
+
+		assertNotNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+	}
+
+	@Test
+	void restartHighscoreTimerIfNeeded_WithGameStateChangedFromGameNotStartedToSelectStartNode_SetsGameStartMoment() {
+		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
+		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
+		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
+		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
+				primAlgorithmMock, kruskalAlgorithmMock);
+		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
+		vertices.add(new VertexModel(100d, 100d));
+		vertices.add(new VertexModel(110d, 110d));
+		vertices.add(new VertexModel(120d, 120d));
+		ArrayList<EdgeModel> edges = new ArrayList<EdgeModel>();
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(1), 5));
+		edges.add(new EdgeModel(vertices.get(1), vertices.get(2), 4));
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(2), 4));
+		when(graphLayoutLoaderMock.getRandomlyWeightedGraph(anyInt()))
+				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
+
+		assertNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_START_NODE);
+
+		assertNotNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+	}
+
+	@Test
+	void restartHighscoreTimerIfNeeded_WithGameStateChangedFromGameFinishedToSelectStartNode_SetsGameStartMoment() {
+		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
+		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
+		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
+		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
+				primAlgorithmMock, kruskalAlgorithmMock);
+		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
+		vertices.add(new VertexModel(100d, 100d));
+		vertices.add(new VertexModel(110d, 110d));
+		vertices.add(new VertexModel(120d, 120d));
+		ArrayList<EdgeModel> edges = new ArrayList<EdgeModel>();
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(1), 5));
+		edges.add(new EdgeModel(vertices.get(1), vertices.get(2), 4));
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(2), 4));
+		when(graphLayoutLoaderMock.getRandomlyWeightedGraph(anyInt()))
+				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.GAME_FINISHED);
+
+		assertNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_START_NODE);
+
+		assertNotNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+	}
+
+	@Test
+	void restartHighscoreTimerIfNeeded_WithGameStateChangedFromGameFinishedToSelectNextEdge_SetsGameStartMoment() {
+		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
+		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
+		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
+		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
+				primAlgorithmMock, kruskalAlgorithmMock);
+		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
+		vertices.add(new VertexModel(100d, 100d));
+		vertices.add(new VertexModel(110d, 110d));
+		vertices.add(new VertexModel(120d, 120d));
+		ArrayList<EdgeModel> edges = new ArrayList<EdgeModel>();
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(1), 5));
+		edges.add(new EdgeModel(vertices.get(1), vertices.get(2), 4));
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(2), 4));
+		when(graphLayoutLoaderMock.getRandomlyWeightedGraph(anyInt()))
+				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.GAME_FINISHED);
+
+		assertNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
+
+		assertNotNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+	}
+
+	@Test
+	void restartHighscoreTimerIfNeeded_WithGameStateChangedFromGameFinishedToGameNotStarted_DoesNotSetGameStart() {
+		GraphLayoutLoader graphLayoutLoaderMock = mock(GraphLayoutLoader.class);
+		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
+		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
+		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
+				primAlgorithmMock, kruskalAlgorithmMock);
+		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
+		vertices.add(new VertexModel(100d, 100d));
+		vertices.add(new VertexModel(110d, 110d));
+		vertices.add(new VertexModel(120d, 120d));
+		ArrayList<EdgeModel> edges = new ArrayList<EdgeModel>();
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(1), 5));
+		edges.add(new EdgeModel(vertices.get(1), vertices.get(2), 4));
+		edges.add(new EdgeModel(vertices.get(0), vertices.get(2), 4));
+		when(graphLayoutLoaderMock.getRandomlyWeightedGraph(anyInt()))
+				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
+		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.GAME_FINISHED);
+
+		assertNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
+
+		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.GAME_NOT_STARTED);
+
+		assertNull(existingViewModel.gameBoardViewModel.gameStartMomentForHighscore.getValue());
 	}
 
 	@Test
