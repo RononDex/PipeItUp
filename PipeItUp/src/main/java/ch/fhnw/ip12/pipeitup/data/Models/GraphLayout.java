@@ -4,9 +4,6 @@ import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
 import java.util.Set;
 
-/**
-* Graphlayout
-*/
 @ExcludeTypeFromJacocoGeneratedReport
 public class GraphLayout {
 

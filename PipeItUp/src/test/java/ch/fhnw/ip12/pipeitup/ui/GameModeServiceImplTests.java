@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import ch.fhnw.ip12.pipeitup.logic.GraphLayoutLoader;
+import ch.fhnw.ip12.pipeitup.logic.HighscoreService;
 import ch.fhnw.ip12.pipeitup.logic.KruskalAlgorithm;
 import ch.fhnw.ip12.pipeitup.logic.MinimumSpanningTreeService;
 import ch.fhnw.ip12.pipeitup.logic.PrimAlgorithm;
@@ -44,8 +45,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -79,8 +81,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -110,8 +113,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -131,8 +135,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -163,8 +168,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -206,8 +212,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -245,8 +252,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -288,8 +296,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -328,8 +337,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -373,8 +383,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -416,8 +427,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -444,8 +456,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -472,8 +485,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -501,8 +515,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -529,8 +544,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -557,8 +573,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -586,8 +603,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));
@@ -617,8 +635,9 @@ public class GameModeServiceImplTests {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		PrimAlgorithm primAlgorithmMock = mock(PrimAlgorithm.class);
 		KruskalAlgorithm kruskalAlgorithmMock = mock(KruskalAlgorithm.class);
+		HighscoreService highscoreServiceMock = mock(HighscoreService.class);
 		GameModeServiceImpl testee = new GameModeServiceImpl(graphLayoutLoaderMock, minimumSpanningTreeServiceMock,
-				primAlgorithmMock, kruskalAlgorithmMock);
+				primAlgorithmMock, kruskalAlgorithmMock, highscoreServiceMock);
 		ArrayList<VertexModel> vertices = new ArrayList<VertexModel>();
 		vertices.add(new VertexModel(100d, 100d));
 		vertices.add(new VertexModel(110d, 110d));

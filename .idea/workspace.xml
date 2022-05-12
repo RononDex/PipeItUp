@@ -6,12 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="remove database link">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/PrimAlgorithmImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/PrimAlgorithmImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/Models/HighscoreEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/Models/HighscoreEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/DependencyInjectionConfigLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/DependencyInjectionConfigLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/HighscoreSerivce.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/HighscoreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/HighscoreServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Models/HighscoreEntryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Models/HighscoreEntryModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/gameboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/gameboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/TouchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/TouchViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImplTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,29 +51,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.41753927" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/PipeItUp/src/main/resources" />
+      <recent name="$PROJECT_DIR$/PipeItUp/src/main" />
+      <recent name="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/style" />
+      <recent name="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/img" />
       <recent name="C:\Users\lucap\OneDrive - FHNW\Documents\IP1_Pipeline\pipe-it-up_fix\PipeItUp" />
-      <recent name="C:\Users\lucap\OneDrive - FHNW\Documents\IP1_Pipeline\pipe-it-up\PipeItUp\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Run locally">
+  <component name="RunManager" selected="Maven. [install]">
     <configuration name="PipeItUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ch.fhnw.ip12.pipeitup.app.PipeItUp" />
       <module name="PipeItUp" />
@@ -97,7 +92,7 @@
             <option name="jreName" value="#USE_PROJECT_JDK" />
             <option name="mavenProperties">
               <map>
-                <entry key="pi.remote.host" value="172.20.10.14" />
+                <entry key="pi.remote.host" value="192.168.3.234" />
               </map>
             </option>
             <option name="passParentEnv" value="true" />
@@ -248,6 +243,7 @@
       <workItem from="1638262486266" duration="4244000" />
       <workItem from="1638266783564" duration="1357000" />
       <workItem from="1649402168570" duration="497000" />
+      <workItem from="1652257157125" duration="11143000" />
     </task>
     <task id="LOCAL-00001" summary="Added maven funcionality">
       <created>1638264774951</created>
@@ -296,24 +292,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/controllers/MainController.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/gameboard/software/controllers/MainController.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java</url>
-          <line>115</line>
+          <line>113</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/PrimAlgorithmImpl.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
