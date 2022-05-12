@@ -1,15 +1,14 @@
 package ch.fhnw.ip12.pipeitup.data;
 
-import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
+import java.util.List;
 
-import java.util.ArrayList;
+import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
+import ch.fhnw.ip12.pipeitup.data.Models.HighscoreEntry;
 
 public interface Database {
 	GraphLayout getGraphLayout();
 
-	boolean saveScore(String name, int score);
+	boolean saveScore(HighscoreEntry highscoreEntry);
 
-	//TODO: define return type
-	void getScores();
-
+	List<HighscoreEntry> getScores();
 }

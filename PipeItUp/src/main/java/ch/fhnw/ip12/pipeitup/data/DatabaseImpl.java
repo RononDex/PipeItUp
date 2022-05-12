@@ -1,23 +1,24 @@
 package ch.fhnw.ip12.pipeitup.data;
 
-import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.app.PipeItUp;
-import ch.fhnw.ip12.pipeitup.data.Models.Edge;
-import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
-import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
-
-import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
+import ch.fhnw.ip12.pipeitup.app.PipeItUp;
+import ch.fhnw.ip12.pipeitup.data.Models.Edge;
+import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
+import ch.fhnw.ip12.pipeitup.data.Models.HighscoreEntry;
+import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
 
 class DatabaseImpl implements Database {
 
@@ -66,12 +67,12 @@ class DatabaseImpl implements Database {
 
 	@Override
 	@ExcludeMethodFromJacocoGeneratedReport
-	public boolean saveScore(String name, int score) {
+	public boolean saveScore(HighscoreEntry highscoreEntry) {
 		String sql = "INSERT INTO tbl_highscore(name,score) VALUES(?,?)";
 		try (Connection conn = this.connect();
 			 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, name);
-			pstmt.setDouble(2, score);
+			pstmt.setString(1, highscoreEntry.getUserName());
+			pstmt.setInt(2, (int)(highscoreEntry.getScoreInSeconds() / 1000));
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -82,18 +83,20 @@ class DatabaseImpl implements Database {
 
 	@Override
 	@ExcludeMethodFromJacocoGeneratedReport
-	public void getScores() {
+	public List<HighscoreEntry> getScores() {
+		ArrayList<HighscoreEntry> highcoreEntries = new ArrayList<>();
 		String sql = "SELECT name, score FROM tbl_highscore";
 		try (Connection conn = this.connect();
 			 Statement stmt = conn.createStatement();
 			 ResultSet rs = stmt.executeQuery(sql)) {
 
 			while (rs.next()) {
-				System.out.println(rs.getString("name") + "\t" +
-					rs.getInt("score"));
+				highcoreEntries.add(new HighscoreEntry(rs.getString("name"), rs.getInt("score") / 1000f));
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());
 		}
+
+		return highcoreEntries;
 	}
 }

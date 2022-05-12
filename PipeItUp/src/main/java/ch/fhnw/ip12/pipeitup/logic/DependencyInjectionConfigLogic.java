@@ -16,6 +16,7 @@ public class DependencyInjectionConfigLogic extends AbstractModule {
         bind(MinimumSpanningTreeService.class).to(MinimumSpanningTreeServiceImpl.class);
         bind(PrimAlgorithm.class).to(PrimAlgorithmImpl.class);
         bind(KruskalAlgorithm.class).to(KruskalAlgorithmImpl.class);
+        bind(HighscoreService.class).to(HighscoreServiceImpl.class);
     }
 	
 }

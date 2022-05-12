@@ -8,6 +8,7 @@ import com.google.inject.Inject;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.logic.GraphLayoutLoader;
+import ch.fhnw.ip12.pipeitup.logic.HighscoreService;
 import ch.fhnw.ip12.pipeitup.logic.KruskalAlgorithm;
 import ch.fhnw.ip12.pipeitup.logic.MinimumSpanningTreeService;
 import ch.fhnw.ip12.pipeitup.logic.PrimAlgorithm;
@@ -20,6 +21,7 @@ import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoardState;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameMode;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GraphViewModel;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.VertexViewModel;
+import ch.fhnw.ip12.pipeitup.ui.views.touch.HighscoreEntryViewModel;
 import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchViewModel;
 
 class GameModeServiceImpl implements GameModeService {
@@ -30,15 +32,17 @@ class GameModeServiceImpl implements GameModeService {
 	private KruskalAlgorithm kruskalAlgorithm;
 	private PrimAlgorithm primAlgorithm;
 	private MinimumSpanningTreeService minimumSpanningTreeService;
+	private HighscoreService highscoreService;
 
 	@Inject
 	public GameModeServiceImpl(GraphLayoutLoader graphLayoutLoader,
 			MinimumSpanningTreeService minimumSpanningTreeService, PrimAlgorithm primAlgorithm,
-			KruskalAlgorithm kruskalAlgorithm) {
+			KruskalAlgorithm kruskalAlgorithm, HighscoreService highscoreService) {
 		this.graphLayoutLoader = graphLayoutLoader;
 		this.minimumSpanningTreeService = minimumSpanningTreeService;
 		this.primAlgorithm = primAlgorithm;
 		this.kruskalAlgorithm = kruskalAlgorithm;
+		this.highscoreService = highscoreService;
 	}
 
 	@Override
@@ -64,6 +68,9 @@ class GameModeServiceImpl implements GameModeService {
 
 		loadRandomWeightedGraph(viewModel);
 
+		viewModel.touchViewModel.highscoreEntries.addAll(highscoreService.getHighscoreEntries().stream()
+				.map(hs -> new HighscoreEntryViewModel(hs.getUserName(), hs.getScoreInSeconds()))
+				.collect(Collectors.toList()));
 		viewModel.gameBoardViewModel.selectedEdgeForValidation.addListener(listener -> validateSelectedEdge(viewModel));
 		viewModel.gameBoardViewModel.startNodeForPrim.addListener(listener -> setStartNodeForPrim(viewModel));
 		viewModel.gameBoardViewModel.gameBoardState.addListener(
