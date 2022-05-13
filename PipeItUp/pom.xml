@@ -154,7 +154,7 @@
 					<outputDirectory>${project.build.directory}/distribution</outputDirectory>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>3.2.4</version>
@@ -174,7 +174,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 
 			<!-- Javadoc -->
 			<plugin>
@@ -351,11 +351,11 @@
 												 command="rm ${pi.remote.target}/javafx-* &amp;&amp; cp /usr/share/openjfx/lib/javafx.* ${pi.remote.target}/"/>
 
 										<!-- Run application on Raspberry Pi -->
-										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
-												 username="${pi.remote.username}" password="${pi.remote.password}"
-												 trust="true"
-												 failonerror="false" usepty="true" useSystemIn="true"
-												 command="DISPLAY=:1 sudo java -Dprism.order=sw ${pi.remote.jvmOptions} --module-path ${pi.remote.target} --module ${pi.launcher.class} ${pi.launcher.args}"/>
+<!--										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"-->
+<!--												 username="${pi.remote.username}" password="${pi.remote.password}"-->
+<!--												 trust="true"-->
+<!--												 failonerror="false" usepty="true" useSystemIn="true"-->
+<!--												 command="DISPLAY=:1 sudo java -Dprism.order=sw ${pi.remote.jvmOptions} &#45;&#45;module-path ${pi.remote.target} &#45;&#45;module ${pi.launcher.class} ${pi.launcher.args}"/>-->
 									</target>
 								</configuration>
 							</execution>

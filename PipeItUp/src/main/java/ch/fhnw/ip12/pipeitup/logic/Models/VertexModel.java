@@ -13,10 +13,18 @@ public class VertexModel {
 
 	private double positionX;
 	private double positionY;
+	private int LED;
+	private int LEDLine;
 
 	public VertexModel(double positionX, double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
+	}
+	public VertexModel(double positionX, double positionY, int LED, int LEDLine) {
+		this.positionX = positionX;
+		this.positionY = positionY;
+		this.LED = LED;
+		this.LEDLine = LEDLine;
 	}
 
 	public double getPositionX() {
@@ -32,4 +40,11 @@ public class VertexModel {
 				.collect(Collectors.toSet());
 	}
 
+	public int getLED() {
+		return LED;
+	}
+
+	public int getLEDLine() {
+		return LEDLine;
+	}
 }

@@ -19,6 +19,14 @@ import ch.fhnw.ip12.pipeitup.data.Models.Edge;
 import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
 import ch.fhnw.ip12.pipeitup.data.Models.HighscoreEntry;
 import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 class DatabaseImpl implements Database {
 
@@ -41,22 +49,34 @@ class DatabaseImpl implements Database {
 		ArrayList<Vertex> vertexList = new ArrayList<>();
 		ArrayList<Edge> edgeList = new ArrayList<>();
 
-		String sqlVertex = "SELECT id_vertex, positionX, positionY FROM tbl_vertex";
-		String sqlGraphLayout = "SELECT firstVertex, secondVertex FROM tbl_graphlayout";
-
+		String sqlVertex =
+			"SELECT id_vertex, positionX, positionY, LED, LEDLine FROM tbl_vertex LEFT JOIN tbl_vertexLED ON tbl_vertex.fk_vertexLED = tbl_vertexLED.id_vertexLED";
+		String sqlGraphLayout =
+			"SELECT firstVertex, secondVertex, firstLED, LEDLine, b1.mcp AS mcp1, b1.pin AS pin1, b2.mcp AS mcp2, b2.pin AS pin2 FROM tbl_graphlayout LEFT JOIN tbl_edgeLED ON tbl_graphlayout.fk_firstLED = tbl_edgeLED.id_edgeLED " +
+				"LEFT JOIN tbl_button AS b1 ON tbl_graphlayout.fk_button1 = b1.id_button " +
+				"LEFT JOIN tbl_button AS b2 ON tbl_graphlayout.fk_button2 = b2.id_button;";
 		try (Connection conn = this.connect();
 			 Statement stmtVertex = conn.createStatement();
 			 ResultSet rsVertex = stmtVertex.executeQuery(sqlVertex);
 			 Statement stmtGraphLayout = conn.createStatement();
 			 ResultSet rsGraphLayout = stmtGraphLayout.executeQuery(sqlGraphLayout)) {
-
 			while (rsVertex.next()) {
 				vertexList.add(new Vertex(rsVertex.getInt("id_vertex"), rsVertex.getInt("positionX"),
-					rsVertex.getInt("positionY")));
+					rsVertex.getInt("positionY"), rsVertex.getInt("LED"), rsVertex.getInt("LEDLine")));
 			}
 			while (rsGraphLayout.next()) {
-				edgeList.add(new Edge(vertexList.get(rsGraphLayout.getInt("firstVertex")),
-					vertexList.get(rsGraphLayout.getInt("secondVertex"))));
+				edgeList.add(
+					new Edge(
+						vertexList.get(rsGraphLayout.getInt("firstVertex")),
+						vertexList.get(rsGraphLayout.getInt("secondVertex")),
+						rsGraphLayout.getInt("firstLED"),
+						rsGraphLayout.getInt("LEDLine"),
+						rsGraphLayout.getInt("mcp1"),
+						rsGraphLayout.getInt("pin1"),
+						rsGraphLayout.getInt("mcp2"),
+						rsGraphLayout.getInt("pin2")
+					)
+				);
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());

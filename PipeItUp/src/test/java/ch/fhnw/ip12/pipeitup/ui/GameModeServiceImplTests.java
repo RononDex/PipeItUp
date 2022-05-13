@@ -149,7 +149,7 @@ public class GameModeServiceImplTests {
 				.thenReturn(new GraphLayoutModel(new HashSet<>(vertices), new HashSet<>(edges)));
 		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
 		testee.loadRandomWeightedGraph(existingViewModel);
-		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.KRUKSAL);
+		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.KRUSKAL);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.GAME_NOT_STARTED);
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
 				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
@@ -184,7 +184,7 @@ public class GameModeServiceImplTests {
 		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(false);
 		PipeItUpGameViewModel existingViewModel = new PipeItUpGameViewModel();
 		testee.loadRandomWeightedGraph(existingViewModel);
-		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.KRUKSAL);
+		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.KRUSKAL);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
 				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()
@@ -225,7 +225,7 @@ public class GameModeServiceImplTests {
 		when(kruskalAlgorithmMock.isEdgeValidPick(any(), any())).thenReturn(false);
 		when(minimumSpanningTreeServiceMock.isMspCompleted(any())).thenReturn(false);
 		PipeItUpGameViewModel existingViewModel = testee.createStartUpViewModel();
-		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.KRUKSAL);
+		existingViewModel.gameBoardViewModel.gameMode.setValue(GameMode.KRUSKAL);
 		existingViewModel.gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_NEXT_EDGE);
 		existingViewModel.gameBoardViewModel.selectedEdgeForValidation
 				.setValue(existingViewModel.gameBoardViewModel.graphViewModel.getValue().edgeViewModels.stream()

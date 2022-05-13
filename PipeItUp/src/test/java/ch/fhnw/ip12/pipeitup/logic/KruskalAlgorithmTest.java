@@ -59,10 +59,10 @@ class KruskalAlgorithmTest {
 		MinimumSpanningTreeService minimumSpanningTreeServiceMock = mock(MinimumSpanningTreeService.class);
 		when(minimumSpanningTreeServiceMock.canEdgeBeUsed(any(), any())).thenReturn(true);
 		KruskalAlgorithmImpl testee = new KruskalAlgorithmImpl(minimumSpanningTreeServiceMock);
-		VertexModel v1 = new VertexModel(0, 1);
-		VertexModel v2 = new VertexModel(0, 2);
-		VertexModel v3 = new VertexModel(1, 1);
-		VertexModel v4 = new VertexModel(1, 2);
+		VertexModel v1 = new VertexModel(0, 1, 0, 0);
+		VertexModel v2 = new VertexModel(0, 2, 0, 0);
+		VertexModel v3 = new VertexModel(1, 1, 0, 0);
+		VertexModel v4 = new VertexModel(1, 2, 0, 0);
 		EdgeModel e1 = new EdgeModel(v1, v2, 2);
 		EdgeModel e2 = new EdgeModel(v1, v3, 4);
 		EdgeModel e3 = new EdgeModel(v1, v4, 3);

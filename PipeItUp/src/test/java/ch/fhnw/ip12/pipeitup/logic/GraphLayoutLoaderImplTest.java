@@ -67,15 +67,15 @@ class GraphLayoutLoaderImplTest {
 
 		Database databaseMock = mock(Database.class);
 		ArrayList<Vertex> vertices = new ArrayList<>();
-		vertices.add(new Vertex(1, 100d, 100d));
-		vertices.add(new Vertex(1, 110d, 110d));
-		vertices.add(new Vertex(1, 110d, 150d));
+		vertices.add(new Vertex(1, 100d, 100d, 0, 0));
+		vertices.add(new Vertex(1, 110d, 110d, 0, 0));
+		vertices.add(new Vertex(1, 110d, 150d, 0, 0));
 		ArrayList<Edge> edges = new ArrayList<>();
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));
 		when(databaseMock.getGraphLayout())
-				.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
+			.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
 		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
 
 		GraphLayoutModel actual = testee.getRandomlyWeightedGraph(1);
@@ -88,15 +88,15 @@ class GraphLayoutLoaderImplTest {
 
 		Database databaseMock = mock(Database.class);
 		ArrayList<Vertex> vertices = new ArrayList<>();
-		vertices.add(new Vertex(1, 100d, 100d));
-		vertices.add(new Vertex(1, 110d, 110d));
-		vertices.add(new Vertex(1, 110d, 150d));
+		vertices.add(new Vertex(1, 100d, 100d, 0, 0));
+		vertices.add(new Vertex(1, 110d, 110d, 0, 0));
+		vertices.add(new Vertex(1, 110d, 150d, 0, 0));
 		ArrayList<Edge> edges = new ArrayList<>();
 		edges.add(new Edge(vertices.get(0), vertices.get(1)));
 		edges.add(new Edge(vertices.get(1), vertices.get(2)));
 		edges.add(new Edge(vertices.get(2), vertices.get(0)));
 		when(databaseMock.getGraphLayout())
-				.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
+			.thenReturn(new GraphLayout(new HashSet<>(vertices), new HashSet<>(edges)));
 		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
 
 		GraphLayoutModel actual = testee.getRandomlyWeightedGraph(5);
