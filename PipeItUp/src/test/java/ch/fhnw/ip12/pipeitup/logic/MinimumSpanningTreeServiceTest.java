@@ -13,28 +13,28 @@ import ch.fhnw.ip12.pipeitup.logic.utils.GraphLayoutBuilder;
 
 class MinimumSpanningTreeServiceTest {
 
-    @Test
-    void usedWeightsSum_WithAllUnusedEdges_ReturnsZero() {
-        GraphLayoutModel graph = new GraphLayoutBuilder()
-            .withVertex(0, 1)
-            .withVertex(0, 2)
-            .withVertex(1, 1)
-            .withVertex(1, 2)
-            .withVertex(2, 1)
-            .withVertex(2, 2)
-            .withUnusedEdge(0, 1, 1)
-            .withUnusedEdge(1, 2, 3)
-            .withUnusedEdge(2, 3, 2)
-            .withUnusedEdge(3, 4, 4)
-            .withUnusedEdge(4, 5, 1)
-            .withUnusedEdge(5, 0, 1)
-            .build();
-        MinimumSpanningTreeServiceImpl testee = new MinimumSpanningTreeServiceImpl();
+	@Test
+	void usedWeightsSum_WithAllUnusedEdges_ReturnsZero() {
+		GraphLayoutModel graph = new GraphLayoutBuilder()
+			.withVertex(0, 1)
+			.withVertex(0, 2)
+			.withVertex(1, 1)
+			.withVertex(1, 2)
+			.withVertex(2, 1)
+			.withVertex(2, 2)
+			.withUnusedEdge(0, 1, 1)
+			.withUnusedEdge(1, 2, 3)
+			.withUnusedEdge(2, 3, 2)
+			.withUnusedEdge(3, 4, 4)
+			.withUnusedEdge(4, 5, 1)
+			.withUnusedEdge(5, 0, 1)
+			.build();
+		MinimumSpanningTreeServiceImpl testee = new MinimumSpanningTreeServiceImpl();
 
-        int actual = testee.usedWeightsSum(graph);
+		int actual = testee.usedWeightsSum(graph);
 
-        assertEquals(0, actual);
-    }
+		assertEquals(0, actual);
+	}
 
     @Test
     void usedWeightsSum_WithSomeUsedEdges_ReturnsSum() {

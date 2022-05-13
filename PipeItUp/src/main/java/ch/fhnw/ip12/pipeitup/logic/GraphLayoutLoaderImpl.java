@@ -1,5 +1,6 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -40,9 +41,9 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 
 		GraphLayout graphLayout = database.getGraphLayout();
 		Set<VertexModel> vertexModels = graphLayout.getVertices().stream().map(GraphLayoutLoaderImpl::Map)
-				.collect(Collectors.toSet());
+			.collect(Collectors.toSet());
 		Set<EdgeModel> edgeModels = graphLayout.getEdges().stream().map(e -> Map(e, vertexModels))
-				.collect(Collectors.toSet());
+			.collect(Collectors.toSet());
 
 		Random randomGenerator = new Random();
 		for (EdgeModel edgeModel : edgeModels) {
@@ -53,18 +54,19 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 	}
 
 	private static VertexModel Map(Vertex vertex) {
-		return new VertexModel(vertex.getPositionX(), vertex.getPositionY());
+		return new VertexModel(vertex.getPositionX(), vertex.getPositionY(), vertex.getLED(), vertex.getLEDLine());
 	}
 
 	@ExcludeMethodFromJacocoGeneratedReport
 	private static EdgeModel Map(Edge edge, Set<VertexModel> vertexList) {
 		return new EdgeModel(
-				vertexList.stream()
-						.filter(v -> v.getPositionX() == edge.getVertex1().getPositionX()
-								&& v.getPositionY() == edge.getVertex1().getPositionY())
-						.findFirst().get(),
-				vertexList.stream().filter(v -> v.getPositionX() == edge.getVertex2().getPositionX()
-						&& v.getPositionY() == edge.getVertex2().getPositionY()).findFirst().get(),
-				0);
+			vertexList.stream()
+				.filter(v -> v.getPositionX() == edge.getVertex1().getPositionX()
+					&& v.getPositionY() == edge.getVertex1().getPositionY())
+				.findFirst().get(),
+			vertexList.stream().filter(v -> v.getPositionX() == edge.getVertex2().getPositionX()
+				&& v.getPositionY() == edge.getVertex2().getPositionY()).findFirst().get(),
+			0,
+		edge.getHardwareInfo());
 	}
 }

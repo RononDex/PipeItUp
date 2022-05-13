@@ -2,9 +2,11 @@ package ch.fhnw.ip12.pipeitup.logic.Models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+import com.diozero.devices.Button;
 
 /**
  * EdgeModel
@@ -14,6 +16,7 @@ public class EdgeModel {
 
 	private VertexModel vertex1;
 	private VertexModel vertex2;
+	private HashMap<String, Integer> hardwareInfo;
 	private int weight;
 	private boolean isUsed = false;
 
@@ -21,6 +24,14 @@ public class EdgeModel {
 		this.vertex1 = vertex1;
 		this.vertex2 = vertex2;
 		this.weight = weight;
+	}
+
+	public EdgeModel(VertexModel vertex1, VertexModel vertex2, int weight,  HashMap<String, Integer> hardwareInfo) {
+		this.vertex1 = vertex1;
+		this.vertex2 = vertex2;
+		this.weight = weight;
+		this.hardwareInfo = hardwareInfo;
+
 	}
 
 	public VertexModel getVertex1() {
@@ -49,5 +60,9 @@ public class EdgeModel {
 
 	public void setWeight(int weight) {
 		this.weight = weight;
+	}
+
+	public HashMap<String, Integer> getHardwareInfo() {
+		return hardwareInfo;
 	}
 }

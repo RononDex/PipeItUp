@@ -12,8 +12,6 @@ public class GraphLayout {
 	private Set<Edge> edges;
 
 	public GraphLayout(Set<Vertex> vertices, Set<Edge> edges) {
-		super();
-
 		this.vertices = vertices;
 		this.edges = edges;
 	}

@@ -50,7 +50,7 @@ class PrimAlgorithmTest {
 		EdgeModel e4 = new EdgeModel(v2, v4, 1);
 		EdgeModel e5 = new EdgeModel(v3, v4, 1);
 		GraphLayoutModel graph = new GraphLayoutBuilder().withVertex(v1).withVertex(v2).withVertex(v3).withVertex(v4)
-				.withEdge(e1).withEdge(e2).withEdge(e3).withEdge(e4).withEdge(e5).withStartVertexForPrim(v1).build();
+			.withEdge(e1).withEdge(e2).withEdge(e3).withEdge(e4).withEdge(e5).withStartVertexForPrim(v1).build();
 		HashMap<EdgeModel, Boolean> edgesTestResult = new HashMap<>();
 		edgesTestResult.put(e1, false);
 		edgesTestResult.put(e2, false);

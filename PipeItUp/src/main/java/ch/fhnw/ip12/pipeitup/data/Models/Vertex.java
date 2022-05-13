@@ -7,12 +7,15 @@ public class Vertex {
 	private int id;
 	private double positionX;
 	private double positionY;
+	private int LED;
+	private int LEDLine;
 
-	public Vertex(int id, double positionX, double positionY) {
-		super();
+	public Vertex(int id, double positionX, double positionY, int LED, int LEDLine) {
 		this.id = id;
 		this.positionX = positionX;
 		this.positionY = positionY;
+		this.LED = LED;
+		this.LEDLine = LEDLine;
 	}
 
 	public int getId() {
@@ -25,6 +28,14 @@ public class Vertex {
 
 	public double getPositionY() {
 		return positionY;
+	}
+
+	public int getLED() {
+		return LED;
+	}
+
+	public int getLEDLine() {
+		return LEDLine;
 	}
 }
 

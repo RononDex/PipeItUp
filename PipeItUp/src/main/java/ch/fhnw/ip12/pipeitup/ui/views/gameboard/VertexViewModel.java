@@ -10,11 +10,15 @@ public class VertexViewModel {
 
 	private double vertexCenterPositionXInMm = 0d;
 	private double vertexCenterPositionYInMm = 0d;
+	private int LED;
+	private int LEDLine;
 
-	public VertexViewModel(int vertexNumber, double vertexCenterPositionXInMm, double vertexCenterPositionYInMm) {
+	public VertexViewModel(int vertexNumber, double vertexCenterPositionXInMm, double vertexCenterPositionYInMm, int LED, int LEDLine) {
 		this.vertexNumber = vertexNumber;
 		this.vertexCenterPositionXInMm = vertexCenterPositionXInMm;
 		this.vertexCenterPositionYInMm = vertexCenterPositionYInMm;
+		this.LED = LED;
+		this.LEDLine = LEDLine;
 	}
 
 	private boolean isLedActive = false;
@@ -39,6 +43,22 @@ public class VertexViewModel {
 
 	public Color getLedColor() {
 		return ledColor;
+	}
+
+	public int getLED() {
+		return LED;
+	}
+
+	public void setLED(int LED) {
+		this.LED = LED;
+	}
+
+	public int getLEDLine() {
+		return LEDLine;
+	}
+
+	public void setLEDLine(int LEDLine) {
+		this.LEDLine = LEDLine;
 	}
 }
 
