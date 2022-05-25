@@ -5,7 +5,7 @@
 #
 #	Will require sudo password
 
-REPOSITORY_URL="git@gitlab.fhnw.ch:ip12-21vt/ip12-21vt_pipelinesystem/pipe-it-up.git"
+REPOSITORY_URL="https://github.com/RononDex/PipeItUp"
 
 
 scriptDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
