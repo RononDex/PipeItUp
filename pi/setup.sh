@@ -12,7 +12,7 @@ scriptDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt install openjdk-11-jdk git swig maven openjfx gradle -y
+sudo apt install openjdk-11-jdk git swig maven openjfx gradle git-lfs -y
 
 # ---------------------------------------------------------------------------------
 # Ensure git repo is cloned and that pwd is inside the cloned / up to date git repo
