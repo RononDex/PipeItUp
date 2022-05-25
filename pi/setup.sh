@@ -22,19 +22,6 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
 	git pull
 
 else
-	# NOT a git repo!
-	if [ ! -f ~/.ssh/id_rsa ]; then
-		echo "No existing ssh certificate found, generating one now...."
-		ssh-keygen -q -N '' -t rsa -b 4096 -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
-
-		echo "SSH Key generated, please whitelist the following ssh public key in your git repo:"
-		cat ~/.ssh/id_rsa.pub
-
-		echo ""
-		echo "-------------------------------------------------------------"
-		read  -n 1 -p "Press any key to continue" mainmenuinput
-	fi
-
 	mkdir -p ~/packages >/dev/null 2>&1
 
 	cd ~/packages
