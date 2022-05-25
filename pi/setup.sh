@@ -69,15 +69,6 @@ cp build/libs/rpi-ws281x-java-2.0.0-SNAPSHOT.jar ../../PipeItUp/repository/com/g
 sudo chown pipeitup:pipeitup ../../PipeItUp/repository/com/github/mbelling/rpi-ws281x/2.0.0-SNAPSHOT/rpi-ws281x-2.0.0-SNAPSHOT.jar
 
 # ---------------------------------------------------------------------------------
-# Compile PipeItUp to executable jar
-# ---------------------------------------------------------------------------------
-
-cd ~/packages/PipeItUp/PipeItUp
-mvn package
-cp database.db ~/Desktop/database.db
-cp target/PipeItUp-1.0-SNAPSHOT-shaded.jar ~/Desktop/PipeItUp.jar
-
-# ---------------------------------------------------------------------------------
 # Setup wifi Mgmt
 # ---------------------------------------------------------------------------------
 
