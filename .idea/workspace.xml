@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Css Warning Fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/controllers/RunController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/controllers/RunController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/resources/ui/views/touch/style/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/resources/ui/views/touch/style/Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +89,12 @@
     <property name="GitStage.ChangesTree.GroupingKeys" value="directory&#10;module&#10;repository" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -308,6 +311,7 @@
       <workItem from="1652698415178" duration="3571000" />
       <workItem from="1652884029304" duration="737000" />
       <workItem from="1653289447841" duration="654000" />
+      <workItem from="1653460552597" duration="801000" />
     </task>
     <task id="LOCAL-00001" summary="Added maven funcionality">
       <created>1638264774951</created>
@@ -456,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652858048301</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="3D Print-Dateien">
+      <created>1653460790603</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1653460790603</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,6 +483,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added maven funcionality" />
@@ -493,7 +505,8 @@
     <MESSAGE value="Highscore logic fully implemented" />
     <MESSAGE value="remove database link" />
     <MESSAGE value="Css Warning Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Css Warning Fix" />
+    <MESSAGE value="3D Print-Dateien" />
+    <option name="LAST_COMMIT_MESSAGE" value="3D Print-Dateien" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
