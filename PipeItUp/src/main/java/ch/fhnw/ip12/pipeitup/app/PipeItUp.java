@@ -1,19 +1,17 @@
 package ch.fhnw.ip12.pipeitup.app;
 
-import java.util.Arrays;
-import java.util.List;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import ch.fhnw.ip12.pipeitup.data.DependencyInjectionConfigData;
 import ch.fhnw.ip12.pipeitup.logic.DependencyInjectionConfigLogic;
 import ch.fhnw.ip12.pipeitup.ui.DependencyInjectionConfigUi;
 import ch.fhnw.ip12.pipeitup.ui.PipeItUpGameEntryPoint;
 import ch.fhnw.ip12.pipeitup.ui.UiMode;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**

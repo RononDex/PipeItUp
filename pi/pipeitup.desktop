@@ -1,0 +1,3 @@
+[Desktop Entry]
+Name=PipeItUp
+Exec=/usr/bin/sh /home/pipeitup/pipe-it-up/pi/startGame.sh

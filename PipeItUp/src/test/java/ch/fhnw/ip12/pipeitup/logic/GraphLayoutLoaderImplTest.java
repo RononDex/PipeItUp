@@ -1,38 +1,25 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import ch.fhnw.ip12.pipeitup.data.Database;
+import ch.fhnw.ip12.pipeitup.data.Models.Edge;
+import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
+import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
+import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
-
-import org.junit.jupiter.api.Test;
-
-import ch.fhnw.ip12.pipeitup.data.Database;
-import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
-import ch.fhnw.ip12.pipeitup.data.Models.Edge;
-import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
-import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
-
 /**
  * GraphLayoutLoaderImplTests
  */
 class GraphLayoutLoaderImplTest {
-
-	@Test
-	void getIncidenceMatrixForGraph_WithAnyGraphId_AlwaysReturnsNull() {
-		Database databaseMock = mock(Database.class);
-
-		GraphLayoutLoaderImpl testee = new GraphLayoutLoaderImpl(databaseMock);
-		int[][] actual = testee.getIncidenceMatrixForGraph(1);
-
-		assertNull(actual);
-	}
 
 	@Test
 	void getRandomlyWeightedGraph_WithMaxWeightOfZero_ThrowsException() {

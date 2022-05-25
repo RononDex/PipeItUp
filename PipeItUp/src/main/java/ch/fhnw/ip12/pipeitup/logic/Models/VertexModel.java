@@ -1,9 +1,9 @@
 package ch.fhnw.ip12.pipeitup.logic.Models;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
 /**
  * VertexModel

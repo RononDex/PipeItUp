@@ -15,9 +15,5 @@ import java.util.Set;
  */
 @ExcludeTypeFromJacocoGeneratedReport
 public interface HardwareGameBoardUi extends GameBoard {
-	void setEdgeColor(EdgeViewModel edge, Color color);
-	void setVertexColor(VertexViewModel vertex, Color color);
-	void victoryRoyal(Set<EdgeViewModel> edgeViewModels);
-	void renderLEDLines();
-	void clearLEDLines();
+
 }

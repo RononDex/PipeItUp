@@ -12,8 +12,7 @@ scriptDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt install openjdk-11-jdk git swig maven openjfx -y
-sudo pip3 install rpi_ws281x
+sudo apt install openjdk-11-jdk git swig maven openjfx gradle -y
 
 # ---------------------------------------------------------------------------------
 # Ensure git repo is cloned and that pwd is inside the cloned / up to date git repo
@@ -21,8 +20,7 @@ sudo pip3 install rpi_ws281x
 if git rev-parse --git-dir > /dev/null 2>&1; then
 	# We are inside a git repo
 	git pull
-elif [ -f ./autohotspot ]; then
-	echo "Working in offline mode and presuming this script was called from inside a copy of the source"
+
 else
 	# NOT a git repo!
 	if [ ! -f ~/.ssh/id_rsa ]; then
@@ -49,71 +47,57 @@ else
 	fi
 fi
 
-. "$scriptDir"/functions.sh
+
 
 # ---------------------------------------------------------------------------------
-# Setup hostname
-# ---------------------------------------------------------------------------------
-sudo cp "$scriptDir"/hostname /etc/hostname
-sudo cp "$scriptDir"/hosts /etc/hosts
-
-# ---------------------------------------------------------------------------------
-# Setup sudoers config
+# Setup sudoers config and autostart of game
 # ---------------------------------------------------------------------------------
 sudo cp "$scriptDir"/sudoers /etc/sudoers
+sudo cp "$scriptDir"/pipeitup.desktop /etc/xdg/autostart/pipeitup.desktop
 
 # ---------------------------------------------------------------------------------
 # Setup GPIO access for user pipeitup
 # ---------------------------------------------------------------------------------
 sudo usermod -a -G gpio pipeitup
 
-# ---------------------------------------------------------------------------------
-# Setup dns servers
-# ---------------------------------------------------------------------------------
-sudo apt update && sudo apt install resolvconf -y
-sudo systemctl start resolvconf.service
-sudo systemctl enable resolvconf.service
-sudo cp "$scriptDir"/headDnsConfig /etc/resolvconf/resolv.conf.d/head
 
 # ---------------------------------------------------------------------------------
-# Setup SSH-Daemon
+# Configure Raspi-Config
 # ---------------------------------------------------------------------------------
-cd pi
-sudo cp sshd_config /etc/ssh/sshd_config
+sudo raspi-config nonint do_hostname pipe-it-up-pi
+sudo raspi-config nonint do_i2c 0 # Enables I2C Interface
+sudo raspi-config nonint do_boot_behaviour B4 # Enables Desktop Autologin for touchscreen
+sudo raspi-config nonint do_vnc 0 # Activate VNC Server
 
-sudo systemctl restart ssh
-sudo systemctl enable ssh
+# ---------------------------------------------------------------------------------
+# jar file for LEDs
+# ---------------------------------------------------------------------------------
+git clone https://github.com/rpi-ws281x/rpi-ws281x-java
+cp createNativeLib.sh rpi-ws281x-java/src/scripts/createNativeLib.sh
+cd rpi-ws281x-java
+sudo bash src/scripts/createNativeLib.sh
+gradle wrapper --gradle-version=5.6
+./gradlew assemble -x signArchives
+cp build/libs/rpi-ws281x-java-2.0.0-SNAPSHOT.jar ../../PipeItUp/repository/com/github/mbelling/rpi-ws281x/2.0.0-SNAPSHOT/rpi-ws281x-2.0.0-SNAPSHOT.jar
+sudo chown pipeitup:pipeitup ../../PipeItUp/repository/com/github/mbelling/rpi-ws281x/2.0.0-SNAPSHOT/rpi-ws281x-2.0.0-SNAPSHOT.jar
+
+# ---------------------------------------------------------------------------------
+# Compile PipeItUp to executable jar
+# ---------------------------------------------------------------------------------
+
+cd ../../PipeItUp
+mvn package
+cp database.db /home/pipeitup/Desktop/database.db
+cp target/PipeItUp-1.0-SNAPSHOT-shaded.jar /home/pipeitup/Desktop/PipeItUp.jar
 
 # ---------------------------------------------------------------------------------
 # Setup wifi Mgmt
 # ---------------------------------------------------------------------------------
 
-SetupAutoHotspot
-
-sudo crontab "$scriptDir"/cronConfig
 sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
 
 echo "country=CH" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf
 echo "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf
 echo "update_config=1" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf
 
-SetupKnownWifi "luca" "asdfghjkl"
-SetupKnownWifi "Chuck Norris is here" "aafa4e8f08e7"
 SetupKnownWifi "Pipe-It-Up-Internet" "pipe-it-up!3"
-
-# ---------------------------------------------------------------------------------
-# Setup VNC Server
-# ---------------------------------------------------------------------------------
-sudo apt install tightvncserver -y
-sudo cp "$scriptDir"/vncserver.service /etc/systemd/system/vncserver.service
-vncserver :1
-mkdir -p ~/.vnc
-cp "$scriptDir"/vncConfig ~/.vnc/config
-sudo systemctl enable vncserver
-
-
-# Configure Raspi-Config
-sudo raspi-config nonint do_i2c 0 # Enables I2C Interface
-sudo raspi-config nonint do_boot_behaviour B4 # Enables Desktop Autologin for touchscreen
-
-# TODO: pipe-it-up kompillieren und installieren

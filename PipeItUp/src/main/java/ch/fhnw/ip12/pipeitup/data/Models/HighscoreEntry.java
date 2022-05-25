@@ -7,10 +7,12 @@ public class HighscoreEntry {
 
 	private String userName;
 	private float scoreInSeconds;
+	private int gameMode;
 
-	public HighscoreEntry(String userName, float scoreInSeconds) {
+	public HighscoreEntry(String userName, float scoreInSeconds, int gameMode) {
 		this.userName = userName;
 		this.scoreInSeconds = scoreInSeconds;
+		this.gameMode = gameMode;
 	}
 
 	public String getUserName() {
@@ -19,5 +21,9 @@ public class HighscoreEntry {
 
 	public float getScoreInSeconds() {
 		return scoreInSeconds;
+	}
+
+	public int getGameMode() {
+		return gameMode;
 	}
 }

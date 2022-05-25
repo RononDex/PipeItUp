@@ -1,12 +1,12 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /*
 minimum spanning tree
@@ -15,16 +15,18 @@ public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeServic
 
 	@Override
 	public final boolean canEdgeBeUsed(GraphLayoutModel graphLayout, EdgeModel edge) {
-		Set<VertexModel> usedVertices = getUsedVertices(graphLayout);
-		if (edge.isUsed())
+		if (edge.isUsed()) {
 			return false;
+		}
+
+		Set<VertexModel> usedVertices = getUsedVertices(graphLayout);
+		boolean isLoop = false;
 		if (edge.getConnectedVertices().stream().allMatch(vertex -> usedVertices.contains(vertex))) { // potential cycle
 			edge.setUsed(true); // temporarily set to true to check loop
-			boolean isLoop = createsLoop(graphLayout, new HashSet<>(), edge.getVertex1(), edge);
+			isLoop = createsLoop(graphLayout, new HashSet<>(), edge.getVertex1(), edge);
 			edge.setUsed(false);
-			return !isLoop;
 		}
-		return true;
+		return !isLoop;
 	}
 
 	private final boolean createsLoop(GraphLayoutModel graphLayout, HashSet<EdgeModel> seen, VertexModel nextVertex,
@@ -41,19 +43,13 @@ public class MinimumSpanningTreeServiceImpl implements MinimumSpanningTreeServic
 	}
 
 	/**
-	 * check if all vertices are used
-	 *
-	 * @return true if all vertices are used, otherwise false
+	 * Checks if the spanning tree is complete (has n - 1 edges active)
+	 * 
+	 * @return true if all n-1 edges are used (n = number of vertices)
 	 */
 	@Override
 	public final boolean isMspCompleted(GraphLayoutModel graphLayout) {
-		return graphLayout.getVertices().stream().allMatch(
-				vertex -> vertex.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed).count() > 1 // isn't isolated
-						|| (vertex.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed).count() == 1 // has only one connection
-								&& vertex.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed).iterator().next()
-										.getConnectedVertices().stream().anyMatch( // and next vertex isn't isolated
-												vertex1 -> vertex1.getConnectedEdges(graphLayout).stream().filter(EdgeModel::isUsed)
-														.count() > 1)));
+		return graphLayout.getEdges().stream().filter(e -> e.isUsed()).count() == graphLayout.getVertices().size() - 1;
 
 	}
 

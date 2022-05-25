@@ -1,12 +1,5 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import com.google.inject.Inject;
-
 import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.data.Database;
 import ch.fhnw.ip12.pipeitup.data.Models.Edge;
@@ -15,22 +8,20 @@ import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
 import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
+import com.google.inject.Inject;
 
-/**
- * GraphLayoutLoaderImpl
- */
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 
 	private final Database database;
+	private static GraphLayout cachedGraphLayout;
 
 	@Inject
 	public GraphLayoutLoaderImpl(Database database) {
 		this.database = database;
-	}
-
-	@Override
-	public int[][] getIncidenceMatrixForGraph(int graphId) {
-		return null;
 	}
 
 	@Override
@@ -39,7 +30,10 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 			throw new IllegalArgumentException("maxWeight has to be at least 1");
 		}
 
-		GraphLayout graphLayout = database.getGraphLayout();
+		GraphLayout graphLayout = cachedGraphLayout != null ? cachedGraphLayout : database.getGraphLayout();
+		if (cachedGraphLayout == null)
+			cachedGraphLayout = graphLayout;
+
 		Set<VertexModel> vertexModels = graphLayout.getVertices().stream().map(GraphLayoutLoaderImpl::Map)
 			.collect(Collectors.toSet());
 		Set<EdgeModel> edgeModels = graphLayout.getEdges().stream().map(e -> Map(e, vertexModels))
@@ -60,13 +54,14 @@ class GraphLayoutLoaderImpl implements GraphLayoutLoader {
 	@ExcludeMethodFromJacocoGeneratedReport
 	private static EdgeModel Map(Edge edge, Set<VertexModel> vertexList) {
 		return new EdgeModel(
-			vertexList.stream()
-				.filter(v -> v.getPositionX() == edge.getVertex1().getPositionX()
-					&& v.getPositionY() == edge.getVertex1().getPositionY())
-				.findFirst().get(),
-			vertexList.stream().filter(v -> v.getPositionX() == edge.getVertex2().getPositionX()
-				&& v.getPositionY() == edge.getVertex2().getPositionY()).findFirst().get(),
-			0,
-		edge.getHardwareInfo());
+				vertexList.stream()
+						.filter(v -> v.getPositionX() == edge.getVertex1().getPositionX()
+								&& v.getPositionY() == edge.getVertex1().getPositionY())
+						.findFirst().get(),
+				vertexList.stream()
+						.filter(v -> v.getPositionX() == edge.getVertex2().getPositionX()
+								&& v.getPositionY() == edge.getVertex2().getPositionY())
+						.findFirst().get(),
+				0, edge.getHardwareInfo());
 	}
 }

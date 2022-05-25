@@ -4,6 +4,6 @@ import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 
 @ExcludeTypeFromJacocoGeneratedReport
 public enum EdgeState {
-	UNSELECTED, SELECTED, INVALID_SELECTION, BLINKING
+	UNSELECTED, SELECTED, INVALID_SELECTION, BLINKING, DEACTIVATED
 }
 

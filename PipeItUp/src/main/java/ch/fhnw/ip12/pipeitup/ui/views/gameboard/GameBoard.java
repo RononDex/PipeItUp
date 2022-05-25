@@ -11,4 +11,6 @@ public interface GameBoard {
 	void setGameBoardViewModel(GameBoardViewModel gameBoardViewModel);
 
 	void start();
+
+	void stop();
 }

@@ -1,13 +1,11 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import com.google.inject.Inject;
-
 import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
+import com.google.inject.Inject;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 final class PrimAlgorithmImpl implements PrimAlgorithm {
 
@@ -41,7 +39,6 @@ final class PrimAlgorithmImpl implements PrimAlgorithm {
 				.collect(Collectors.toSet());
 
 		int minReachableEdgeWeight = reachableEdges.stream()
-				.filter(edge1 -> !edge1.isUsed())
 				.mapToInt(EdgeModel::getWeight).min().orElse(0);
 
 		// check if lowest weight and not in tree and not cycle

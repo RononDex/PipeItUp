@@ -1,11 +1,11 @@
 package ch.fhnw.ip12.pipeitup.logic.utils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
 import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * GraphLayoutBuilder

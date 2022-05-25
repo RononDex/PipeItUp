@@ -1,7 +1,6 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.ui.Color;
 import com.diozero.devices.Button;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -18,8 +17,6 @@ public class EdgeViewModel {
 	private HashMap<String, Integer> hardwareInfo;
 	private Button button1;
 	private Button button2;
-
-	public SimpleObjectProperty<Color> color = new SimpleObjectProperty<Color>(new Color(0, 255, 0));
 
 	public SimpleObjectProperty<EdgeState> edgeState = new SimpleObjectProperty<EdgeState>(EdgeState.UNSELECTED);
 

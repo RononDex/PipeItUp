@@ -1,8 +1,7 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import com.google.inject.AbstractModule;
-
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+import com.google.inject.AbstractModule;
 
 /**
 * DependencyInjectionConfig

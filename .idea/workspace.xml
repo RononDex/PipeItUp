@@ -4,26 +4,69 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="remove database link">
+    <list default="true" id="eb4dddbb-3e2f-41d4-8c46-6dff3b5c3382" name="Changes" comment="Css Warning Fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/Models/HighscoreEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/data/Models/HighscoreEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/DependencyInjectionConfigLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/DependencyInjectionConfigLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/HighscoreSerivce.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/HighscoreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/HighscoreServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Models/HighscoreEntryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/logic/Models/HighscoreEntryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/TouchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/TouchViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImplTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/test/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImplTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/controllers/RunController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/views/touch/controllers/RunController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PipeItUp/src/main/resources/ui/views/touch/style/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/PipeItUp/src/main/resources/ui/views/touch/style/Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="javafx" />
+              </list>
+            </value>
+          </entry>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/javafx" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="javafx" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,40 +82,53 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="21dEIBTBUJevhCkG6LoS3NulpAO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="GitStage.ChangesTree.GroupingKeys" value="directory&#10;module&#10;repository" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\clara\IdeaProjects\pipe-it-up\pipe-it-up\PipeItUp\src\main\resources\ui\views\touch\img\Spielmechanik" />
+      <recent name="C:\Users\clara\IdeaProjects\pipe-it-up\pipe-it-up\PipeItUp\src\main\resources\ui\views\touch\img\PrimEM" />
+      <recent name="C:\Users\clara\IdeaProjects\pipe-it-up\pipe-it-up\PipeItUp\src\main\resources\ui\views\touch" />
+      <recent name="C:\Users\clara\IdeaProjects\pipe-it-up\pipe-it-up\PipeItUp\src\main\resources\ui\views\touch\img\KruskalEM" />
+      <recent name="C:\Users\clara\IdeaProjects\pipe-it-up\pipe-it-up\PipeItUp\src\main\resources\ui\views\touch\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\foery\IdeaProjects\pipe-it-upjava3\PipeItUp\src\main\resources\ui\views\touch\img\Menus" />
+      <recent name="C:\Users\foery\IdeaProjects\pipe-it-upjava3\PipeItUp\src\main\resources\ui\views\touch\img\Pauline" />
       <recent name="$PROJECT_DIR$/PipeItUp/src/main/resources" />
       <recent name="$PROJECT_DIR$/PipeItUp/src/main" />
       <recent name="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/style" />
-      <recent name="$PROJECT_DIR$/PipeItUp/src/main/java/resources/ch/fhnw/ip12/pipeitup/ui/views/touch/img" />
-      <recent name="C:\Users\lucap\OneDrive - FHNW\Documents\IP1_Pipeline\pipe-it-up_fix\PipeItUp" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven. [install]">
+  <component name="RunManager" selected="Maven.Run locally">
     <configuration name="PipeItUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ch.fhnw.ip12.pipeitup.app.PipeItUp" />
       <module name="PipeItUp" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ch.fhnw.ip12.pipeitup.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PipeItUpGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch.fhnw.ip12.pipeitup.ui.PipeItUpGame" />
+      <module name="PipeItUp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.fhnw.ip12.pipeitup.ui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -221,6 +277,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.PipeItUp" />
+      <item itemvalue="Application.PipeItUpGame" />
       <item itemvalue="Maven.test" />
       <item itemvalue="Maven.Run locally" />
       <item itemvalue="Maven. [install]" />
@@ -229,6 +286,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.PipeItUp" />
+        <item itemvalue="Application.PipeItUpGame" />
       </list>
     </recent_temporary>
   </component>
@@ -244,6 +302,12 @@
       <workItem from="1638266783564" duration="1357000" />
       <workItem from="1649402168570" duration="497000" />
       <workItem from="1652257157125" duration="11143000" />
+      <workItem from="1652423831495" duration="988000" />
+      <workItem from="1652431575217" duration="1476000" />
+      <workItem from="1652443574897" duration="4986000" />
+      <workItem from="1652698415178" duration="3571000" />
+      <workItem from="1652884029304" duration="737000" />
+      <workItem from="1653289447841" duration="654000" />
     </task>
     <task id="LOCAL-00001" summary="Added maven funcionality">
       <created>1638264774951</created>
@@ -266,7 +330,133 @@
       <option name="project" value="LOCAL" />
       <updated>1649402491488</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added explainmode PNGs">
+      <created>1652180923607</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652180923607</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Über Prim Spielmodus bis zur Namenseingabe">
+      <created>1652261342447</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652261342447</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Timer Pregame">
+      <created>1652347795863</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1652347795863</updated>
+    </task>
+    <task id="LOCAL-00007" summary="End Result in Millis">
+      <created>1652359475806</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652359475806</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Highscore Table">
+      <created>1652369182921</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652369182921</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Highscore Table">
+      <created>1652369221415</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1652369221415</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Same Highscore implementiert">
+      <created>1652369523622</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1652369523622</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Navigation Update">
+      <created>1652447085202</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1652447085202</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Highscore Sort + Settings Menu">
+      <created>1652447142095</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1652447142095</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Highscore Sort + Settings Menu">
+      <created>1652448016322</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1652448016322</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Highscore Sort + Settings Menu">
+      <created>1652448236453</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1652448236453</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Test w/o DB">
+      <created>1652448542535</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1652448542535</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixed highscore error when switching from Endscreen">
+      <created>1652616503519</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1652616503519</updated>
+    </task>
+    <task id="LOCAL-00017" summary="small patch">
+      <created>1652616534112</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1652616534112</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Runtime Score counter fixed">
+      <created>1652617168253</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1652617168253</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Runtime Score counter fixed">
+      <created>1652617182320</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1652617182320</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Highscore logic fully implemented">
+      <created>1652622297756</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1652622297756</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Css Warning Fix">
+      <created>1652858048301</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1652858048301</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,15 +475,32 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added maven funcionality" />
+    <MESSAGE value="Added explainmode PNGs" />
+    <MESSAGE value="Über Prim Spielmodus bis zur Namenseingabe" />
+    <MESSAGE value="Erklärmodus fertig" />
+    <MESSAGE value="Spielmechanik PNGs angepasst" />
+    <MESSAGE value="Timer Pregame" />
+    <MESSAGE value="End Result in Millis" />
+    <MESSAGE value="Alle Timers funktionieren. Reset Game funktioniert" />
+    <MESSAGE value="Highscore Table" />
+    <MESSAGE value="Same Highscore implementiert" />
+    <MESSAGE value="Navigation Update" />
+    <MESSAGE value="Highscore Sort + Settings Menu" />
+    <MESSAGE value="Test w/o DB" />
+    <MESSAGE value="Fixed highscore error when switching from Endscreen" />
+    <MESSAGE value="small patch" />
+    <MESSAGE value="Runtime Score counter fixed" />
+    <MESSAGE value="Highscore logic fully implemented" />
     <MESSAGE value="remove database link" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove database link" />
+    <MESSAGE value="Css Warning Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Css Warning Fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/PipeItUp/src/main/java/ch/fhnw/ip12/pipeitup/ui/GameModeServiceImpl.java</url>
-          <line>113</line>
+          <line>166</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
