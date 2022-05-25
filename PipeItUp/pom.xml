@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project
-		xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ch.fhnw.ip12.pipeitup</groupId>
@@ -217,7 +216,8 @@
 					<execution>
 						<id>default-report</id>
 						<phase>test</phase>
-						<goals> <goal>report</goal>
+						<goals>
+							<goal>report</goal>
 						</goals>
 					</execution>
 					<execution>
@@ -285,34 +285,10 @@
 		</pluginManagement>
 	</build>
 	<profiles>
-		<!-- Run the JAR file locally -->
 		<profile>
-			<id>local-run</id>
-			<activation>
-				<property>
-					<name>!pi.remote.host</name>
-				</property>
-			</activation>
+			<id>package-exe</id>
 			<build>
 				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>verify</phase>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<executable>sudo</executable>
-							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module
-								${pi.launcher.class} ${pi.launcher.args} --softwareUi
-							</commandlineArgs>
-						</configuration>
-					</plugin>
 					<plugin>
 						<groupId>com.akathist.maven.plugins.launch4j</groupId>
 						<artifactId>launch4j-maven-plugin</artifactId>
@@ -352,6 +328,38 @@
 							</execution>
 						</executions>
 					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+		<!-- Run the JAR file locally -->
+		<profile>
+			<id>local-run</id>
+			<activation>
+				<property>
+					<name>!pi.remote.host</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>sudo</executable>
+							<commandlineArgs>java --module-path ${project.build.directory}/distribution --module
+								${pi.launcher.class} ${pi.launcher.args} --softwareUi
+							</commandlineArgs>
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -380,24 +388,15 @@
 								<configuration>
 									<target>
 										<!-- Ensure target directory exists on pi -->
-										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
-												 username="${pi.remote.username}" password="${pi.remote.password}"
-												 trust="true" command="mkdir --parents ${pi.remote.target}"/>
+										<sshexec host="${pi.remote.host}" port="${pi.remote.port}" username="${pi.remote.username}" password="${pi.remote.password}" trust="true" command="mkdir --parents ${pi.remote.target}"/>
 
 										<!-- Transfer distribution folder to pi via SCP -->
-										<scp trust="true"
-											 todir="${pi.remote.username}:${pi.remote.password}@${pi.remote.host}:${pi.remote.target}"
-											 port="${pi.remote.port}">
+										<scp trust="true" todir="${pi.remote.username}:${pi.remote.password}@${pi.remote.host}:${pi.remote.target}" port="${pi.remote.port}">
 											<fileset dir="${project.build.directory}/distribution"/>
 										</scp>
-										<scp file="${project.build.directory}/database.db" trust="true"
-											 todir="${pi.remote.username}:${pi.remote.password}@${pi.remote.host}:${pi.remote.target}"
-											 port="${pi.remote.port}">
+										<scp file="${project.build.directory}/database.db" trust="true" todir="${pi.remote.username}:${pi.remote.password}@${pi.remote.host}:${pi.remote.target}" port="${pi.remote.port}">
 										</scp>
-										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
-												 username="${pi.remote.username}" password="${pi.remote.password}"
-												 trust="true"
-												 command="rm ${pi.remote.target}/javafx-* &amp;&amp; cp /usr/share/openjfx/lib/javafx.* ${pi.remote.target}/"/>
+										<sshexec host="${pi.remote.host}" port="${pi.remote.port}" username="${pi.remote.username}" password="${pi.remote.password}" trust="true" command="rm ${pi.remote.target}/javafx-* &amp;&amp; cp /usr/share/openjfx/lib/javafx.* ${pi.remote.target}/"/>
 									</target>
 								</configuration>
 							</execution>
@@ -418,8 +417,7 @@
 		<profile>
 			<id>debug</id>
 			<properties>
-				<pi.remote.jvmOptions>
-					-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005
+				<pi.remote.jvmOptions> -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005
 				</pi.remote.jvmOptions>
 			</properties>
 		</profile>
