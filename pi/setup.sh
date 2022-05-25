@@ -72,10 +72,10 @@ sudo chown pipeitup:pipeitup ../../PipeItUp/repository/com/github/mbelling/rpi-w
 # Compile PipeItUp to executable jar
 # ---------------------------------------------------------------------------------
 
-cd ../../PipeItUp
+cd ~/packages/PipeItUp/PipeItUp
 mvn package
-cp database.db /home/pipeitup/Desktop/database.db
-cp target/PipeItUp-1.0-SNAPSHOT-shaded.jar /home/pipeitup/Desktop/PipeItUp.jar
+cp database.db ~/Desktop/database.db
+cp target/PipeItUp-1.0-SNAPSHOT-shaded.jar ~/Desktop/PipeItUp.jar
 
 # ---------------------------------------------------------------------------------
 # Setup wifi Mgmt
