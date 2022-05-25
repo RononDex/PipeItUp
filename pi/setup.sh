@@ -25,12 +25,12 @@ else
 	mkdir -p ~/packages >/dev/null 2>&1
 
 	cd ~/packages
-	if [ -d ~/packages/pipe-it-up ]; then
-		cd ~/packages/pipe-it-up
+	if [ -d ~/packages/PipeItUp ]; then
+		cd ~/packages/PipeItUp
 		git pull
 	else
 		git clone $REPOSITORY_URL
-		cd pipe-it-up/pi
+		cd PipeItUp/pi
 	fi
 fi
 
