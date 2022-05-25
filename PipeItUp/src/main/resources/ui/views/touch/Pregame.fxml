@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.ip12.pipeitup.ui.views.touch.controllers.PreGameController">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/PREGAME.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="countdown" layoutX="65.0" layoutY="102.0" prefHeight="161.0" prefWidth="670.0" styleClass="countdown" stylesheets="@style/Style.css" />
+   </children>
+</AnchorPane>

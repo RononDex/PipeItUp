@@ -1,9 +1,7 @@
 package ch.fhnw.ip12.pipeitup.data;
 
-import com.diozero.devices.BME680.Data;
-import com.google.inject.AbstractModule;
-
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+import com.google.inject.AbstractModule;
 
 /**
 * DependencyInjectionConfig

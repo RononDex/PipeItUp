@@ -1,10 +1,11 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
-import java.time.LocalTime;
-
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+
+import java.time.LocalTime;
 
 /**
  * GameBoardViewModel
@@ -22,4 +23,11 @@ public class GameBoardViewModel {
 
 	public Property<LocalTime> gameStartMomentForHighscore = new SimpleObjectProperty<>();
 	public Property<LocalTime> gameEndMomentForHighscore = new SimpleObjectProperty<>();
+
+	public Property<Boolean> resetGameBoard = new SimpleObjectProperty<>();
+
+	public Property<MapMode> selectedMapMode = new SimpleObjectProperty<>();
+
+	public Property<Boolean> startNewGame = new SimpleBooleanProperty();
+	public Property<Boolean> showSolution = new SimpleBooleanProperty();
 }

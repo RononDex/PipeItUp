@@ -1,20 +1,19 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
+import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
+import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
+import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
+import ch.fhnw.ip12.pipeitup.logic.utils.GraphLayoutBuilder;
+import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.util.HashMap;
-
-import org.junit.jupiter.api.Test;
-
-import ch.fhnw.ip12.pipeitup.logic.Models.EdgeModel;
-import ch.fhnw.ip12.pipeitup.logic.Models.GraphLayoutModel;
-import ch.fhnw.ip12.pipeitup.logic.Models.VertexModel;
-import ch.fhnw.ip12.pipeitup.logic.utils.GraphLayoutBuilder;
 
 class PrimAlgorithmTest {
 

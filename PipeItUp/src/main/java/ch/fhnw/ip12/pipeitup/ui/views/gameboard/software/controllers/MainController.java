@@ -1,15 +1,10 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.controllers;
 
-import java.time.Duration;
-import java.time.Period;
-import java.time.temporal.TemporalUnit;
-
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.EdgeState;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.EdgeViewModel;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoardState;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameBoardViewModel;
-import ch.fhnw.ip12.pipeitup.ui.views.gameboard.GameMode;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.VertexViewModel;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.Vector2;
 import javafx.fxml.FXML;
@@ -18,6 +13,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+
+import java.time.Duration;
 
 /**
  * MainController
@@ -40,14 +37,12 @@ public class MainController {
 		gameBoardViewModel.selectedEdgeForValidation.addListener(listener -> updateGameBoardCanvas());
 		gameBoardViewModel.startNodeForPrim.addListener(listener -> updateGameBoardCanvas());
 		gameBoardViewModel.graphViewModel.addListener(listener -> updateGameBoardCanvas());
+		gameBoardViewModel.graphViewModel.addListener(listener -> bindEdgesAndVertices());
 		gameBoardViewModel.gameBoardState.addListener(listener -> updateGameStateLabel());
 		gameBoardViewModel.gameMode.addListener(listener -> updateGameModeLabel());
 
 		updateGameBoardCanvas();
-
-		// TODO: Set game mode from menu
-		gameBoardViewModel.gameMode.setValue(GameMode.PRIM);
-		gameBoardViewModel.gameBoardState.setValue(GameBoardState.SELECT_START_NODE);
+		bindEdgesAndVertices();
 	}
 
 	@FXML
@@ -57,6 +52,15 @@ public class MainController {
 	@FXML
 	private Label gameMode;
 
+	private void bindEdgesAndVertices() {
+		gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+				.forEach(e -> e.weight.addListener(listener -> updateGameBoardCanvas()));
+		gameBoardViewModel.graphViewModel.getValue().edgeViewModels
+				.forEach(e -> e.edgeState.addListener(listener -> updateGameBoardCanvas()));
+		gameBoardViewModel.graphViewModel.getValue().vertexViewModels
+				.forEach(v -> v.isLedActive.addListener(listener -> updateGameBoardCanvas()));
+	}
+
 	private void updateGameStateLabel() {
 		if (gameBoardViewModel.gameBoardState.getValue() != null) {
 			gameState.textProperty().setValue(gameBoardViewModel.gameBoardState.getValue().toString());
@@ -65,7 +69,6 @@ public class MainController {
 		if (gameBoardViewModel.gameBoardState.getValue() == GameBoardState.GAME_FINISHED) {
 			float seconds = Duration.between(gameBoardViewModel.gameStartMomentForHighscore.getValue(),
 					gameBoardViewModel.gameEndMomentForHighscore.getValue()).toMillis() / 1000f;
-			System.out.println("Highscore: " + seconds + "s");
 		}
 	}
 
@@ -95,8 +98,7 @@ public class MainController {
 		for (VertexViewModel vertex : gameBoardViewModel.graphViewModel.getValue().vertexViewModels) {
 
 			// Change color if selected as start node
-			if (gameBoardViewModel.startNodeForPrim.getValue() != null
-					&& vertex.getVertexNumber() == gameBoardViewModel.startNodeForPrim.getValue().getVertexNumber()) {
+			if (vertex.isLedActive.get()) {
 				gc.setFill(Color.ORANGE);
 			} else {
 				gc.setFill(Color.DARKGRAY);
@@ -109,13 +111,19 @@ public class MainController {
 
 	private void drawEdges(GraphicsContext gc) {
 		for (EdgeViewModel edge : gameBoardViewModel.graphViewModel.getValue().edgeViewModels) {
-			gc.setStroke(Color.BLACK);
+			gc.setStroke(Color.BLUE);
 			gc.setLineWidth(3.0);
 			if (edge.edgeState.get() == EdgeState.SELECTED) {
 				gc.setStroke(Color.GREEN);
 			}
 			if (edge.edgeState.get() == EdgeState.INVALID_SELECTION) {
 				gc.setStroke(Color.RED);
+			}
+			if (edge.edgeState.get() == EdgeState.BLINKING) {
+				gc.setStroke(Color.DARKGOLDENROD);
+			}
+			if (edge.edgeState.get() == EdgeState.DEACTIVATED) {
+				gc.setStroke(Color.BLACK);
 			}
 			gc.strokeLine(edge.vertex1.getVertexCenterPositionXInMm() * uiScale,
 					edge.vertex1.getVertexCenterPositionYInMm() * uiScale,
@@ -129,7 +137,9 @@ public class MainController {
 					edge.vertex2.getVertexCenterPositionYInMm() * uiScale);
 			Vector2 middleOfLine = v1.subtract(v2).divide(2).add(v2).add(new Vector2(10 * uiScale, -5 * uiScale));
 
-			gc.strokeText(Integer.toString(edge.weight.get()), middleOfLine.x, middleOfLine.y);
+			if (edge.edgeState.get() != EdgeState.DEACTIVATED) {
+				gc.strokeText(Integer.toString(edge.weight.get()), middleOfLine.x, middleOfLine.y);
+			}
 		}
 	}
 
@@ -152,9 +162,6 @@ public class MainController {
 			for (EdgeViewModel edge : gameBoardViewModel.graphViewModel.getValue().edgeViewModels) {
 				if (clickedOnEdge(edge, clickCoordinates)) {
 					// edge clicked
-					System.out.println("Edge clicked connecting vertices " + edge.vertex1.getVertexNumber() + " and "
-							+ edge.vertex2.getVertexNumber());
-
 					gameBoardViewModel.selectedEdgeForValidation.setValue(edge);
 				}
 			}

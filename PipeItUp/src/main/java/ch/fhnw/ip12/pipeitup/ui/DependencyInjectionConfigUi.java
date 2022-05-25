@@ -1,7 +1,5 @@
 package ch.fhnw.ip12.pipeitup.ui;
 
-import com.google.inject.AbstractModule;
-
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.hardware.HardwareGameBoardUi;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.hardware.HardwareGameBoardUiImpl;
@@ -9,6 +7,7 @@ import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.SoftwareGameBoardUi;
 import ch.fhnw.ip12.pipeitup.ui.views.gameboard.software.SoftwareGameBoardUiImpl;
 import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchUi;
 import ch.fhnw.ip12.pipeitup.ui.views.touch.TouchUiImpl;
+import com.google.inject.AbstractModule;
 
 /**
 * DependencyInjectionConfig

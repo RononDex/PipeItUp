@@ -1,12 +1,11 @@
 package ch.fhnw.ip12.pipeitup.logic.Models;
 
-import java.util.ArrayList;
+import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
+import com.diozero.devices.Button;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-import com.diozero.devices.Button;
 
 /**
  * EdgeModel

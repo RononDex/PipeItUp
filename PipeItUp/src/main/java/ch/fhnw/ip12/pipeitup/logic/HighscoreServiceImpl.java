@@ -1,13 +1,12 @@
 package ch.fhnw.ip12.pipeitup.logic;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import com.google.inject.Inject;
-
 import ch.fhnw.ip12.pipeitup.data.Database;
 import ch.fhnw.ip12.pipeitup.data.Models.HighscoreEntry;
 import ch.fhnw.ip12.pipeitup.logic.Models.HighscoreEntryModel;
+import com.google.inject.Inject;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 class HighscoreServiceImpl implements HighscoreService {
 
@@ -26,15 +25,21 @@ class HighscoreServiceImpl implements HighscoreService {
 
 	private List<HighscoreEntryModel> Map(List<HighscoreEntry> highscoreEntriesDb) {
 		return highscoreEntriesDb.stream()
-				.map(hse -> new HighscoreEntryModel(hse.getUserName(), hse.getScoreInSeconds()))
+				.map(hse -> new HighscoreEntryModel(hse.getUserName(), hse.getScoreInSeconds(), hse.getGameMode()))
 				.collect(Collectors.toList());
 	}
 
 	@Override
 	public void saveHighscoreEntry(HighscoreEntryModel highscoreEntryModel) {
-		database.saveScore(
-				new HighscoreEntry(highscoreEntryModel.getUserName(), highscoreEntryModel.getScoreInSeconds()));
+		if (!database.getScores().equals(highscoreEntryModel.getUserName() + highscoreEntryModel.getScoreInSeconds() + highscoreEntryModel.getGameMode())) {
+			database.saveScore(new HighscoreEntry(highscoreEntryModel.getUserName(),
+					highscoreEntryModel.getScoreInSeconds(), highscoreEntryModel.getGameMode()));
+		}
+	}
 
+	@Override
+	public void clearHighscoreEntries() {
+		database.clearHighscoreTable();
 	}
 
 }

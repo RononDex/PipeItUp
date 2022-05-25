@@ -1,7 +1,7 @@
 package ch.fhnw.ip12.pipeitup.ui.views.gameboard;
 
 import ch.fhnw.ip12.pipeitup.app.ExcludeTypeFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.ui.Color;
+import javafx.beans.property.SimpleBooleanProperty;
 
 @ExcludeTypeFromJacocoGeneratedReport
 public class VertexViewModel {
@@ -21,9 +21,7 @@ public class VertexViewModel {
 		this.LEDLine = LEDLine;
 	}
 
-	private boolean isLedActive = false;
-
-	private Color ledColor = new Color(255, 0, 0);
+	public SimpleBooleanProperty isLedActive = new SimpleBooleanProperty(false);
 
 	public int getVertexNumber() {
 		return vertexNumber;
@@ -35,14 +33,6 @@ public class VertexViewModel {
 
 	public double getVertexCenterPositionYInMm() {
 		return vertexCenterPositionYInMm;
-	}
-
-	public boolean getIsLedActive() {
-		return isLedActive;
-	}
-
-	public Color getLedColor() {
-		return ledColor;
 	}
 
 	public int getLED() {

@@ -1,14 +1,11 @@
 package ch.fhnw.ip12.pipeitup.data;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
 import org.junit.jupiter.api.Test;
 
-import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
-
-import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * GraphLayoutDataFromDbLoaderImplTests

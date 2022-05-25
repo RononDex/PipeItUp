@@ -1,5 +1,15 @@
 package ch.fhnw.ip12.pipeitup.data;
 
+import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
+import ch.fhnw.ip12.pipeitup.app.PipeItUp;
+import ch.fhnw.ip12.pipeitup.data.Models.Edge;
+import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
+import ch.fhnw.ip12.pipeitup.data.Models.HighscoreEntry;
+import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,30 +20,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import ch.fhnw.ip12.pipeitup.app.ExcludeMethodFromJacocoGeneratedReport;
-import ch.fhnw.ip12.pipeitup.app.PipeItUp;
-import ch.fhnw.ip12.pipeitup.data.Models.Edge;
-import ch.fhnw.ip12.pipeitup.data.Models.GraphLayout;
-import ch.fhnw.ip12.pipeitup.data.Models.HighscoreEntry;
-import ch.fhnw.ip12.pipeitup.data.Models.Vertex;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-
 class DatabaseImpl implements Database {
 
 	static final Logger log = LogManager.getLogger(PipeItUp.class.getName());
 
 	private Connection connect() {
-		String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/database.db";
+		String url = "jdbc:sqlite:" + Paths.get(System.getProperty("user.dir"), "database.db");
 		log.info("Loading Database: " + url);
 		Connection conn = null;
 		try {
@@ -50,11 +42,11 @@ class DatabaseImpl implements Database {
 		ArrayList<Edge> edgeList = new ArrayList<>();
 
 		String sqlVertex =
-			"SELECT id_vertex, positionX, positionY, LED, LEDLine FROM tbl_vertex LEFT JOIN tbl_vertexLED ON tbl_vertex.fk_vertexLED = tbl_vertexLED.id_vertexLED";
+				"SELECT id_vertex, positionX, positionY, LED, LEDLine FROM tbl_vertex LEFT JOIN tbl_vertexLED ON tbl_vertex.fk_vertexLED = tbl_vertexLED.id_vertexLED";
 		String sqlGraphLayout =
-			"SELECT firstVertex, secondVertex, firstLED, LEDLine, b1.mcp AS mcp1, b1.pin AS pin1, b2.mcp AS mcp2, b2.pin AS pin2 FROM tbl_graphlayout LEFT JOIN tbl_edgeLED ON tbl_graphlayout.fk_firstLED = tbl_edgeLED.id_edgeLED " +
-				"LEFT JOIN tbl_button AS b1 ON tbl_graphlayout.fk_button1 = b1.id_button " +
-				"LEFT JOIN tbl_button AS b2 ON tbl_graphlayout.fk_button2 = b2.id_button;";
+				"SELECT firstVertex, secondVertex, firstLED, LEDLine, b1.mcp AS mcp1, b1.pin AS pin1, b2.mcp AS mcp2, b2.pin AS pin2 FROM tbl_graphlayout LEFT JOIN tbl_edgeLED ON tbl_graphlayout.fk_firstLED = tbl_edgeLED.id_edgeLED " +
+						"LEFT JOIN tbl_button AS b1 ON tbl_graphlayout.fk_button1 = b1.id_button " +
+						"LEFT JOIN tbl_button AS b2 ON tbl_graphlayout.fk_button2 = b2.id_button;";
 		try (Connection conn = this.connect();
 			 Statement stmtVertex = conn.createStatement();
 			 ResultSet rsVertex = stmtVertex.executeQuery(sqlVertex);
@@ -62,20 +54,20 @@ class DatabaseImpl implements Database {
 			 ResultSet rsGraphLayout = stmtGraphLayout.executeQuery(sqlGraphLayout)) {
 			while (rsVertex.next()) {
 				vertexList.add(new Vertex(rsVertex.getInt("id_vertex"), rsVertex.getInt("positionX"),
-					rsVertex.getInt("positionY"), rsVertex.getInt("LED"), rsVertex.getInt("LEDLine")));
+						rsVertex.getInt("positionY"), rsVertex.getInt("LED"), rsVertex.getInt("LEDLine")));
 			}
 			while (rsGraphLayout.next()) {
 				edgeList.add(
-					new Edge(
-						vertexList.get(rsGraphLayout.getInt("firstVertex")),
-						vertexList.get(rsGraphLayout.getInt("secondVertex")),
-						rsGraphLayout.getInt("firstLED"),
-						rsGraphLayout.getInt("LEDLine"),
-						rsGraphLayout.getInt("mcp1"),
-						rsGraphLayout.getInt("pin1"),
-						rsGraphLayout.getInt("mcp2"),
-						rsGraphLayout.getInt("pin2")
-					)
+						new Edge(
+								vertexList.get(rsGraphLayout.getInt("firstVertex")),
+								vertexList.get(rsGraphLayout.getInt("secondVertex")),
+								rsGraphLayout.getInt("firstLED"),
+								rsGraphLayout.getInt("LEDLine"),
+								rsGraphLayout.getInt("mcp1"),
+								rsGraphLayout.getInt("pin1"),
+								rsGraphLayout.getInt("mcp2"),
+								rsGraphLayout.getInt("pin2")
+						)
 				);
 			}
 		} catch (SQLException e) {
@@ -88,11 +80,12 @@ class DatabaseImpl implements Database {
 	@Override
 	@ExcludeMethodFromJacocoGeneratedReport
 	public boolean saveScore(HighscoreEntry highscoreEntry) {
-		String sql = "INSERT INTO tbl_highscore(name,score) VALUES(?,?)";
+		String sql = "INSERT INTO tbl_highscore(name,score,gameMode) VALUES(?,?,?)";
 		try (Connection conn = this.connect();
 			 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, highscoreEntry.getUserName());
-			pstmt.setInt(2, (int)(highscoreEntry.getScoreInSeconds() / 1000));
+			pstmt.setInt(2, (int) (highscoreEntry.getScoreInSeconds() * 1000));
+			pstmt.setInt(3, highscoreEntry.getGameMode());
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -105,18 +98,35 @@ class DatabaseImpl implements Database {
 	@ExcludeMethodFromJacocoGeneratedReport
 	public List<HighscoreEntry> getScores() {
 		ArrayList<HighscoreEntry> highcoreEntries = new ArrayList<>();
-		String sql = "SELECT name, score FROM tbl_highscore";
+		String sql = "SELECT name, score, gameMode FROM tbl_highscore";
 		try (Connection conn = this.connect();
 			 Statement stmt = conn.createStatement();
 			 ResultSet rs = stmt.executeQuery(sql)) {
 
 			while (rs.next()) {
-				highcoreEntries.add(new HighscoreEntry(rs.getString("name"), rs.getInt("score") / 1000f));
+				highcoreEntries.add(
+						new HighscoreEntry(
+								rs.getString("name"),
+								rs.getInt("score") / 1000f,
+								rs.getInt("gameMode")));
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());
 		}
 
 		return highcoreEntries;
+	}
+
+	@Override
+	public void clearHighscoreTable() {
+		String sql = "DELETE FROM tbl_highscore";
+		try (Connection conn = this.connect()) {
+			Statement stmt = conn.createStatement();
+			stmt.execute(sql);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+		}
+
+
 	}
 }

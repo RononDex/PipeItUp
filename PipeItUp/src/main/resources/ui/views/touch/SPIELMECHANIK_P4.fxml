@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.ip12.pipeitup.ui.views.touch.controllers.SPIELMECHANIK_P4Controller">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="814.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/Spielmechanik/Spielmechanik4.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="bArrow" layoutX="30.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#handleBArrow" prefHeight="99.0" prefWidth="108.0" styleClass="transparentButton" stylesheets="@style/Style.css" text="bArrow" />
+      <Button fx:id="fArrow" layoutX="662.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#handleFArrow" prefHeight="106.0" prefWidth="108.0" styleClass="transparentButton" stylesheets="@style/Style.css" text="fArrow" />
+      <Button fx:id="skip" layoutX="652.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#handleSkip" prefHeight="50.0" prefWidth="117.0" styleClass="transparentButton" stylesheets="@style/Style.css" text="skip" />
+   </children>
+</AnchorPane>

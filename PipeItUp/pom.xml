@@ -10,8 +10,7 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<name>PipeItUp</name>
-	<!-- FIXME change it to the project's website -->
-	<url>https://fhnw.ch</url>
+	<url>https://web0.fhnw.ch/ht/informatik/ip12/22vt/pipelinesystem/index.html</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -114,10 +113,19 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>src/main/java/resources</directory>
+				<directory>src/main/resources</directory>
 				<includes>
 					<include>**/*.fxml</include>
 					<include>**/*.css</include>
+					<include>**/*.png</include>
+					<include>**/*.jpg</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${project.basedir}</directory>
+				<targetPath>${project.build.directory}</targetPath>
+				<includes>
+					<include>database.db</include>
 				</includes>
 			</resource>
 		</resources>
@@ -154,29 +162,28 @@
 					<outputDirectory>${project.build.directory}/distribution</outputDirectory>
 				</configuration>
 			</plugin>
-			<!--<plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.2.4</version>
 				<executions>
 					<execution>
-						<phase>package</phase>
 						<goals>
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<transformers>
-								<transformer
-										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<transformer implementation=
+													 "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>ch.fhnw.ip12.pipeitup.app.PipeItUp</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>-->
+			</plugin>
 
-			<!-- Javadoc -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -210,8 +217,7 @@
 					<execution>
 						<id>default-report</id>
 						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
+						<goals> <goal>report</goal>
 						</goals>
 					</execution>
 					<execution>
@@ -228,7 +234,7 @@
 										<limit>
 											<counter>COMPLEXITY</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.90</minimum>
+											<minimum>0.80</minimum>
 										</limit>
 									</limits>
 								</rule>
@@ -307,6 +313,45 @@
 							</commandlineArgs>
 						</configuration>
 					</plugin>
+					<plugin>
+						<groupId>com.akathist.maven.plugins.launch4j</groupId>
+						<artifactId>launch4j-maven-plugin</artifactId>
+						<version>2.1.2</version>
+						<executions>
+							<execution>
+								<id>l4j-clui</id>
+								<phase>package</phase>
+								<goals>
+									<goal>launch4j</goal>
+								</goals>
+								<configuration>
+									<headerType>gui</headerType>
+									<jar>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</jar>
+									<outfile>${project.build.directory}/pipeitup.exe</outfile>
+									<classPath>
+										<mainClass>ch.fhnw.ip12.pipeitup.app.PipeItUp</mainClass>
+									</classPath>
+									<icon>pipeitup.ico</icon>
+									<cmdLine>--softwareUi</cmdLine>
+									<jre>
+										<minVersion>11.0.12</minVersion>
+									</jre>
+									<versionInfo>
+										<fileVersion>1.0.0.0</fileVersion>
+										<txtFileVersion>${project.version}</txtFileVersion>
+										<fileDescription>${project.name}</fileDescription>
+										<copyright>2022 ${project.name}</copyright>
+										<productVersion>1.0.0.0</productVersion>
+										<txtProductVersion>1.0.0.0</txtProductVersion>
+										<productName>${project.name}</productName>
+										<companyName>${project.name}</companyName>
+										<internalName>IP12-PipeItUp</internalName>
+										<originalFilename>pipeitup.exe</originalFilename>
+									</versionInfo>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -345,17 +390,14 @@
 											 port="${pi.remote.port}">
 											<fileset dir="${project.build.directory}/distribution"/>
 										</scp>
+										<scp file="${project.build.directory}/database.db" trust="true"
+											 todir="${pi.remote.username}:${pi.remote.password}@${pi.remote.host}:${pi.remote.target}"
+											 port="${pi.remote.port}">
+										</scp>
 										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"
 												 username="${pi.remote.username}" password="${pi.remote.password}"
 												 trust="true"
 												 command="rm ${pi.remote.target}/javafx-* &amp;&amp; cp /usr/share/openjfx/lib/javafx.* ${pi.remote.target}/"/>
-
-										<!-- Run application on Raspberry Pi -->
-<!--										<sshexec host="${pi.remote.host}" port="${pi.remote.port}"-->
-<!--												 username="${pi.remote.username}" password="${pi.remote.password}"-->
-<!--												 trust="true"-->
-<!--												 failonerror="false" usepty="true" useSystemIn="true"-->
-<!--												 command="DISPLAY=:1 sudo java -Dprism.order=sw ${pi.remote.jvmOptions} &#45;&#45;module-path ${pi.remote.target} &#45;&#45;module ${pi.launcher.class} ${pi.launcher.args}"/>-->
 									</target>
 								</configuration>
 							</execution>

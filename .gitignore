@@ -9,6 +9,7 @@ PipeItUp/target/
 
 # IntelliJ
 *.iml
+.idea/workspace.xml
 
 # Vim
 .attach*

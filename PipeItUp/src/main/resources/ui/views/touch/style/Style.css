@@ -1,0 +1,150 @@
+.transparentButton {
+	-fx-fill: transparent;
+	-fx-background-color: transparent;
+	-fx-text-fill: transparent;
+}
+
+.mainButton {
+	-fx-text-fill: linear-gradient(#1b1464, #1600ff);
+	-fx-font-family: "Abel";
+	-fx-font-size: 50;
+	-fx-background-color: linear-gradient(#009245, #00eb6f);
+	-fx-effect: dropshadow(gaussian, #009245, 5, 0.2, 0.5, 4);
+}
+
+.smallButton {
+	-fx-text-fill: linear-gradient(#1b1464, #1600ff);
+	-fx-font-family: "Abel";
+	-fx-font-size: 30;
+	-fx-background-color: linear-gradient(#009245, #00eb6f);
+	-fx-effect: dropshadow(gaussian, #009245, 5, 0.2, 0.5, 4);
+}
+
+.rectangle {
+	-fx-background-color: linear-gradient(#009245, #00eb6f);
+	-fx-effect: dropshadow(gaussian, #009245, 5, 0.2, 0.5, 4);
+}
+
+.smallLabel {
+	-fx-text-fill: linear-gradient(#1b1464, #1600ff);
+	-fx-font-family: "Abel";
+	-fx-font-size: 44;
+	-fx-text-alignment: center;
+	text-alignment: center;
+}
+.bigLabel {
+	-fx-text-fill: linear-gradient(#1b1464, #1600ff);
+	-fx-font-family: "Abel";
+	-fx-font-size: 50;
+}
+
+.rectLabel {
+	-fx-background-color: linear-gradient(#009245, #00eb6f);
+	-fx-effect: dropshadow(gaussian, #009245, 5, 0.2, 0.5, 4);
+}
+
+.countdown {
+	-fx-text-fill: linear-gradient(#9B1D1D, #FF0000);
+	-fx-stroke: 1;
+	-fx-font-family: Bahnschrift;
+	-fx-font-size: 190;
+	-fx-alignment: center;
+}
+
+.timer {
+	-fx-text-fill: blue;
+	-fx-stroke: 1;
+	-fx-font-family: Bahnschrift;
+	-fx-font-size: 190;
+	-fx-alignment: center;
+}
+
+.result {
+	-fx-text-fill: linear-gradient(#1B1464, #1600FF);
+	-fx-stroke: 1;
+	-fx-font-family: Bahnschrift;
+	-fx-font-size: 90;
+	-fx-alignment: center;
+}
+
+.text-field {
+	-fx-background-color: linear-gradient(#009245, #00eb6f);
+	-fx-effect: dropshadow(gaussian, #009245, 5, 0.2, 0.5, 4);
+	-fx-font-family: Arial;
+	-fx-font-size: 30;
+}
+
+
+/* TABLE VIEW */
+.table-view .column-header-background{
+	-fx-background-color: linear-gradient(to bottom, #00eb6f, #009245);
+	-fx-background-radius: 7px 7px 0px 0px;
+	-fx-background-insets: 0 0 0 0;
+	-fx-padding: 0 0 5px 0;
+}
+
+.table-view .column-header{
+	-fx-background-color: #00eb6f;
+}
+
+.table-view .corner{
+	-fx-background-color: transparent;
+}
+
+.table-view .column-header-background .filler{
+	-fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+	-fx-border-color: transparent;
+	-fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell:hover{
+	-fx-background-color: #93f9b911;
+	-fx-text-background-color: blue;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background{
+	-fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+	-fx-background-color: linear-gradient(#009245, #00eb6f);
+}
+
+.table-view .column-header .label{
+	-fx-font-family: Courier;
+	/* -fx-font-weight: light; */
+	-fx-alignment: center-left;
+	-fx-font-size: 20;
+}
+
+.table-row-cell:filled:selected:hover{
+	-fx-background-color: lightblue;
+}
+
+.table-view .placeholder .label{
+	-fx-text-fill: red;
+	-fx-padding: 20px;
+}
+.sum{
+	-fx-text-fill: linear-gradient(#1B1464, #1600FF);
+	-fx-stroke: 1;
+	-fx-font-family: Bahnschrift;
+	-fx-font-size: 24;
+	-fx-alignment: center;
+	-fx-content-display: center;
+	-fx-text-alignment: center;
+}
+
+
+
+
+
+
+
+
+
