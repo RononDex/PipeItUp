@@ -1,3 +1,4 @@
 #!/bin/bash
-cd /home/pipeitup/deploy
-sudo java -Dprism.order=sw --module-path /home/pipeitup/deploy --module ch.fhnw.ip12.pipeitup.app/ch.fhnw.ip12.pipeitup.app.PipeItUp
+cd /home/pipeitup/PipeItUp/PipeItUp/target
+sudo java -jar PipeItUp-1.0-SNAPSHOT-shaded.jar
+

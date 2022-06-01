@@ -69,6 +69,11 @@ cp build/libs/rpi-ws281x-java-2.0.0-SNAPSHOT.jar ../../PipeItUp/repository/com/g
 sudo chown pipeitup:pipeitup ../../PipeItUp/repository/com/github/mbelling/rpi-ws281x/2.0.0-SNAPSHOT/rpi-ws281x-2.0.0-SNAPSHOT.jar
 
 # ---------------------------------------------------------------------------------
+# Install pipeitup game
+# ---------------------------------------------------------------------------------
+mvn package -f scriptDir/../PipeItUp/pom.xml
+
+# ---------------------------------------------------------------------------------
 # Setup wifi Mgmt
 # ---------------------------------------------------------------------------------
 
